@@ -1,0 +1,79 @@
+/* #main{
+  align-self: center;
+  max-width: 1300;
+  height: auto;
+  background-color: gray;
+  margin-left: 180px;
+  margin-right: 180px;
+  display: flex;
+} */
+#logo{
+  flex: 1;
+}
+
+#fej{
+  align-items: center;
+  display: flex;
+  flex: 2;
+}
+
+#fej_tart{
+  padding: 0; 
+  list-style: none; 
+  display: table;
+  flex: 2;
+  text-align: center;
+}
+
+li{
+  display: table-cell; 
+  position: relative;
+}
+
+
+
+#fej_tool{
+  flex: 1;
+  text-align: right;
+}
+
+.fej_link{
+  color: rgb(255, 123, 0);
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#kosar{
+  max-width: 64px;
+  max-height: 64px;
+}
+
+#fejlec{
+  align-self: center;
+  max-width: 1300;
+  height: auto;
+  background-color: gray;
+  margin-left: 180px;
+  margin-right: 180px;
+  display: flex;
+}
+
+/* Etxra dolgok */
+
+a:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #4400ff;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+a:hover:after { 
+  width: 100%; 
+  left: 0; 
+}
