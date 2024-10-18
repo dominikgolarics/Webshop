@@ -1,0 +1,21 @@
+#tartalom_login{
+    max-width: 1300;
+    height: auto;
+    margin-left: 180px;
+    margin-right: 180px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#login_form{
+    border: 1px black solid;
+}
+
+#uname,#psw,#elf_psw{
+    font-size: 28px;
+}
+
+#elf_psw{
+    margin-top: 160px;
+}
