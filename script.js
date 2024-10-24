@@ -29,11 +29,11 @@ $(document).ready(function () {
 				//kép
 				var srcindex = i + 1;
 				img.src = rend_cipok[i].kep;
-				$(img).addClass("cipo1");
+				// $(img).addClass("cipo_kep");
 				// console.log(i)
 
 				//termék div
-				$(div).addClass("col-lg-3 col-md-6 cipo");
+				$(div).addClass("grid-item");
 				div.appendChild(img);
 
 				div2.innerHTML = rend_cipok[i].nev;
@@ -55,9 +55,14 @@ $(document).ready(function () {
 		rendez_datum();
 	});
 
+	//Link átirányítások
     $("#profil").click(function (e) { 
         e.preventDefault();
         window.location.href="login.html"
-        
+    });
+	
+    $(".mozgo_logo").click(function (e) { 
+        e.preventDefault();
+        window.location.href="termekek.html"
     });
 });
