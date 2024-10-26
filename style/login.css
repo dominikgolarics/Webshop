@@ -1,0 +1,29 @@
+#tartalom_login{
+    background-color: inherit;
+    height: auto;
+    margin-left: 180px;
+    margin-right: 180px;
+    justify-content: center;
+    /* align-items: center; */
+    display: flex;
+    margin-top: 80px;
+
+}
+
+#login_form{
+    border-radius: 25px;
+    border:solid 18px rgb(69, 220, 231) ;
+    padding: 8px;
+    
+}
+
+#uname_text,#psw_text,#elf_psw_text{
+    font-size: 38px;
+}
+#uname,#psw,#elf_psw{
+    font-size: 18px;
+}
+
+#elf_psw_text{
+    margin-top: 80px;
+}

@@ -1,0 +1,54 @@
+@import url("login.css");
+@import url("fejlec.css");
+@import url("tartalom.css");
+
+li {
+	display: table-cell;
+	position: relative;
+}
+
+body {
+	background-color: #fdf8e1;
+}
+
+#kosar {
+	width: 48px;
+	height: 48px;
+}
+
+/* Mozgó logók */
+#banner {
+	padding-top: 16px;
+	width: 100%; /* Set the width of your carousel */
+	overflow: hidden; /* Hide the overflowing part */
+	/* display: flex; */
+	white-space: nowrap;
+	align-items: center;
+	margin-bottom: 24px;
+}
+
+.mozgo_logo:hover {
+	cursor: pointer;
+}
+
+.logo-wrapper {
+	display: inline-block;
+	justify-content: space-around;
+	animation: slide 20s infinite linear;
+}
+
+.logo-wrapper img {
+	height: 120px; /* Adjust the height according to your need */
+	padding: 0 8px; /* Add space between logos */
+}
+
+@keyframes slide {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-70%);
+	}
+}
+
+/* Mozgó logók vége */
