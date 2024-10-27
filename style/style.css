@@ -1,6 +1,7 @@
 @import url("login.css");
 @import url("fejlec.css");
 @import url("tartalom.css");
+@import url("cipo.css");
 
 li {
 	display: table-cell;
