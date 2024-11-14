@@ -13,13 +13,7 @@
     font-weight: 700;
 }
 
-#cipo-container{
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
-    padding: 12px;
-    overflow: hidden;
-}
+
 
 
 

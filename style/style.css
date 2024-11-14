@@ -2,6 +2,7 @@
 @import url("fejlec.css");
 @import url("tartalom.css");
 @import url("cipo.css");
+@import url("termekek.css");
 
 li {
 	display: table-cell;
