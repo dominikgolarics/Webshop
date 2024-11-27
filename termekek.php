@@ -16,11 +16,11 @@
 		<div id="fejlec">
 			<header id="fej">
 				<div id="logo">
-					<h2><a id="logo_link" href="main.html">Nile</a></h2>
+					<h2><a id="logo_link" href="main.php">Nile</a></h2>
 				</div>
 				<ul id="fej_tart">
-					<li><a class="fej_link" href="friss.html">Új kiadás</a></li>
-					<li><a class="fej_link" href="legkel.html">Legkelendőbbek</a></li>
+					<li><a class="fej_link" href="friss.php">Új kiadás</a></li>
+					<li><a class="fej_link" href="legkel.php">Legkelendőbbek</a></li>
 					<li><a class="fej_link" href="#">Termékek</a></li>
 				</ul>
 				<div id="fej_tool">

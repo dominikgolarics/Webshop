@@ -16,12 +16,12 @@
 		<div id="fejlec">
 			<header id="fej">
 				<div id="logo">
-					<h2><a id="logo_link" href="main.html">Nile</a></h2>
+					<h2><a id="logo_link" href="main.php">Nile</a></h2>
 				</div>
 				<ul id="fej_tart">
-					<li><a class="fej_link" href="friss.html">Új kiadás</a></li>
-					<li><a class="fej_link" href="legkel.html">Legkelendőbbek</a></li>
-					<li><a class="fej_link" href="termekek.html">Termékek</a></li>
+					<li><a class="fej_link" href="friss.php">Új kiadás</a></li>
+					<li><a class="fej_link" href="legkel.php">Legkelendőbbek</a></li>
+					<li><a class="fej_link" href="termekek.php">Termékek</a></li>
 				</ul>
 				<div id="fej_tool">
 					<img id="kosar" src="img/menu/kosar.png" alt="kosar" />
@@ -54,8 +54,7 @@
 					<button type="submit">Login</button>
 					<br />
 					<label for="register"
-						>Nincs fiókod? <a href="register.html">Regisztrálj itt!</a></label
-					>
+						>Nincs fiókod? <a href="register.php">Regisztrálj itt!</a></label>
 					<br />
 					<label id="elf_psw_text" for="elf_psw"
 						><b>Elfelejtett jelszó</b></label
