@@ -6,16 +6,10 @@ body {
     background-color: inherit;
     display: flex;
     width: 350px;
-    width:calc(100%-150px) !important;
-	height:calc(100% - 30px) !important;
-  	margin-left:15px;
-  	margin-top:15px;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 15px 5px;
-    border-radius:18px;
 }
 
 #login_form{
-    border-radius: 18px;
+    border-radius: 25px;
     border:solid 18px rgb(69, 139, 231);
     padding: 8px;
     
@@ -34,10 +28,10 @@ body {
     justify-self: center;
 }
 
-#uname_text,#psw_text,#elf_psw_text{
-    font-size: 38px;
+.inputname{
+    font-size: 25px;
 }
-#uname,#psw,#elf_psw{
+.inputtext{
     font-size: 18px;
 }
 
@@ -52,13 +46,13 @@ body {
     border-radius: 5px;
     background-color:limegreen;
     border: 1px solid limegreen;
-    box-shadow: 0px 1x 1px 1px black;
+    box-shadow: 0px 1px 1px 1px black;
 }
 
 input{
     width: 300px;
     padding: 8px 4px;
-     margin: 4px 0;
+    margin: 4px 0;
     box-sizing: border-box;
     border: 3px solid #ccc;
     -webkit-transition: 0.5s;

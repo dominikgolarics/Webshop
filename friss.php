@@ -10,18 +10,19 @@
 		/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="style/style.css" />
-		<title>Nile - Termékek</title>
+		<title>Nile - Friss termékek</title>
+		<script src="script.js"></script>
 	</head>
 	<body>
 		<div id="fejlec">
 			<header id="fej">
 				<div id="logo">
-					<h2><a id="logo_link" href="main.html">Nile</a></h2>
+					<h2><a id="logo_link" href="index.php">Nile</a></h2>
 				</div>
 				<ul id="fej_tart">
-					<li><a class="fej_link" href="friss.html">Új kiadás</a></li>
-					<li><a class="fej_link" href="legkel.html">Legkelendőbbek</a></li>
-					<li><a class="fej_link" href="#">Termékek</a></li>
+					<li><a class="fej_link" href="#">Új kiadás</a></li>
+					<li><a class="fej_link" href="legkel.php">Legkelendőbbek</a></li>
+					<li><a class="fej_link" href="termekek.php">Termékek</a></li>
 				</ul>
 				<div id="fej_tool">
 					<img id="kosar" src="img/menu/kosar.png" alt="kosar" />
@@ -29,14 +30,5 @@
 				</div>
 			</header>
 		</div>
-
-		<div id="minden-cipo">
-			
-		</div>
-
-		<div id="labfej">
-			<footer></footer>
-		</div>
-		<script src="script.js"></script>
 	</body>
 </html>
