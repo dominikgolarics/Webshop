@@ -1,11 +1,10 @@
 @import url("fejlec.css");
 @import url("tartalom.css");
 @import url("cipo.css");
+@import url("termekek.css");
+@import url("product.css");
 
-li {
-	display: table-cell;
-	position: relative;
-}
+
 
 body {
 	background-color: #fdf8e1;

@@ -1,0 +1,9 @@
+#termek{
+    border: 1px solid red;
+    padding: 1rem 1rem 4rem;
+    display: flex;
+}
+#termek-container{
+    display: flex;
+    align-items: center;
+}

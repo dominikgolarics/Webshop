@@ -1,3 +1,12 @@
+#cipo-container{
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    padding: 12px;
+    overflow: hidden;
+}
+
+
 .cipo-termek{
     height: 330px;
     width: 280px;
@@ -9,6 +18,7 @@
 
 .cipo-termek:hover {
     outline: 6px solid rgb(69, 139, 231); 
+    cursor:pointer;
   }
 
 .cipo-kep{

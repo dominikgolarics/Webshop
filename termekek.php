@@ -31,7 +31,69 @@
 		</div>
 
 		<div id="minden-cipo">
-			
+			<div id="cipo-termekek">
+				<div id="filter">
+					<div id="rendezes-darab">
+						<label for="">Darab termék</label>
+						<select onchange="termekekDarab()" name="mennyiseg" id="mennyiseg">
+							<option value="16">16</option>
+							<option value="24">24</option>
+							<option value="40">40</option>
+						</select>
+					</div>
+					<div id="rendezes-sorrend">
+						<span id="sorrend-span" style="font-size: 24px; font-weight: bold;">Rendezés</span>
+						<div id="kiem-div">
+							<input id="kiemelt-radio" name="rendezes-radio" value="Kiemelt" type="radio">
+							<label for="kiemelt-radio">Kiemelt</label>
+						</div>
+						<div id="alacsony-div">
+							<input id="ar-alacsony" name="rendezes-radio" value="Ár (alacsony->magas)" type="radio">
+							<label for="ar-alacsony">Ár (alacsony->magas)</label>
+						</div>
+						<div id="magas-div">
+							<input id="ar-magas" name="rendezes-radio" value="Ár (magas->alacsony)" type="radio">
+							<label for="ar-magas">Ár (magas->alacsony)</label>	
+						</div>
+					</div>
+					<div id="rendezes-markak">
+						<span id="marka-span" style="font-size: 24px; font-weight: bold;">Márkák</span>
+					</div>
+					<div id="rendezes-meret">
+						<span id="meret-span" style="font-size: 24px; font-weight: bold;">Méret</span><br>
+					</div>
+					<div id="rendezes-ar">
+						<span style="font-size: 24px; font-weight: bold;">Ár</span>
+						<div>
+							<input id="ar-checkbox1" type="checkbox">
+							<label for="ar-checkbox1">20 000 Ft alatt</label>
+						</div>
+						<div>
+							<input id="ar-checkbox2" type="checkbox">
+							<label for="ar-checkbox2">20 000 Ft - 40 000 Ft</label>
+						</div>
+						<div>
+							<input id="ar-checkbox3" type="checkbox">
+							<label for="ar-checkbox3">40 000 Ft - 80 000Ft</label>
+						</div>
+						<div>
+							<input id="ar-checkbox4" type="checkbox">
+							<label for="ar-checkbox4">80 000 Ft - 100 000Ft</label>
+						</div>
+						<div>
+							<input id="ar-checkbox5" type="checkbox">
+							<label for="ar-checkbox5">100 000 Ft - 140 000Ft</label>
+						</div>
+						<div>
+							<input id="ar-checkbox6" type="checkbox">
+							<label for="ar-checkbox6">140 000Ft felett</label>
+						</div>
+					</div>
+					<button onclick="teszt()">Teszt</button>
+				</div>
+				<div id="termekek-lista">
+				</div>
+			</div>
 		</div>
 
 		<div id="labfej">
