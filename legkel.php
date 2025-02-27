@@ -17,7 +17,7 @@
 		<div id="fejlec">
 			<header id="fej">
 				<div id="logo">
-					<h2><a id="logo_link" href="main.php">Nile</a></h2>
+					<h2><a id="logo_link" href="index.php">Nile</a></h2>
 				</div>
 				<ul id="fej_tart">
 					<li><a class="fej_link" href="friss.php">Új kiadás</a></li>
