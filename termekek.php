@@ -10,9 +10,11 @@
 		/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="style/style.css" />
+		<script src="script.js"></script>
 		<title>Nile - Termékek</title>
 	</head>
 	<body>
+		
 		<div id="fejlec">
 			<header id="fej">
 				<div id="logo">
@@ -33,14 +35,16 @@
 		<div id="minden-cipo">
 			<div id="cipo-termekek">
 				<div id="filter">
-					<div id="rendezes-darab">
+
+					<!-- <div id="rendezes-darab">
 						<label for="">Darab termék</label>
 						<select onchange="termekekDarab()" name="mennyiseg" id="mennyiseg">
 							<option value="16">16</option>
 							<option value="24">24</option>
 							<option value="40">40</option>
 						</select>
-					</div>
+					</div> -->
+
 					<div id="rendezes-sorrend">
 						<span id="sorrend-span" style="font-size: 24px; font-weight: bold;">Rendezés</span>
 						<div id="kiem-div">
@@ -90,8 +94,11 @@
 						</div>
 					</div>
 					<button onclick="teszt()">Teszt</button>
+					<button onclick="ures()">ures</button>
+					<input type="button" value="PHP" id="php">
 				</div>
 				<div id="termekek-lista">
+					<!-- stuff -->
 				</div>
 			</div>
 		</div>
@@ -99,6 +106,6 @@
 		<div id="labfej">
 			<footer></footer>
 		</div>
-		<script src="script.js"></script>
+		
 	</body>
 </html>

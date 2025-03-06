@@ -1,37 +1,38 @@
-const tesztAdat=[
-    {
-        marka:"Nike",
-        ar:35000,
-        meret:34
-    },
-    {
-        marka:"Adidas",
-        ar:35000,
-        meret:35
-    },
-    {
-        marka:"Puma",
-        ar:35000,
-        meret:36
-    },
-    {
-        marka:"Converse",
-        ar:35000,
-        meret:38
-    },
-    {
-        marka:"NewBalance",
-        ar:35000,
-        meret:39
-    },
-    {
-        marka:"Vans",
-        ar:35000,
-        meret:40
-    },
-]
-
 $(document).ready(function () {
+
+
+    const tesztAdat=[
+        {
+            marka:"Nike",
+            ar:35000,
+            meret:34
+        },
+        {
+            marka:"Adidas",
+            ar:35000,
+            meret:35
+        },
+        {
+            marka:"Puma",
+            ar:35000,
+            meret:36
+        },
+        {
+            marka:"Converse",
+            ar:35000,
+            meret:38
+        },
+        {
+            marka:"NewBalance",
+            ar:35000,
+            meret:39
+        },
+        {
+            marka:"Vans",
+            ar:35000,
+            meret:40
+        },
+    ]
 
 	//Link átirányítások
     $("#profil").click(function (e) { 
@@ -58,8 +59,7 @@ $(document).ready(function () {
     //
 
 
-    $("#sorrend-span").click(function (e) { 
-        e.preventDefault();
+    $("#sorrend-span").click(function () { 
         $("#kiem-div").slideToggle(function () {
         });
         $("#alacsony-div").slideToggle(function () {
@@ -107,7 +107,6 @@ $(document).ready(function () {
         }
     
     }
-    markaFilterOpciok()
 
     function meretFilterOpciok(){
         var szam=1
@@ -151,8 +150,53 @@ $(document).ready(function () {
         }
     
     }
-    meretFilterOpciok()
 
+    // function termekekDarab() { 
+    //     let selectedValue
+    
+    //     let selectElement = document.getElementById("mennyiseg");
+    //     selectedValue = selectElement.value;
+    //     const termekek_lista_div = document.getElementById("termekek-lista")
+    //     termekek_lista_div.innerHTML="";
+    //     for (let i = 0; i < (selectedValue/4); i++) {
+            
+    //         const div_cipo_container=document.createElement("div")
+    
+    //         for (let j = i * 4; j < (i + 1) * 4; j++) {
+    //             const div_cipo_termek=document.createElement("div")
+    //             const div_cipo_kep=document.createElement("div")
+    //             const img=document.createElement("img")
+    
+    //             let src ="img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor-2.jpg" 
+    
+    //             const div_cipo_leiras=document.createElement("div")
+    //             const h3=document.createElement("h3")
+    //             const span=document.createElement("span")
+    //             const h5=document.createElement("h5")
+    
+    //             img.src=src //ideiglenes, majd adatbázisból
+    //             div_cipo_kep.setAttribute("class","cipo-kep") //* stílus
+    //             div_cipo_kep.appendChild(img)
+                
+    //             h3.innerHTML="Cipő márkája"+j //adatbázisból
+    //             span.innerHTML="Teljes termék név" //adatbázisból
+    //             h5.innerHTML="696969" //adatbázisból
+    //             div_cipo_leiras.setAttribute("class","cipo-leiras") //* stílus
+    //             div_cipo_leiras.appendChild(h3)
+    //             div_cipo_leiras.appendChild(span)
+    //             div_cipo_leiras.appendChild(h5)
+    
+    //             div_cipo_termek.setAttribute("class","cipo-termek") //* stílus
+    //             div_cipo_termek.appendChild(div_cipo_kep)
+    //             div_cipo_termek.appendChild(div_cipo_leiras)
+    
+    //             div_cipo_container.id="cipo-container"  //* stílus
+    //             div_cipo_container.appendChild(div_cipo_termek)
+    //         }
+            
+    //         termekek_lista_div.append(div_cipo_container)
+    //     }
+    // }
 
     function arCheckboxEllenorzes() { 
         const ar_checkbox1 = document.getElementById("ar-checkbox1");
@@ -217,77 +261,31 @@ $(document).ready(function () {
             }
         });
     }
-    
-    function termekekDarab() { 
-        let selectedValue
-    
-        let selectElement = document.getElementById("mennyiseg");
-        selectedValue = selectElement.value;
-        const termekek_lista_div = document.getElementById("termekek-lista")
-        termekek_lista_div.innerHTML="";
-        for (let i = 0; i < (selectedValue/4); i++) {
-            
-            const div_cipo_container=document.createElement("div")
-    
-            for (let j = i * 4; j < (i + 1) * 4; j++) {
-                const div_cipo_termek=document.createElement("div")
-                const div_cipo_kep=document.createElement("div")
-                const img=document.createElement("img")
-    
-                // ? ideiglenes
-                let src ="img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor-2.jpg" 
-    
-                const div_cipo_leiras=document.createElement("div")
-                const h3=document.createElement("h3")
-                const span=document.createElement("span")
-                const h5=document.createElement("h5")
-    
-                img.src=src //ideiglenes, majd adatbázisból
-                div_cipo_kep.setAttribute("class","cipo-kep") //* stílus
-                div_cipo_kep.appendChild(img)
-                
-                h3.innerHTML="Cipő márkája"+j //adatbázisból
-                span.innerHTML="Teljes termék név" //adatbázisból
-                h5.innerHTML="696969" //adatbázisból
-                div_cipo_leiras.setAttribute("class","cipo-leiras") //* stílus
-                div_cipo_leiras.appendChild(h3)
-                div_cipo_leiras.appendChild(span)
-                div_cipo_leiras.appendChild(h5)
-    
-                div_cipo_termek.setAttribute("class","cipo-termek") //* stílus
-                div_cipo_termek.appendChild(div_cipo_kep)
-                div_cipo_termek.appendChild(div_cipo_leiras)
-    
-                div_cipo_container.id="cipo-container"  //* stílus
-                div_cipo_container.appendChild(div_cipo_termek)
-            }
-            
-            termekek_lista_div.append(div_cipo_container)
-        }
-     }
-    
+        
     //Meghívás
-    termekekDarab()
-    arCheckboxEllenorzes()
-    //Meghívás
+    markaFilterOpciok();
+    meretFilterOpciok();
+    //termekekDarab();
+    arCheckboxEllenorzes();
+    
     
     
     //TESZT ZÓNA 
-    console.log(tesztAdat)
+    console.log(tesztAdat);
     var xd = document.getElementById("ar-checkbox1");
-    console.log(xd.checked)
+    console.log(xd.checked);
     
     
+    //BETÖLT 40 CIPŐT
+    window.teszt = function(){
+        //alert("teszt")
+        // let selectedValue=""
     
-    function teszt(){
-        alert("teszt")
-        let selectedValue
-    
-        let selectElement = document.getElementById("mennyiseg");
-        selectedValue = selectElement.value;
+        // let selectElement = document.getElementById("mennyiseg");
+        // selectedValue = selectElement.value;
         const termekek_lista_div = document.getElementById("termekek-lista")
         termekek_lista_div.innerHTML="";
-        for (let i = 0; i < (selectedValue/4); i++) {
+        for (let i = 0; i < (10/4); i++) {
             
             const div_cipo_container=document.createElement("div")
     
@@ -328,6 +326,49 @@ $(document).ready(function () {
         }
         
     }
+
+    $('#php').click(function () { 
+        //alert("php gomb")
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            // Typical action to be performed when the document is ready:
+            const obj = this.responseText;
+            console.log(JSON.parse(obj));
+            }
+        };
+        xhttp.open("GET", "nile_api.php", true);
+        xhttp.send();
+    });
+
+    // $.ajax({
+    //     type: "POST",
+    //     url: "termekek.php",  // Adjust the path if necessary
+    //     contentType: "application/json",  // Tell server we're sending JSON
+    //     data: JSON.stringify({
+    //         nev: "Sample Product",
+    //         marka_id: 1,
+    //         ar: 1000,
+    //         megjelenes: "2025-03-01",
+    //         raktaron: 10,
+    //         meret_id: 2,
+    //         kep: "image.jpg",
+    //         tipus_id: 3
+    //     }),
+    //     success: function (data) {
+    //         console.log("Success:", data);
+    //     },
+    //     error: function (xhr, status, error) {
+    //         console.error("Error:", xhr.responseText);
+    //     }
+    // });
+    
+    window.ures = function(){
+        alert("PLS WORK");
+        var lol = document.getElementById("termekek-lista");
+        lol.innerHTML="";
+    }
     
 });
+
 

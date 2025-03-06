@@ -31,8 +31,8 @@
 			</header>
 		</div>
 
-		<div id="banner">
-			<div class="logo-wrapper">
+		<div id="logos">
+			<div class="logos-slide">
 				<img class="mozgo_logo" src="img/marka/Adidas.png" alt="Logo 1" />
 				<img class="mozgo_logo" src="img/marka/Asics.png" alt="Logo 2" />
 				<img class="mozgo_logo" src="img/marka/Bata.png" alt="Logo 3" />
@@ -61,7 +61,7 @@
 				<img class="mozgo_logo" src="img/marka/Vans.png" alt="" />
 				<img class="mozgo_logo" src="img/marka/Wilson.png" alt="" />
 			</div>
-			<div class="logo-wrapper">
+			<div class="logos-slide">
 				<img class="mozgo_logo" src="img/marka/Adidas.png" alt="Logo 1" />
 				<img class="mozgo_logo" src="img/marka/Asics.png" alt="Logo 2" />
 				<img class="mozgo_logo" src="img/marka/Bata.png" alt="Logo 3" />
