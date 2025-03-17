@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-
+    const adat=[];
     const tesztAdat=[
         {
             marka:"Nike",
@@ -333,8 +333,11 @@ $(document).ready(function () {
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
             // Typical action to be performed when the document is ready:
+            //adat = this.responseText;
             const obj = this.responseText;
+            
             console.log(JSON.parse(obj));
+            console.log(obj);
             }
         };
         xhttp.open("GET", "nile_api.php", true);
