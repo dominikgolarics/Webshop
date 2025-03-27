@@ -1,6 +1,26 @@
 $(document).ready(function () {
 
-    const adat=[];
+    let adat=[];
+
+    $('#php').click(function () { 
+        //alert("php gomb")
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            // Typical action to be performed when the document is ready:
+            //adat = this.responseText;
+            adat = JSON.parse(this.responseText);
+            console.log(adat);
+            markaFilterOpciok();
+            meretFilterOpciok();
+            arCheckboxEllenorzes();
+            }
+        };
+        xhttp.open("GET", "nile_api.php", true);
+        xhttp.send();
+    });
+
+
     const tesztAdat=[
         {
             marka:"Nike",
@@ -52,28 +72,11 @@ $(document).ready(function () {
         });
     });
 
-    //Alapa elrejt
-    $("#kiem-div").hide();
-    $("#alacsony-div").hide();
-    $("#magas-div").hide();
-    //
-
-
-    $("#sorrend-span").click(function () { 
-        $("#kiem-div").slideToggle(function () {
-        });
-        $("#alacsony-div").slideToggle(function () {
-        });
-        $("#magas-div").slideToggle(function () {
-        });
-    });
-
-
-
+    //* VLASZEG ÁT KELL ÍRNI, lehet hogy haszontalan
     function markaFilterOpciok(){
         var rend_div=document.getElementById("rendezes-markak")
     
-        for (let i = 0; i < tesztAdat.length; i++) {
+        for (let i = 0; i < adat.length; i++) {
             
             var div = document.createElement("div")
             var input = document.createElement("input")
@@ -86,10 +89,10 @@ $(document).ready(function () {
             input.id="marka"+i+"-checkbox" //betöltött index
             input.type="checkbox"
             input.name="filter-marka-checkbox"
-            input.value=tesztAdat[i].marka //betöltött adatokból
+            input.value=adat[i].marka_id//betöltött adatokból
     
             label.setAttribute("for","marka"+i+"-checkbox")
-            label.innerHTML=tesztAdat[i].marka //adatbázisból
+            label.innerHTML=adat[i].marka_id//adatbázisból
             label.setAttribute("class","marka-label")
     
             div.appendChild(input)
@@ -265,11 +268,11 @@ $(document).ready(function () {
     //Meghívás
     markaFilterOpciok();
     meretFilterOpciok();
-    //termekekDarab();
     arCheckboxEllenorzes();
+    //termekekDarab();
+    //* VLASZEG ÁT KELL ÍRNI, lehet hogy haszontalan 
     
-    
-    
+
     //TESZT ZÓNA 
     console.log(tesztAdat);
     var xd = document.getElementById("ar-checkbox1");
@@ -327,22 +330,7 @@ $(document).ready(function () {
         
     }
 
-    $('#php').click(function () { 
-        //alert("php gomb")
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-            // Typical action to be performed when the document is ready:
-            //adat = this.responseText;
-            const obj = this.responseText;
-            
-            console.log(JSON.parse(obj));
-            console.log(obj);
-            }
-        };
-        xhttp.open("GET", "nile_api.php", true);
-        xhttp.send();
-    });
+    
 
     // $.ajax({
     //     type: "POST",
@@ -371,7 +359,17 @@ $(document).ready(function () {
         var lol = document.getElementById("termekek-lista");
         lol.innerHTML="";
     }
-    
+
+    //TERMEK
+;
 });
 
+function showImage(img) {
+    let previewDiv = document.getElementById("nagy-kep");
+    previewDiv.innerHTML = `<img id='nagy-nezet' class="img-fluid" src="${img.src}">`;
+}
 
+
+// 1. betölt oldal -> minden cipo-t lekér és betölt
+// 2. filter opció kiválasztása
+// 3. cipok filter által lekérdez és betölt

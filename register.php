@@ -1,5 +1,5 @@
 <?php
-	require "F:/www/Webshop/database/db_connect.php";
+	require "database/db_connect.php";
 	$error = "";
 
 	if($_SERVER["REQUEST_METHOD"] == "POST"){

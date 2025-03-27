@@ -1,0 +1,51 @@
+#termek-tart{
+    display: flex;
+    border: 1px solid rgb(255, 0, 255);
+    padding-left: 24px;
+    padding-right: 24px;
+    justify-content: center;
+}
+#termek-kepek,#termek-info{
+    background-color: white;
+    height: 100%;
+}
+
+#termek-kepek{
+    border: 1px solid rgba(255, 0, 0, 0.849);
+    width: 40%;
+    height: auto;
+}
+
+#termek-info{
+    border: 1px solid rgba(0, 102, 255, 0.849);
+    width: 40%;
+    height: auto;
+    
+}
+
+#kis-kepek{
+    display: flex;
+    flex-wrap: wrap;
+    width: 120px;
+    float: left;
+}
+
+#nagy-kep{
+    display: flex;
+    position: relative;
+    /* justify-content: center; */
+    left: 20px;
+    width: auto;
+    height: auto;
+}
+
+.kep-elonezet{
+    height: auto;
+    width: 120px;
+    margin-bottom: 14px;
+}
+
+#nagy-nezet{
+    position: relative;
+    border: 1px solid brown;
+}
