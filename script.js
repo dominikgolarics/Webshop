@@ -202,6 +202,8 @@ $(document).ready(function () {
     // }
 
     function arCheckboxEllenorzes() { 
+        
+        
         const ar_checkbox1 = document.getElementById("ar-checkbox1");
         const ar_checkbox2 = document.getElementById("ar-checkbox2");
         const ar_checkbox3 = document.getElementById("ar-checkbox3");
@@ -330,29 +332,6 @@ $(document).ready(function () {
         
     }
 
-    
-
-    // $.ajax({
-    //     type: "POST",
-    //     url: "termekek.php",  // Adjust the path if necessary
-    //     contentType: "application/json",  // Tell server we're sending JSON
-    //     data: JSON.stringify({
-    //         nev: "Sample Product",
-    //         marka_id: 1,
-    //         ar: 1000,
-    //         megjelenes: "2025-03-01",
-    //         raktaron: 10,
-    //         meret_id: 2,
-    //         kep: "image.jpg",
-    //         tipus_id: 3
-    //     }),
-    //     success: function (data) {
-    //         console.log("Success:", data);
-    //     },
-    //     error: function (xhr, status, error) {
-    //         console.error("Error:", xhr.responseText);
-    //     }
-    // });
     
     window.ures = function(){
         alert("PLS WORK");

@@ -60,6 +60,25 @@
 				</div>
 				<div id="rendezes-markak">
 					<span id="marka-span" style="font-size: 24px; font-weight: bold;">Márkák</span>
+					<?php
+						$host="localhost";
+						$pw="";
+						$user="root";
+						$dnmame="webshop";
+						
+						$conn= mysqli_connect($host,$user,$pw,$dnmame);
+
+						$sql= "SELECT * FROM marka"; //WHERE marka_id IN(1) AND meret_id IN(1) AND tipus_id IN(1)
+						$result=$conn->query($sql);
+						$i=0;
+						while ($row=$result->fetch_assoc()) {
+							echo "<div>";
+							echo "	<input id='marka-".$row['ceg']."' type='checkbox'>";
+							echo'	<label for="marka-checkbox1">'.$row['ceg'].'</label>';
+							echo"</div>";
+							$i++;
+						}
+					?>	
 				</div>
 				<div id="rendezes-meret">
 					<span id="meret-span" style="font-size: 24px; font-weight: bold;">Méret</span><br>
@@ -92,7 +111,7 @@
 					</div>
 				</div>
 				<button onclick="loadDoc('filter')">termekek.js</button>
-				<button onclick="keres()">Keres</button>
+				<button id="keres-gomb">Keres</button>
 				<button onclick="teszt()">Teszt</button>
 				<button onclick="ures()">ures</button>
 				<input type="button" value="PHP" id="php">

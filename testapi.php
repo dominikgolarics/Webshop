@@ -1,44 +1,83 @@
 <?php
-header("Content-type: application/json; charset=utf-8");
+header("Content-type: application/json");
 $host="localhost";
 $pw="";
 $user="root";
 $dnmame="webshop";
 
-$conn= mysqli_connect($host,$user,$pw,$dnmame);
+//$conn= mysqli_connect($host,$user,$pw,$dnmame);
+
+$pdo= new PDO('mysql:host=localhost;
+               dbname=webshop;
+               charset=utf8',
+               $user,
+               $pw);
 
 $ered=[];
+$feltetelek=[];
+$params=[];
+$sql= "SELECT termek.id, nev, ar, megjelenes, raktaron, tipus.tipus AS tipus, marka.ceg AS marka, meret.meret AS meret
+    FROM `termek` 
+    INNER JOIN marka ON termek.marka_id = marka.id 
+    INNER JOIN tipus ON termek.tipus_id = tipus.id 
+    INNER JOIN meret ON termek.meret_id = meret.id"; //ALAP MINDEN
+
 if(!$_SERVER['REQUEST_METHOD']=="get"){
     $tomb=['hiba'=>"Nem jó"];
-}else if(isset($_GET['all'])){
+}
+//Mindent vissza ad a termék táblából megfelelően
+else if(isset($_GET['all'])){
     $sql= "SELECT termek.id, nev, ar, megjelenes, raktaron, tipus.tipus AS tipus, marka.ceg AS marka, meret.meret AS meret
     FROM `termek` 
     INNER JOIN marka ON termek.marka_id = marka.id 
     INNER JOIN tipus ON termek.tipus_id = tipus.id 
     INNER JOIN meret ON termek.meret_id = meret.id
     "; //WHERE marka_id IN(1) AND meret_id IN(1) AND tipus_id IN(1)
-    $result=$conn->query($sql);
-    while ($row=$result->fetch_assoc()) {
-        $ered[]=$row;
-    }
-    $tomb=[
-        'data'=>$ered
-    ];
-}else if(isset($_GET['filter'])){
-    $sql= "SELECT termek.id, nev, ar, megjelenes, raktaron, tipus.tipus AS tipus, marka.ceg AS marka, meret.meret AS meret
-    FROM `termek` 
-    INNER JOIN marka ON termek.marka_id = marka.id 
-    INNER JOIN tipus ON termek.tipus_id = tipus.id 
-    INNER JOIN meret ON termek.meret_id = meret.id
-    WHERE ar BETWEEN 20000 AND 40000"; //WHERE marka_id IN(1) AND meret_id IN(1) AND tipus_id IN(1)
-    $result=$conn->query($sql);
-    while ($row=$result->fetch_assoc()) {
-        $ered[]=$row;
-    }
-    $tomb=[
-        'data'=>$ered
-    ];
 }
+else if(isset($_GET['arak'])){
+    $arak = json_decode($_GET['arak'],true);
+    $ar_leker=[];
+
+    foreach($arak as $ar){
+        if($ar === "under_20000"){ $ar_leker[]="ar < 20000"; }
+        if($ar === "between_20000_40000"){ $ar_leker[]="ar BETWEEN 20000 AND 40000"; }
+        if($ar === "between_40000_80000"){ $ar_leker[]="ar BETWEEN 40000 AND 80000"; }
+        if($ar === "between_80000_100000"){ $ar_leker[]="ar BETWEEN 80000 AND 100000"; }
+        if($ar === "between_100000_140000"){ $ar_leker[]="ar BETWEEN 100000 AND 140000"; }
+        if($ar === "above_140000"){ $ar_leker[]="ar > 140000"; }
+    }
+
+    if(!empty($ar_leker)){
+        $feltetelek[]="(" . implode(" OR ",$ar_leker) . ")"; 
+    }
+
+
+}
+else if(isset($_GET['markak'])){
+    $markak = json_decode($_GET['markak'],true);
+
+    $marka_leker=[];
+    foreach ($markak as $marka) {
+        $marka_leker[]="marka = ?";
+        $params[]=$marka;
+    }
+
+    if(!empty($marka_leker)){
+        $feltetelek[]= "(" . implode(" OR ", $marka_leker) . ")";
+    }
+}
+
+if(!empty($feltetelek)){
+    $sql.= " WHERE " . implode(" AND ",$feltetelek);
+}else{
+
+}
+
+$stmt= $pdo->prepare($sql);
+$stmt->execute($params);
+$tomb=$stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 $json=json_encode($tomb,JSON_UNESCAPED_UNICODE);
 print($json);
 

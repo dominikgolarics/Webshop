@@ -4,6 +4,8 @@
     gap: 16px;
     padding: 12px;
     overflow: hidden;
+    flex-wrap: wrap;
+    max-width: 1200px;
 }
 
 
