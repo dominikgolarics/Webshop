@@ -23,7 +23,7 @@ $(document).ready(function () {
             console.log("Termékek betöltése...")
             
             div_cipo_cont.innerHTML="";
-            for (let i = 0; i < obj.length; i++) {
+            for (let i = 0; i < obj.adat.length; i++) {
                 //console.log("container elkezdve")
                 
                 //console.log("termek elkezdve")
@@ -33,9 +33,9 @@ $(document).ready(function () {
                 let h5 = document.createElement("h5")
 
                 img.src="img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor-2.jpg"
-                h3.innerHTML=obj[i].marka
-                span.innerHTML=obj[i].nev
-                h5.innerHTML=obj[i].ar
+                h3.innerHTML=obj.adat[i].marka
+                span.innerHTML=obj.adat[i].nev
+                h5.innerHTML=obj.adat[i].ar
 
                 let div_cipo_kep=document.createElement("div");
                 div_cipo_kep.appendChild(img)
@@ -51,6 +51,7 @@ $(document).ready(function () {
                 div_cipo_termek.appendChild(div_cipo_kep)
                 div_cipo_termek.appendChild(div_cipo_leiras)
                 div_cipo_termek.className="cipo-termek"
+                div_cipo_termek.id="cipoId-"+obj.adat[i].id
                 
                 div_cipo_cont.id="cipo-container"
                 div_cipo_cont.appendChild(div_cipo_termek)
@@ -61,6 +62,7 @@ $(document).ready(function () {
                 
                 
             }
+            //term_lista.append(div_cipo_cont)
             term_lista.append(div_cipo_cont)
             console.log("Termékek betölte!")
           }
@@ -72,45 +74,180 @@ $(document).ready(function () {
 
     const keres_gomb = document.getElementById("keres-gomb")
 
-    function TermekLekerFilter(arak=[], markak=[]) {
-        let url = "testapi.php";
-        let leker="";
+    function TermekLekerFilter(szuresiFeltetelek) {
+        $.ajax({
+            type: "POST",
+            url: "tests.php",
+            contentType : 'application/json',
+            async: false,
+            data: JSON.stringify(szuresiFeltetelek),
+            success: function(data) {
+                console.log("Termekfilter success: ",data);
+                let term_lista = document.getElementById("termekek-lista");
+                let div_cipo_cont=document.createElement("div");
+                term_lista.innerHTML="";
+                div_cipo_cont.innerHTML="";
+                for (let i = 0; i < data.adat.length; i++) {
+                    //console.log("container elkezdve")
+                    
+                    //console.log("termek elkezdve")
+                    let img = document.createElement("img")
+                    let h3 = document.createElement("h3")
+                    let span = document.createElement("span")
+                    let h5 = document.createElement("h5")
 
-        if (arak.length > 0 || markak.length > 0) {
-            url += "?arak=" +JSON.stringify(arak) + "&markak=" + JSON.stringify(markak);
-            leker = "arak=" +JSON.stringify(arak) + "&markak=" + JSON.stringify(markak);
-        } else {
-            url += "?all"; //Mindne ha semmit nincs kiválasztva és rányomott a Keres gombra
-        }
-        console.log("Lekérés GET: "+url)
-        fetch(url)
-            .then(response=> response.json())
-            .then(adat=>{
-                loadDoc(leker)
-                console.log(adat)
-            })
+                    img.src="img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor-2.jpg"
+                    h3.innerHTML=data.adat[i].marka
+                    span.innerHTML=data.adat[i].nev
+                    h5.innerHTML=data.adat[i].ar
+
+                    let div_cipo_kep=document.createElement("div");
+                    div_cipo_kep.appendChild(img)
+                    div_cipo_kep.className="cipo-kep"
+
+                    let div_cipo_leiras=document.createElement("div");
+                    div_cipo_leiras.appendChild(h3)
+                    div_cipo_leiras.appendChild(span)
+                    div_cipo_leiras.appendChild(h5)
+                    div_cipo_leiras.className="cipo-leiras"
+
+                    let div_cipo_termek=document.createElement("div");
+                    div_cipo_termek.appendChild(div_cipo_kep)
+                    div_cipo_termek.appendChild(div_cipo_leiras)
+                    div_cipo_termek.className="cipo-termek"
+                    div_cipo_termek.id="cipoId-"+data.adat[i].id
+                    
+                    div_cipo_cont.id="cipo-container"
+                    div_cipo_cont.appendChild(div_cipo_termek)
+                        
+                    //console.log("termek létrehozva és containerhez adva")
+                    
+                    //console.log("container listához adva")
+                    
+                    
+                }
+                //term_lista.append(div_cipo_cont)
+                term_lista.append(div_cipo_cont)
+                console.log("Termékek betölte!")
+
+            },
+            error: function(xhr, status, error) {
+                console.error("Hiba történt: ", error);
+                console.log("Full response text:", xhr.responseText);
+            }
+        });
     }
 
-    keres_gomb.addEventListener("click", function () {
-        const checkedArak=[];
-        if (document.getElementById("ar-checkbox1").checked) checkedArak.push("under_20000");
-        if (document.getElementById("ar-checkbox2").checked) checkedArak.push("between_20000_40000");
-        if (document.getElementById("ar-checkbox3").checked) checkedArak.push("between_40000_80000");
-        if (document.getElementById("ar-checkbox4").checked) checkedArak.push("between_80000_100000");
-        if (document.getElementById("ar-checkbox5").checked) checkedArak.push("between_100000_140000");
-        if (document.getElementById("ar-checkbox6").checked) checkedArak.push("above_140000");
+    keres_gomb.addEventListener("click", function() {
+        let checked = [];
 
-        const checkedMarkak = [];
-        if (document.getElementById("marka-Nike").checked) checkedMarkak.push("Nike");
-        if (document.getElementById("marka-Adidas").checked) checkedMarkak.push("Adidas");
-        if (document.getElementById("marka-Puma").checked) checkedMarkak.push("Puma");
-        if (document.getElementById("marka-Vans").checked) checkedMarkak.push("Vans");
+        $(".szures").each(function() {
+            if (this.checked) {
+                let hova = this.id.split("-")[0]
+                test[hova].push(this.value)
+                
+                checked.push(this.value);
+            }
+        });
+        console.log("TEST tomb kiírása:",test)
+        console.log("keres gomb checked: ",checked);
+        TermekLekerFilter(checked);
+    });
 
-        TermekLekerFilter(checkedArak,checkedMarkak)
-      })
+    const test_gomb = document.getElementById("kuldTest")
+    test_gomb.addEventListener("click",function(){
+        let test={
+            'ar':[],
+            'meret':[],
+            'rend':[],
+            'marka':[]
+        }
+        $(".szures").each(function() {
+            if (this.checked) {
+                let hova = this.id.split("-")[0]
+                test[hova].push(this.value)
+            }
+        });
+        FilterTombTest(test)
+        //console.log("TEST tomb kiírása:",test)
+    }) 
+        
+    function FilterTombTest(szuresiFeltetelek) {
+        $.ajax({
+            type: "POST",
+            url: "test2.php",
+            // contentType : 'application/json',
+            async: false,
+            data: szuresiFeltetelek,
+            success: function(data) {
+                console.log(data)
+                let term_lista = document.getElementById("termekek-lista");
+                let div_cipo_cont=document.createElement("div");
+                term_lista.innerHTML="";
+                div_cipo_cont.innerHTML="";
+                for (let i = 0; i < data.adat.length; i++) {
+                    //console.log("container elkezdve")
+                    
+                    //console.log("termek elkezdve")
+                    let img = document.createElement("img")
+                    let h3 = document.createElement("h3")
+                    let span = document.createElement("span")
+                    let h5 = document.createElement("h5")
 
+                    img.src="img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor-2.jpg"
+                    h3.innerHTML=data.adat[i].marka
+                    span.innerHTML=data.adat[i].nev
+                    h5.innerHTML=data.adat[i].ar
+
+                    let div_cipo_kep=document.createElement("div");
+                    div_cipo_kep.appendChild(img)
+                    div_cipo_kep.className="cipo-kep"
+
+                    let div_cipo_leiras=document.createElement("div");
+                    div_cipo_leiras.appendChild(h3)
+                    div_cipo_leiras.appendChild(span)
+                    div_cipo_leiras.appendChild(h5)
+                    div_cipo_leiras.className="cipo-leiras"
+
+                    let div_cipo_termek=document.createElement("div");
+                    div_cipo_termek.appendChild(div_cipo_kep)
+                    div_cipo_termek.appendChild(div_cipo_leiras)
+                    div_cipo_termek.className="cipo-termek"
+                    div_cipo_termek.id="cipoId-"+data.adat[i].id
+                    
+                    div_cipo_cont.id="cipo-container"
+                    div_cipo_cont.appendChild(div_cipo_termek)
+                        
+                    //console.log("termek létrehozva és containerhez adva")
+                    
+                    //console.log("container listához adva")
+                    
+                    
+                }
+                //term_lista.append(div_cipo_cont)
+                term_lista.append(div_cipo_cont)
+                console.log("Termékek betölte!")
+            },
+            error: function(xhr, status, error) {
+                console.error("Hiba történt: ", error);
+                console.log("Full response text:", xhr.responseText);
+            }
+        });
+    }
     
 });
 
+function TEST() {
+    fetch("tests.php")
+    .then(response => response.json())
+    .then(adat => {
+        console.log(adat);
+    })
+    .catch(error => {
+        console.error('Hiba történt:', error);
+    });
+}
+
+//TEST()
 
 
