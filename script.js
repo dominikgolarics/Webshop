@@ -214,10 +214,7 @@ $(document).ready(function () {
 
 
     //RewriteRule ^product/([0-9]+)/?$ product_page.php?id=$1 [L,QSA]
-    $(".cipo-termek").on('click',  function() {
-        let cipo_id = this.id.split('-');
-        window.location.href = 'termek.php?id=' + cipo_id[1];
-    });
+    
 
 });
 

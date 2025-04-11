@@ -3,25 +3,21 @@ $cipo_id = $_GET['id'] ?? null;
 
 if ($cipo_id) {
     $mysqli = new mysqli("localhost", "root", "", "webshop");
-    $mysqli = new mysqli("localhost", "username", "password", "webshop");
-    
-    // Get product details
-    $stmt = $mysqli->prepare("
-        SELECT t.*, m.ceg AS marka, ti.tipus, me.meret 
-        FROM termek t
-        JOIN marka m ON t.marka_id = m.id
-        JOIN tipus ti ON t.tipus_id = ti.id
-        JOIN meret me ON t.meret_id = me.id
-        WHERE t.id = ?
-    ");
-    $stmt->bind_param("i", $product_id);
+
+    $sql="SELECT termek.id, nev, ar, megjelenes, raktaron, tipus.tipus AS tipus, marka.ceg AS marka, meret.meret AS meret
+    FROM `termek` 
+    INNER JOIN marka ON termek.marka_id = marka.id 
+    INNER JOIN tipus ON termek.tipus_id = tipus.id 
+    INNER JOIN meret ON termek.meret_id = meret.id
+    WHERE termek.id = ?";
+
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param("i", $cipo_id);
     $stmt->execute();
     $product = $stmt->get_result()->fetch_assoc();
-    var_dump($product);
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,7 +53,18 @@ if ($cipo_id) {
     </div>
 
     <div id="termek-tart">
-        
+        <div id="termek-kepek">
+            <div id="kis-kepek">
+                <img class="kep-elonezet" src="img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor-2.jpg" onclick="showImage(this)">
+                <img class="kep-elonezet" src="img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor-3.jpg" onclick="showImage(this)">
+                <img class="kep-elonezet" src="img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor-4.jpg" onclick="showImage(this)">
+                <img class="kep-elonezet" src="img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor-5.jpg" onclick="showImage(this)">
+            </div>
+            <div id="nagy-kep">
+                <div id="xd">xd</div>
+            </div>
+        </div>
+        <div id="termek-info"></div>
     </div>
 
 </body>

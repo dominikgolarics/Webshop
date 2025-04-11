@@ -234,6 +234,11 @@ $(document).ready(function () {
             }
         });
     }
+
+    $(".cipo-termek").on('click',  function() {
+        let cipo_id = this.id.split('-');
+        window.location.href = 'termek.php?id=' + cipo_id[1];
+    });
     
 });
 
