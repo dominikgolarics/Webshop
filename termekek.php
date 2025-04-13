@@ -131,10 +131,7 @@
 						<label for="ar-checkbox6">140 000Ft felett</label>
 					</div>
 				</div>
-				<button onclick="TEST()">termekek.js</button>
-				<button id="keres-gomb">tests.php</button>
-				<button id="kuldTest">test2.php</button>
-				<button onclick="ures()">ures</button>
+				<button id="kuldTest">Keres</button>
 			</div>
 			<div id="termekek-lista">
 				<!-- //xd -->

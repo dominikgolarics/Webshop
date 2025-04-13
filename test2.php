@@ -17,14 +17,19 @@ $sql = "SELECT termek.id, nev, ar, megjelenes, raktaron, tipus.tipus AS tipus, m
 $where = [];
 $params = [];
 $types = '';
-$rend = "ASC";
+//$rend = "ASC";
+$filterek=[];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ar = $_POST['ar'] ?? [];
     $meret = $_POST['meret'] ?? [];
-    $rend = $_POST['rend'] ?? "ASC";
+    $rend = $_POST['rend'] ?? null;
     $marka = $_POST['marka'] ?? [];
-    
+
+    $filterek['ar']=$ar;
+    $filterek['meret']=$meret;
+    $filterek['rend']=$rend;
+    $filterek['marka']=$marka;
     // ÁRAK
     if (!empty($ar)) {
         $priceConditions = [];
@@ -61,17 +66,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // RENDEZÉS
-    if (in_array(strtoupper($rend), ['ASC', 'DESC'])) {
-        $sql .= " ORDER BY ar " . strtoupper($rend);
+    if (is_array($rend)) {
+        $rend = $rend[0] ?? null;
+    }
+
+    if ($rend == 'ASC' || $rend == 'DESC') {
+        $sql .= " ORDER BY ar " . $rend;
     }
 
     // LEKÉRDEZÉS
     $result = $mysqli->query($sql);
+    file_put_contents("test2.txt",$sql);
     if ($result) {
         $products = $result->fetch_all(MYSQLI_ASSOC);
         $response = [
             'adat' => $products,
-            'sql' => $sql
+            'sql' => [$sql],
+            'filterek'=>$filterek
         ];
     } else {
         $response['error'] = "Query error: " . $mysqli->error;
@@ -81,3 +92,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 echo json_encode($response, JSON_UNESCAPED_UNICODE);
+

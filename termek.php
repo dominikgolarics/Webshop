@@ -51,7 +51,7 @@ if ($cipo_id) {
             </div>
         </header>
     </div>
-
+    <!-- NINCS MÉRET OPCIÓ csak egyszerű rendelés -->
     <div id="termek-tart">
         <div id="termek-kepek">
             <div id="kis-kepek">
@@ -64,7 +64,12 @@ if ($cipo_id) {
                 <div id="xd">xd</div>
             </div>
         </div>
-        <div id="termek-info"></div>
+        <div id="termek-info">
+            <?php echo "<h1 id='termek-nev'>".$product['nev']."</h1>";?>
+            <?php echo "<span id='termek-ar'>".$product['ar']."FT</span>"?>
+            <?php echo "<span>".$product['meret']."</span>"; ?>
+            <button id="kosar-gomb">Kosárba</button>
+        </div>
     </div>
 
 </body>
