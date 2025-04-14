@@ -20,8 +20,8 @@ body {
 /* Mozgó logók */
 #logos {
 	padding-top: 16px;
-	width: 100%; /* Set the width of your carousel */
-	overflow: hidden; /* Hide the overflowing part */
+	width: 100%; 
+	overflow: hidden; 
 	display: flex;
 	white-space: nowrap;
 	align-items: center;
@@ -39,8 +39,8 @@ body {
 }
 
 .logos-slide img {
-	height: 120px; /* Adjust the height according to your need */
-	padding: 0 8px; /* Add space between logos */
+	height: 120px; 
+	padding: 0 8px; 
 }
 
 @keyframes scroll {

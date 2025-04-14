@@ -26,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="/style/style.css" />
+		<link rel="stylesheet" href="style/style.css" />
 		<link rel="icon" type="image/x-icon" href="/img/menu/favicon.ico" />
 		<link
 			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -74,8 +74,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 						<li><a class="fej_link" href="/termekek">Termékek</a></li>
 					</ul>
 					<div id="fej_tool">
-						<img id="kosar" src="/img/menu/kosar.png" alt="kosar" />
-						<img id="profilicon" src="/img/menu/icon.png" alt="ikon" />
+						<img id="kosar" src="img/menu/kosar.png" alt="kosar" />
+						<img id="profilicon" src="img/menu/icon.png" alt="ikon" />
 					</div>
 				</header>
 			</div>
