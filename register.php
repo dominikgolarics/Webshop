@@ -1,5 +1,5 @@
 <?php
-	require "F:/www/Webshop/database/db_connect.php";
+	require "database/db_connect.php";
 	$error = "";
 
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -55,11 +55,11 @@
 		} 
 
 		//Jelszó ismét ellenőrzés
-		if(empty($psw_again)){
-			$error = "Add meg ismét a jelszavad!";     
-		} elseif($psw != $psw_again){
-			$error = "A jelszavak nem egyeztek";
-		}
+		// if(empty($psw_again)){
+		// 	$error = "Add meg ismét a jelszavad!";     
+		// } elseif($psw != $psw_again){
+		// 	$error = "A jelszavak nem egyeztek";
+		// }
 
 		if(empty($error))
 		{
@@ -95,7 +95,7 @@
 	<body>
 		<div id="tartalom">
 			<div id="nilelogo">
-			<a href="index.php"><img style="width: 128px; height: 128px;" src="img/menu/logo-good-trans.png"></a>
+			<a href="/"><img style="width: 128px; height: 128px;" src="img/menu/logo-good-trans.png"></a>
 			</div>
 			<div id="tartalom_login">
 				<form action="register.php" method="post">

@@ -21,7 +21,7 @@
   display: flex;
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 100;
   background: rgb(69, 139, 231);
   box-shadow: 0px 0px 15px 0px #111;
 }
@@ -68,12 +68,12 @@
 
 
 
-#profil {
+#profilicon {
   max-width: 64px;
   max-height: 64px;
 }
 
-#profil:hover {
+#profilicon:hover {
   cursor: pointer;
 }
 
