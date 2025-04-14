@@ -38,7 +38,7 @@ $(document).ready(function () {
     
     $(document).on("click",".cipo-termek" ,function() {
         let productId = this.id.split('-')[1];
-        window.location.href = 'termek.php?id=' + productId;
+        window.location.href = 'termek/'+ productId;
     });
 
 
