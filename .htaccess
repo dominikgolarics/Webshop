@@ -1,0 +1,7 @@
+Options +FollowSymlinks
+RewriteEngine on
+
+RewriteRule ^([a-zA-Z]+)$  index.php?page=$1 [nc,qsa]
+RewriteRule ^termekek/([a-zA-Z]+)-([0-9]+)$  index.php?page=termekek&termek=$2 [nc,qsa]
+RewriteRule ^profil/([a-zA-Z]+)$  index.php?page=profil&altab=$1 [nc,qsa]
+RewriteRule ^$   index.php?page=fooldal [nc,qsa]

@@ -1,3 +1,43 @@
 body {
 	background-color: #fdf8e1;
 }
+
+#profil-tartalom{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 50px 5% 0 5%;
+	box-shadow: 5px 5px 15px black;
+	border-radius: 15px;
+}
+
+#profil-profilmenu{
+	display: flex;
+	flex-direction: column;
+	width: 300px;
+	margin: left;
+	flex: 1;
+}
+
+.profil-altabok{
+	text-decoration: none;
+	color: black;
+	font-size: 35px;
+	align-self: flex-end;
+	margin-right: 30px;
+	margin-bottom: 20px;
+}
+
+.profil-altabok:hover{
+    background-color: black;
+    color: #fdf8e1;
+}
+
+#profil-menutartalom{
+	width: 600px;
+	height: 60vh;
+	border-left: 1px solid gray;
+	margin: 0;
+	padding-left: 30px;
+	flex: 3;
+}

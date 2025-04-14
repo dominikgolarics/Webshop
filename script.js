@@ -1,14 +1,30 @@
 $(document).ready(function () {
-
+    
 	//Link átirányítások
-    $("#profil").click(function (e) { 
+    
+        $("#profilicon").click(function (e) { 
+            var userId = document.getElementById('userId').value;
+            if(!userId){
+                e.preventDefault();
+                $("#login").fadeIn();
+                document.body.style.overflowY = 'hidden';
+            }
+            else{
+                window.location.href = '/profil/beallitasok';
+            }
+        });
+   
+   
+    
+    $("#close").click(function (e) { 
         e.preventDefault();
-        window.location.href="login.php"
+        $("#login").fadeOut();
+        document.body.style.overflowY = 'visible';
     });
 	
     $(".mozgo_logo").click(function (e) { 
         e.preventDefault();
-        window.location.href="termekek.php"
+        window.location.href="/termekek";
     });
 
     $("#asd-asd").click(function (e) { 
