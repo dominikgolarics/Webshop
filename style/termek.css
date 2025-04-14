@@ -4,6 +4,7 @@
     padding-left: 24px;
     padding-right: 24px;
     justify-content: center;
+    height: 100%;
 }
 #termek-kepek,#termek-info{
     background-color: white;
@@ -12,13 +13,13 @@
 
 #termek-kepek{
     border: 1px solid rgba(255, 0, 0, 0.849);
-    width: 40%;
+    width: 500px;
     height: auto;
 }
 
 #termek-info{
     border: 1px solid rgba(0, 102, 255, 0.849);
-    width: 40%;
+    width: auto;
     height: auto;
     padding-left: 24px;
     
@@ -36,8 +37,8 @@
     position: relative;
     /* justify-content: center; */
     left: 20px;
-    width: auto;
-    height: auto;
+    width: 400;
+    height: 400;
 }
 
 .kep-elonezet{
@@ -61,7 +62,7 @@
 }
 
 #kosar-gomb {
-    position: relative;
+    /* position: relative; */
     font-size: 1.5rem;
     color: #fafafa;
     text-transform: uppercase;
@@ -79,4 +80,37 @@
     box-shadow: none;
     transform: translate(3px, 3px);
   }
-  
+ 
+.mennyiseg-gomb{
+    display: flex;
+    border: 1px solid black;
+    border-radius: 8px;
+    width: 80px;
+    padding: 2px;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+.csokkent, .noveked {
+    /* Keep existing reset styles */
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+    
+    /* New sizing properties */
+    font-size: 28px; /* Increased from 22px */
+    line-height: 1;   /* Critical for alignment */
+    width: 30px;      /* Fixed width */
+    height: 30px;     /* Fixed height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mennyiseg {
+    margin: 0 4px;    /* Slightly more spacing */
+    font-size: 22px;
+    line-height: 30px; /* Match button height */
+}

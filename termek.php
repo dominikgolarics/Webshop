@@ -4,7 +4,7 @@ $cipo_id = $_GET['id'] ?? null;
 if ($cipo_id) {
     $mysqli = new mysqli("localhost", "root", "", "webshop");
 
-    $sql="SELECT termek.id, nev, ar, megjelenes, raktaron, tipus.tipus AS tipus, marka.ceg AS marka, meret.meret AS meret
+    $sql = "SELECT termek.id, nev, ar, megjelenes, raktaron, tipus.tipus AS tipus, marka.ceg AS marka, meret.meret AS meret
     FROM `termek` 
     INNER JOIN marka ON termek.marka_id = marka.id 
     INNER JOIN tipus ON termek.tipus_id = tipus.id 
@@ -20,6 +20,7 @@ if ($cipo_id) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -65,14 +66,21 @@ if ($cipo_id) {
             </div>
         </div>
         <div id="termek-info">
-            <?php echo "<h1 id='termek-nev'>".$product['nev']."</h1>";?>
-            <?php echo "<span id='termek-ar'>".$product['ar']."FT</span>"?>
-            <?php echo "<span>".$product['meret']."</span>"; ?>
+            <?php echo "<p id='termek-marka'>" . $product['marka'] . "</p>"; ?>
+            <?php echo "<h1 id='termek-nev'>" . $product['nev'] . "</h1>"; ?>
+            <?php echo "<span id='termek-ar'>" . $product['ar'] . "FT</span>" ?>
+            <!-- Valszeg nem kell <?php echo "<span>" . $product['meret'] . "</span>"; ?> -->
             <button id="kosar-gomb">Kosárba</button>
+
+            <div class="mennyiseg-gomb">
+                <!-- nem szép de használható -->
+                <button class="csokkent">-</button>
+                <span class="mennyiseg">1</span>
+                <button class="noveked">+</button>
+            </div>
         </div>
     </div>
 
 </body>
 
 </html>
-

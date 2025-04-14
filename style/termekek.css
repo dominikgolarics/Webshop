@@ -3,7 +3,7 @@
 }
 
 #filter{
-    border: 1px solid green;
+    /* border: 1px solid green; TESZTELÉSRE*/
     height:fit-content;
     width: 220px;
     flex: 30%;
@@ -14,12 +14,12 @@
 #termekek-lista{
     flex: 70%;
     float: right;
-    border: 1px solid black;
+    /* border: 1px solid black; TESZTELÉSRE */
 }
 
 #cipo-termekek{
     display: flexbox;
-    border: 2px solid red;
+    /* border: 2px solid red; TESZTELÉSRE*/
     padding: 1rem 1rem 4rem;
     flex-wrap: wrap;
 }
