@@ -3,6 +3,7 @@
 @import url("cipo.css");
 @import url("termekek.css");
 @import url("product.css");
+@import url("termek.css");
 @import url("profil.css");
 
 
@@ -17,11 +18,11 @@ body {
 }
 
 /* Mozgó logók */
-#banner {
+#logos {
 	padding-top: 16px;
 	width: 100%; /* Set the width of your carousel */
 	overflow: hidden; /* Hide the overflowing part */
-	/* display: flex; */
+	display: flex;
 	white-space: nowrap;
 	align-items: center;
 	margin-bottom: 24px;
@@ -31,23 +32,23 @@ body {
 	cursor: pointer;
 }
 
-.logo-wrapper {
+.logos-slide {
 	display: inline-block;
 	justify-content: space-around;
-	animation: slide 20s infinite linear;
+	animation:30s scroll infinite linear;
 }
 
-.logo-wrapper img {
+.logos-slide img {
 	height: 120px; /* Adjust the height according to your need */
 	padding: 0 8px; /* Add space between logos */
 }
 
-@keyframes slide {
+@keyframes scroll {
 	from {
-		transform: translateX(0);
+		transform: translateX(0%);
 	}
 	to {
-		transform: translateX(-70%);
+		transform: translateX(-100%);
 	}
 }
 

@@ -36,7 +36,64 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		<title>Nile</title>
 	</head>
 	<body style="background-color: #fdf8e1">
-
+      <div id="logos">
+			 <div class="logos-slide">
+				<img class="mozgo_logo" src="img/marka/Adidas.png" alt="Logo 1" />
+				<img class="mozgo_logo" src="img/marka/Asics.png" alt="Logo 2" />
+				<img class="mozgo_logo" src="img/marka/Bata.png" alt="Logo 3" />
+				<img class="mozgo_logo" src="img/marka/Columbia.png" alt="Logo 4" />
+				<img class="mozgo_logo" src="img/marka/Converse.png" alt="Logo 5" />
+				<img class="mozgo_logo" src="img/marka/Dr.-Martens.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Droors-Clothing.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/FILA.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Jordan.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Kappa.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Lacoste.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Lotto.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Merrell.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/New-Balance.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Nike.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Puma.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Reebok.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Saucony.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Skechers.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/The-North-Face.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Timberland.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Toms.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Ugg.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Umbro.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Under-Armour.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Vans.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Wilson.png" alt="" />
+			</div>
+			<div class="logos-slide">
+				<img class="mozgo_logo" src="img/marka/Adidas.png" alt="Logo 1" />
+				<img class="mozgo_logo" src="img/marka/Asics.png" alt="Logo 2" />
+				<img class="mozgo_logo" src="img/marka/Bata.png" alt="Logo 3" />
+				<img class="mozgo_logo" src="img/marka/Columbia.png" alt="Logo 4" />
+				<img class="mozgo_logo" src="img/marka/Converse.png" alt="Logo 5" />
+				<img class="mozgo_logo" src="img/marka/Dr.-Martens.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Droors-Clothing.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/FILA.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Jordan.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Kappa.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Lacoste.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Lotto.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Merrell.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/New-Balance.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Nike.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Puma.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Reebok.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Saucony.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Skechers.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/The-North-Face.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Timberland.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Toms.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Ugg.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Umbro.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Under-Armour.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Vans.png" alt="" />
+				<img class="mozgo_logo" src="img/marka/Wilson.png" alt="" />
 		<div id="login">
 			<div id="tartalom_login">
 				<div id="login_header">BEJELENTKEZÉS<span id="close">&#10005</span></div>
@@ -60,7 +117,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 						<button type="submit" id="gomb">Jelszó visszaállítása</button> -->
 				</form>
 				</div>
-				
 			</div>
 		</div>
 		<input type="hidden" id="userId" value="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : ''; ?>">
