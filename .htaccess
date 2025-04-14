@@ -4,4 +4,5 @@ RewriteEngine on
 RewriteRule ^([a-zA-Z]+)$  index.php?page=$1 [nc,qsa]
 RewriteRule ^termek/([0-9]+)$  index.php?page=termek&id=$1 [nc,qsa]
 RewriteRule ^profil/([a-zA-Z]+)$  index.php?page=profil&altab=$1 [nc,qsa]
+RewriteRule ^termek/([0-9]+)$ termek.php?id=$1 [L,QSA]
 RewriteRule ^$   index.php?page=fooldal [nc,qsa]

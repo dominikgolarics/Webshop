@@ -1,18 +1,24 @@
 <?php
+require "database/db_connect.php";
 header('Content-Type: application/json');
 
-$mysqli = new mysqli("localhost", "root", "", "webshop");
-if ($mysqli->connect_error) {
-    http_response_code(500);
-    echo json_encode(["error" => "DB connection failed"]);
-    exit;
-}
-
-$sql = "SELECT termek.id, nev, ar, megjelenes, raktaron, tipus.tipus AS tipus, marka.ceg AS marka, meret.meret AS meret
-    FROM `termek` 
-    INNER JOIN marka ON termek.marka_id = marka.id 
-    INNER JOIN tipus ON termek.tipus_id = tipus.id 
-    INNER JOIN meret ON termek.meret_id = meret.id";
+$sql = "SELECT 
+    termek.id, 
+    termek.nev, 
+    termek.ar, 
+    termek.megjelenes, 
+    termek.raktaron, 
+    tipus.tipus AS tipus, 
+    marka.ceg AS marka, 
+    meret.meret AS meret,
+    (SELECT cipokepek.url 
+     FROM cipokepek 
+     WHERE cipokepek.cipoID = termek.id 
+     LIMIT 1) AS elso_kep
+FROM `termek` 
+INNER JOIN marka ON termek.marka_id = marka.id 
+INNER JOIN tipus ON termek.tipus_id = tipus.id 
+INNER JOIN meret ON termek.meret_id = meret.id";
 
 $where = [];
 $params = [];
@@ -55,8 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // MÁRKA
     if (!empty($marka)) {
-        $escapedBrands = array_map(function ($brand) use ($mysqli) {
-            return "'" . $mysqli->real_escape_string($brand) . "'";
+        $escapedBrands = array_map(function ($brand) use ($conn) {
+            return "'" . $conn->real_escape_string($brand) . "'";
         }, $marka);
         $where[] = "marka.ceg IN (" . implode(",", $escapedBrands) . ")";
     }
@@ -75,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // LEKÉRDEZÉS
-    $result = $mysqli->query($sql);
+    $result = $conn->query($sql);
     file_put_contents("test2.txt",$sql);
     if ($result) {
         $products = $result->fetch_all(MYSQLI_ASSOC);
@@ -85,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'filterek'=>$filterek
         ];
     } else {
-        $response['error'] = "Query error: " . $mysqli->error;
+        $response['error'] = "Query error: " . $conn->error;
     }
 } else {
     $response['error'] = "Érvénytelen kérés!";

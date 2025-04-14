@@ -1,3 +1,33 @@
+<?php
+
+require "database/db_connect.php";
+
+$sql = "SELECT 
+            termek.id, 
+            termek.nev, 
+            termek.ar, 
+            termek.megjelenes, 
+            termek.raktaron, 
+            tipus.tipus AS tipus, 
+            marka.ceg AS marka, 
+            meret.meret AS meret,
+            GROUP_CONCAT(cipokepek.url SEPARATOR '|||') AS kepek
+        FROM `termek` 
+        INNER JOIN marka ON termek.marka_id = marka.id 
+        INNER JOIN tipus ON termek.tipus_id = tipus.id 
+        INNER JOIN meret ON termek.meret_id = meret.id
+        LEFT JOIN cipokepek ON termek.id = cipokepek.cipoID
+		GROUP BY termek.id";
+
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+foreach ($result as &$cipo) {
+    $cipo['kepek'] = !empty($cipo['kepek']) ? explode('|||', $cipo['kepek']) : ['images/no-image.jpg'];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,114 +96,50 @@
 			<img class="mozgo_logo" src="img/marka/Wilson.png" alt="" />
 		</div>
 	</div>
-
+	
 	<div id="tartalom">
 		<div id="nepszeru">
-			<h2 id="nepszeru-title">TRENDING MOST</h2>
-			<div id="cipo-container">
-				<div class="cipo-termek">
-					<div class="cipo-kep">
-						<img
-						src="img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor-2.jpg"
-						alt=""
-					/>
-					</div>
-					<div class="cipo-leiras">
-						<h3>Cipő márka</h3>
-						<span>adidas Handball Spezial Black Pink womans</span>
-						<h5>35000FT</h5>
-					</div>
-				</div>
-				<div class="cipo-termek">
-					<img
-						class="cipo-kep"
-						src="img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor-2.jpg"
-						alt=""
-					/>
-					<div class="cipo-leiras">
-						<h3>Cipő márka</h3>
-						<span>Cipő teljes neve</span>
-						<h5>35000FT</h5>
-					</div>
-				</div>
-				<div class="cipo-termek">
-					<img
-						class="cipo-kep"
-						src="img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor-2.jpg"
-						alt=""
-					/>
-					<div class="cipo-leiras">
-						<h3>Cipő márka</h3>
-						<span>Cipő teljes neve</span>
-						<h5>35000FT</h5>
-					</div>
-				</div>
-				<div class="cipo-termek">
-					<img
-						class="cipo-kep"
-						src="img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor-2.jpg"
-						alt=""
-					/>
-					<div class="cipo-leiras">
-						<h3>Cipő márka</h3>
-						<span>Cipő teljes neve</span>
-						<h5>35000FT</h5>
-					</div>
-				</div>
-			</div>
+			<h2 id="nepszeru-title">MOST FELKAPOTT</h2>
+			<!-- 4 felkapott cipő adatbázisbó -->
+			<?php
+				echo '<div id="cipo-container">';
+					for ($i=0; $i < 4; $i++) {
+						//egyszerű if ha lesz trending oszlop az adatbázisban 
+						$shoe = $result[$i];
+						$firstImage = $shoe['kepek'][0]; // Always safe due to the fallback above
+						echo '<div class="cipo-termek" id="cipoId-' . $shoe['id'] . '">';
+							echo '<img class="cipo-kep" src="' . htmlspecialchars($firstImage) . '"/>';
+							echo '<div class="cipo-leiras">';
+							echo '<h3 class="leiras-h3">' . htmlspecialchars($shoe['marka']) . '</h3>';
+							echo '<span class="leiras-span">' . htmlspecialchars($shoe['nev']) . '</span>';
+							echo '<h5 class="leiras-h5">' . htmlspecialchars($shoe['ar']) . '</h5>';
+							echo '</div>';
+						echo '</div>';
+					}
+				echo '</div>';
+			?>
 		</div>
 		<div id="friss">
 			<h2 id="nepszeru-title">FRISS TERMÉKEK</h2>
-			<div id="cipo-container">
-				<div class="cipo-termek">
-					<img
-						class="cipo-kep"
-						src="img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor-2.jpg"
-						alt=""
-					/>
-					<div class="cipo-leiras">
-						<h3>Cipő márka</h3>
-						<span>Cipő teljes neve</span>
-						<h5>35000FT</h5>
-					</div>
-				</div>
-				<div class="cipo-termek">
-					<img
-						class="cipo-kep"
-						src="img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor-2.jpg"
-						alt=""
-					/>
-					<div class="cipo-leiras">
-						<h3>Cipő márka</h3>
-						<span>Cipő teljes neve</span>
-						<h5>35000FT</h5>
-					</div>
-				</div>
-				<div class="cipo-termek">
-					<img
-						class="cipo-kep"
-						src="img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor-2.jpg"
-						alt=""
-					/>
-					<div class="cipo-leiras">
-						<h3>Cipő márka</h3>
-						<span>Cipő teljes neve</span>
-						<h5>35000FT</h5>
-					</div>
-				</div>
-				<div class="cipo-termek">
-					<img
-						class="cipo-kep"
-						src="img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor-2.jpg"
-						alt=""
-					/>
-					<div class="cipo-leiras">
-						<h3>Cipő márka</h3>
-						<span>Cipő teljes neve</span>
-						<h5>35000FT</h5>
-					</div>
-				</div>
-			</div>
-	</div>
+			<?php
+			echo '<div id="cipo-container">';
+				usort($result,function($a,$b){
+					return strtotime($b['megjelenes']) - strtotime($a['megjelenes']);
+				});
+				$leg_frissebb_cipok=array_slice($result,0,4);
+				foreach($leg_frissebb_cipok as $cipo){
+					$firstImage = !empty($cipo['kepek'][0]) ? $cipo['kepek'][0] : 'images/no-image.jpg';
+					echo '<div class="cipo-termek" id="cipoId-' . $cipo['id'] . '">';
+						echo '<img class="cipo-kep" src="' . htmlspecialchars($firstImage) . '"/>';
+						echo '<div class="cipo-leiras">';
+						echo '<h3 class="leiras-h3">' . htmlspecialchars($cipo['marka']) . '</h3>';
+						echo '<span class="leiras-span">' . htmlspecialchars($cipo['nev']) . '</span>';
+						echo '<h5 class="leiras-h5">' . htmlspecialchars($cipo['ar']) . '</h5>';
+						echo '</div>';
+					echo '</div>';
+				}
+			echo '</div>';
+			?>
+		</div>
 </body>
 </html>

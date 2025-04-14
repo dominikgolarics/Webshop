@@ -42,7 +42,7 @@ $(document).ready(function () {
                     let span = document.createElement("span")
                     let h5 = document.createElement("h5")
 
-                    img.src="img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor-2.jpg"
+                    img.src=data.adat[i].elso_kep
                     h3.innerHTML=data.adat[i].marka
                     h3.className="leiras-h3";
                     span.innerHTML=data.adat[i].nev

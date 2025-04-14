@@ -26,12 +26,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="/style/style.css" />
+		<link rel="stylesheet" href="style/style.css" />
 		<link rel="icon" type="image/x-icon" href="/img/menu/favicon.ico" />
-		<link
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-			rel="stylesheet"
-		/>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 		<title>Nile</title>
 	</head>
@@ -88,7 +86,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				require 'legkel.php';
 			}
 			else if($_GET['page'] == 'termekek'){
-				require 'termekek.php';
+				require 'termekek.php'; //kérdéses
 			}
 			else if($_GET['page'] == 'friss'){
 				require 'friss.php';
@@ -105,10 +103,50 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			
 		?>
 		<?php if(!$kulonOldal): ?>
-			<div id="labfej">
-				
-			</div>
+			<footer class="site-footer">
+				<div class="footer-container">
+					<!-- About Section -->
+					<div class="footer-section">
+						<h3>Boltunkról</h3>
+						<p>2025 óta a prémium minőségű cipők egyablakos célpontja. A cipők legújabb trendjeit kínáljuk kivételes kényelemmel.</p>
+					</div>
+			
+					<!-- Quick Links -->
+					<div class="footer-section">
+						<h3>Gyors elérés</h3>
+						<ul>
+							<li><a href="/">Kezdőlap</a></li>
+							<li><a href="/products">Termékek</a></li>
+						</ul>
+					</div>
+			
+					<!-- Contact Info -->
+					<div class="footer-section">
+						<h3>Elérhetőségek</h3>
+						<ul class="contact-info">
+							<li><i class="fas fa-map-marker-alt"></i> Budapest, Timót u. 3, 1097</li>
+							<li><i class="fas fa-phone"></i> +36 1 234 5678</li>
+							<li><i class="fas fa-envelope"></i> info@nile.com</li>
+						</ul>
+					</div>
+			
+					<!-- Social Media -->
+					<div class="footer-section">
+						<h3>Kövess minket!</h3>
+						<div class="social-links">
+							<a href="#"><i class="fab fa-facebook"></i></a>
+							<a href="#"><i class="fab fa-instagram"></i></a>
+							<a href="#"><i class="fab fa-twitter"></i></a>
+						</div>
+					</div>
+				</div>
+			
+				<!-- Copyright -->
+				<div class="copyright">
+					<p>&copy; 2025 Nile. Minden jog fenntartva.</p>
+				</div>
+    		</footer>
 		<?php endif; ?>
-		<script src="/script.js"></script>
+		<script src="script.js"></script>
 	</body>
 </html>

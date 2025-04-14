@@ -14,5 +14,9 @@
 		<script src="script.js"></script>
 	</head>
 	<body>
+		<?php
+			require "database/db_connect.php";
+			
+		?>
 	</body>
 </html>
