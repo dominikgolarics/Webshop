@@ -112,6 +112,7 @@ $(document).ready(function () {
     $(document).on("click",".cipo-termek" ,function() {
         let productId = this.id.split('-')[1];
         window.location.href = 'termek/'+ productId;
+
     });
 
 
@@ -135,8 +136,15 @@ $(document).ready(function () {
             db.text(db_szam)
         }
     })
+    $('#cart-icon-wrapper').on('click', function() {
+		$('#cart-dropdown').fadeToggle();
+	});
 
-
+	$(document).on('click', function(e) {
+		if (!$(e.target).closest('#cart-icon-wrapper, #cart-dropdown').length) {
+			$('#cart-dropdown').fadeOut();
+		}
+	});
 
 });
 

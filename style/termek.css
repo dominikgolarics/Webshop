@@ -1,116 +1,181 @@
-#termek-tart{
+/* Main Layout */
+#termek-tart {
     display: flex;
-    border: 1px solid rgb(255, 0, 255);
-    padding-left: 24px;
-    padding-right: 24px;
-    justify-content: center;
-    height: 100%;
-}
-#termek-kepek,#termek-info{
-    background-color: white;
-    height: 100%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    gap: 40px;
+    align-items: flex-start;
 }
 
-#termek-kepek{
-    border: 1px solid rgba(255, 0, 0, 0.849);
-    width: 500px;
-    height: auto;
-}
-
-#termek-info{
-    border: 1px solid rgba(0, 102, 255, 0.849);
-    width: auto;
-    height: auto;
-    padding-left: 24px;
-    
-}
-
-#kis-kepek{
+#termek-kepek {
+    flex: 1;
     display: flex;
-    flex-wrap: wrap;
-    width: 120px;
-    float: left;
+    flex-direction: column;
+    gap: 20px;
 }
 
-#nagy-kep{
-    display: flex;
-    position: relative;
-    /* justify-content: center; */
-    left: 20px;
-    width: 400;
-    height: 400;
+#termek-info {
+    flex: 1;
+    padding: 20px;
 }
 
-.kep-elonezet{
-    height: auto;
-    width: 120px;
-    margin-bottom: 14px;
-}
-
-#nagy-nezet{
-    position: relative;
-    border: 1px solid brown;
-}
-
-#termek-ar{
-    font-size: 24px;
-    margin-top: 8px;
-    margin-bottom: 8px;
-}
-#termek-nev{
-    padding-top: 30px;
-}
-
-#kosar-gomb {
-    /* position: relative; */
-    font-size: 1.5rem;
-    color: #fafafa;
-    text-transform: uppercase;
-    padding: 10px 20px;
-    border-radius: 10px;
-    border: 2px solid rgb(69, 139, 231);
-    background: #252525;
-    box-shadow: 3px 3px rgb(69, 139, 231);
-    cursor: pointer;
-    margin: 35px 0;
-    /* left: 80px;
-    top: 320px; */
-  }
-  #kosar-gomb:active {
-    box-shadow: none;
-    transform: translate(3px, 3px);
-  }
- 
-.mennyiseg-gomb{
-    display: flex;
-    border: 1px solid black;
+/* Images */
+#nagy-kep {
     border-radius: 8px;
-    width: 80px;
-    padding: 2px;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
-.csokkent, .noveked {
-    /* Keep existing reset styles */
-    background: transparent;
-    border: none;
-    padding: 0;
-    margin: 0;
-    font-weight: bold;
-    
-    /* New sizing properties */
-    font-size: 28px; /* Increased from 22px */
-    line-height: 1;   /* Critical for alignment */
-    width: 30px;      /* Fixed width */
-    height: 30px;     /* Fixed height */
+
+#nagy-nezet {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+#kis-kepek {
     display: flex;
-    justify-content: center;
+    gap: 10px;
+}
+
+.kep-elonezet {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.kep-elonezet:hover {
+    border-color: rgb(69, 139, 231);
+    transform: scale(1.05);
+}
+
+/* Product Info */
+#termek-marka {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#termek-nev {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    color: #222;
+    line-height: 1.2;
+}
+
+#termek-ar {
+    font-size: 28px;
+    font-weight: 700;
+    color: #e63946;
+    margin: 20px 0;
+}
+
+/* Quantity Controls */
+.mennyiseg-gomb {
+    display: inline-flex;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     align-items: center;
+    margin: 20px 0;
+    background-color: #f8f9fa;
+}
+
+.csokkent, .noveked {
+    background: #f8f9fa;
+    border: none;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.csokkent {
+    border-radius: 8px 0 0 8px;
+}
+
+.noveked {
+    border-radius: 0 8px 8px 0;
+}
+
+.csokkent:hover, .noveked:hover {
+    background: #e9ecef;
 }
 
 .mennyiseg {
-    margin: 0 4px;    /* Slightly more spacing */
-    font-size: 22px;
-    line-height: 30px; /* Match button height */
+    width: 50px;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* Add to Cart Button */
+#kosar-gomb {
+    background: #2b2d42;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#kosar-gomb:hover {
+    background: #1a1a2e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+#kosar-gomb:active {
+    transform: translateY(0);
+}
+
+/* Product Details */
+.termek-details {
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.detail-item {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.detail-label {
+    font-weight: 600;
+    width: 100px;
+    color: #555;
+}
+
+.detail-value {
+    color: #222;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #termek-tart {
+        flex-direction: column;
+    }
+    
+    #termek-kepek, #termek-info {
+        width: 100%;
+    }
+    
+    #kis-kepek {
+        justify-content: center;
+    }
 }

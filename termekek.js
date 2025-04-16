@@ -24,7 +24,6 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: "test2.php",
-            // contentType : 'application/json',
             async: false,
             data: szuresiFeltetelek,
             success: function(data) {
@@ -42,12 +41,12 @@ $(document).ready(function () {
                     let span = document.createElement("span")
                     let h5 = document.createElement("h5")
 
-                    img.src="img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor-2.jpg"
+                    img.src=data.adat[i].elso_kep
                     h3.innerHTML=data.adat[i].marka
                     h3.className="leiras-h3";
                     span.innerHTML=data.adat[i].nev
                     span.className="leiras-span"
-                    h5.innerHTML=data.adat[i].ar
+                    h5.innerHTML=data.adat[i].ar+" FT"
                     h5.className="leiras-h5"
 
                     let div_cipo_kep=document.createElement("div");
@@ -73,7 +72,6 @@ $(document).ready(function () {
                     
                     //console.log("container listához adva")
                     
-                    
                 }
                 //term_lista.append(div_cipo_cont)
                 term_lista.append(div_cipo_cont)
@@ -87,6 +85,8 @@ $(document).ready(function () {
     }
     //Alap mindent meghív
     FilterTombTest("")
+
+    
 });
 
 

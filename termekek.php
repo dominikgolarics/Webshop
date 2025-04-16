@@ -1,3 +1,4 @@
+<?php require "database/db_connect.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,13 +44,6 @@
 				<div id="rendezes-markak">
 					<span id="marka-span" style="font-size: 24px; font-weight: bold;">Márkák</span>
 					<?php
-						$host="localhost";
-						$pw="";
-						$user="root";
-						$dnmame="webshop";
-						
-						$conn= mysqli_connect($host,$user,$pw,$dnmame);
-
 						$sql= "SELECT * FROM marka"; //WHERE marka_id IN(1) AND meret_id IN(1) AND tipus_id IN(1)
 						$result=$conn->query($sql);
 						$i=0;
@@ -66,13 +60,6 @@
 					<span id="meret-span" style="font-size: 24px; font-weight: bold;">Méret</span><br>
 					<div  style='display: flex; flex-wrap:wrap;'>
 					<?php
-						$host="localhost";
-						$pw="";
-						$user="root";
-						$dnmame="webshop";
-						
-						$conn= mysqli_connect($host,$user,$pw,$dnmame);
-
 						$sql= "SELECT * FROM meret"; //WHERE marka_id IN(1) AND meret_id IN(1) AND tipus_id IN(1)
 						$result=$conn->query($sql);
 						$i=0;
