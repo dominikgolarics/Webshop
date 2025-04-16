@@ -30,6 +30,12 @@ if ($cipo_id) {
     foreach ($product as $cipo) {
         $kepek=!empty($product['kepek']) ? explode('|||',$product['kepek']):[];
     }
+
+    $vane="Nem";
+    if($product['raktaron']==1){
+        
+        $vane="Igen";
+    }
 }
 
 ?>
@@ -57,7 +63,12 @@ if ($cipo_id) {
             <button class="noveked">+</button>
         </div>
         
-        <button id="kosar-gomb">Kosárba</button>
+        <button id="kosar-gomb" <?php if ($vane=="Nem") {
+            echo "disabled";
+            }else{
+                echo " ";
+            }
+        ?>>Kosárba</button>
         
         <div class="termek-details">
             <div class="detail-item">
@@ -66,7 +77,7 @@ if ($cipo_id) {
             </div>
             <div class="detail-item">
                 <span class="detail-label">Raktáron:</span>
-                <span class="detail-value"><?php echo $product['raktaron'] ?> db</span>
+                <span class="detail-value"><?php echo $vane ?></span>
             </div>
         </div>
     </div>

@@ -112,7 +112,7 @@ foreach ($result as &$cipo) {
 							echo '<div class="cipo-leiras">';
 							echo '<h3 class="leiras-h3">' . htmlspecialchars($shoe['marka']) . '</h3>';
 							echo '<span class="leiras-span">' . htmlspecialchars($shoe['nev']) . '</span>';
-							echo '<h5 class="leiras-h5">' . htmlspecialchars($shoe['ar']) . '</h5>';
+							echo '<h5 class="leiras-h5">' . htmlspecialchars($shoe['ar']) . ' FT</h5>';
 							echo '</div>';
 						echo '</div>';
 					}
@@ -134,7 +134,7 @@ foreach ($result as &$cipo) {
 						echo '<div class="cipo-leiras">';
 						echo '<h3 class="leiras-h3">' . htmlspecialchars($cipo['marka']) . '</h3>';
 						echo '<span class="leiras-span">' . htmlspecialchars($cipo['nev']) . '</span>';
-						echo '<h5 class="leiras-h5">' . htmlspecialchars($cipo['ar']) . '</h5>';
+						echo '<h5 class="leiras-h5">' . htmlspecialchars($cipo['ar']) . ' FT</h5>';
 						echo '</div>';
 					echo '</div>';
 				}

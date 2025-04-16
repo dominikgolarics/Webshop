@@ -64,6 +64,16 @@ $(document).ready(function () {
         }
     })
 
+    $('#cart-icon-wrapper').on('click', function() {
+		$('#cart-dropdown').fadeToggle();
+	});
+
+	$(document).on('click', function(e) {
+		if (!$(e.target).closest('#cart-icon-wrapper, #cart-dropdown').length) {
+			$('#cart-dropdown').fadeOut();
+		}
+	});
+
 });
 
 function showImage(img) {

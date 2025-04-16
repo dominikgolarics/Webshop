@@ -47,7 +47,7 @@ $(document).ready(function () {
                     h3.className="leiras-h3";
                     span.innerHTML=data.adat[i].nev
                     span.className="leiras-span"
-                    h5.innerHTML=data.adat[i].ar
+                    h5.innerHTML=data.adat[i].ar+" FT"
                     h5.className="leiras-h5"
 
                     let div_cipo_kep=document.createElement("div");
@@ -73,7 +73,6 @@ $(document).ready(function () {
                     
                     //console.log("container listához adva")
                     
-                    
                 }
                 //term_lista.append(div_cipo_cont)
                 term_lista.append(div_cipo_cont)
@@ -87,6 +86,8 @@ $(document).ready(function () {
     }
     //Alap mindent meghív
     FilterTombTest("")
+
+    
 });
 
 

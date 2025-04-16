@@ -68,10 +68,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					</div>
 					<ul id="fej_tart">
 						<li><a class="fej_link" href="/friss">Új kiadás</a></li>
-						<li><a class="fej_link" href="/legkelendobbek">Legkelendőbbek</a></li>
 						<li><a class="fej_link" href="/termekek">Termékek</a></li>
 					</ul>
-					<div id="fej_tool">
+					<div id="fej_tool" style="position: relative;">
 						<img id="kosar" src="/img/menu/kosar.png" alt="kosar" />
 						<img id="profilicon" src="/img/menu/icon.png" alt="ikon" />
 					</div>
@@ -116,7 +115,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 						<h3>Gyors elérés</h3>
 						<ul>
 							<li><a href="/">Kezdőlap</a></li>
-							<li><a href="/products">Termékek</a></li>
+							<li><a href="/termekek">Termékek</a></li>
 						</ul>
 					</div>
 			
