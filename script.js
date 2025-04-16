@@ -1,20 +1,94 @@
 $(document).ready(function () {
     
 	//Link átirányítások
+    var userId = document.getElementById('userId').value;
+    const profilIcon = document.getElementById('profilicon');
     
-        $("#profilicon").click(function (e) { 
-            var userId = document.getElementById('userId').value;
-            if(!userId){
-                e.preventDefault();
-                $("#login").fadeIn();
-                document.body.style.overflowY = 'hidden';
-            }
-            else{
-                window.location.href = '/profil/beallitasok';
-            }
+    if(userId){
+        const profilContainer = document.getElementById('profil-container');
+        const dropdown = document.getElementById('dropdown');
+        let timeoutId;
+
+        profilContainer.addEventListener('mouseenter', () => {
+            clearTimeout(timeoutId);
+            dropdown.style.display = 'block';
         });
-   
-   
+
+        profilContainer.addEventListener('mouseleave', () => {
+            timeoutId = setTimeout(() => {
+                dropdown.style.display = 'none';
+            }, 300);
+        });
+      
+    } else {
+        profilIcon.addEventListener('click', () => {
+            $("#login").fadeIn();
+            document.body.style.overflowY = 'hidden';
+        });
+    }
+
+    if (sikeresBelepes) {
+        $("body").append(`
+            <div id="popup-bejelentkezes" style="
+                position: fixed;
+                top: 70px;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: rgba(76, 175, 80, 0.95);
+                color: white;
+                padding: 15px 30px;
+                border-radius: 12px;
+                box-shadow: 0 0 15px rgba(0,0,0,0.3);
+                z-index: 10000;
+                font-size: 20px;
+                font-weight: bold;
+                text-align: center;
+                display: none;
+            ">
+                ✅ Sikeres bejelentkezés!
+            </div>
+        `);
+        
+        $("#popup-bejelentkezes").fadeIn(300, function () {
+            setTimeout(function () {
+                $("#popup-bejelentkezes").fadeOut(600, function () {
+                    $(this).remove();
+                });
+            }, 2500);
+        });
+    }
+            
+    
+    if(sikeresKijelentkezes){
+        $("body").append(`
+            <div id="popup-kijelentkezes" style="
+                position: fixed;
+                top: 70px;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color:rgba(244, 67, 54, 0.9);
+                color: white;
+                padding: 15px 30px;
+                border-radius: 12px;
+                box-shadow: 0 0 15px rgba(0,0,0,0.3);
+                z-index: 10000;
+                font-size: 20px;
+                font-weight: bold;
+                text-align: center;
+                display: none;
+            ">
+                👋 Sikeres kijelentkezés!
+            </div>
+        `);       
+        $("#popup-kijelentkezes").fadeIn(300, function () {
+            setTimeout(function () {
+                $("#popup-kijelentkezes").fadeOut(600, function () {
+                    $(this).remove();
+                });
+            }, 2500);
+        });
+    }
+
     
     $("#close").click(function (e) { 
         e.preventDefault();
@@ -34,8 +108,7 @@ $(document).ready(function () {
         });
     });
 
-    //RewriteRule ^product/([0-9]+)/?$ product_page.php?id=$1 [L,QSA]
-    
+
     $(document).on("click",".cipo-termek" ,function() {
         let productId = this.id.split('-')[1];
         window.location.href = 'termek/'+ productId;
@@ -63,6 +136,8 @@ $(document).ready(function () {
         }
     })
 
+
+
 });
 
 function showImage(img) {
@@ -70,6 +145,57 @@ function showImage(img) {
     previewDiv.innerHTML = `<img id='nagy-nezet' class="img-fluid" src="${img.src}">`;
 }
 
+document.getElementById("mentes").addEventListener("click", function(){
+    const nev = document.getElementById('nev').value;
+    const irszam = document.getElementById('irszam').value;
+    const cim = document.getElementById('cim').value;
+    const varos = document.getElementById('varos').value;
+    const email = document.getElementById('email').value;
+    const telszam = document.getElementById('telefon').value;
+
+    $.ajax({
+        type: "POST",
+        url: "/mentes.php",
+        data:{
+            nev:nev,
+            iranyitoszam:irszam,
+            cim:cim,
+            varos:varos,
+            email:email,
+            telefonszam:telszam
+        },
+        success: function(valasz){
+            $("body").append(`
+                <div id="popup-mentes" style="
+                    position: fixed;
+                    top: 70px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: rgba(76, 175, 80, 0.95);
+                    color: white;
+                    padding: 15px 30px;
+                    border-radius: 12px;
+                    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+                    z-index: 10000;
+                    font-size: 20px;
+                    font-weight: bold;
+                    text-align: center;
+                    display: none;
+                ">
+                    ✅ Adatok mentve!
+                </div>
+            `);
+            
+            $("#popup-mentes").fadeIn(300, function () {
+                setTimeout(function () {
+                    $("#popup-mentes").fadeOut(600, function () {
+                        $(this).remove();
+                    });
+                }, 2500);
+            });
+        }
+    })
+});
 
 // 1. betölt oldal -> minden cipo-t lekér és betölt
 // 2. filter opció kiválasztása

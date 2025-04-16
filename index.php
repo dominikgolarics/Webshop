@@ -12,13 +12,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		if(password_verify($_POST['psw'], $user['jelszo']))
 		{
 			$_SESSION["user_id"] = $user["id"];
+			$_SESSION["sikeres_bejelentkezes"] = true;
 			header("Location: /".$_GET['page']);
+			unset($_POST['uname']);
 			exit;
 		}
 	}
 	
 }
 	$kulonOldal = (isset($_GET['page']) && $_GET['page'] === 'regisztracio');
+	unset($_POST['uname']);
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +39,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		<title>Nile</title>
 	</head>
 	<body style="background-color: #fdf8e1">
+	<?php
+		$popup = isset($_SESSION['sikeres_bejelentkezes']) ? 'true' : 'false';
+		$logoutPopup = isset($_SESSION['kijelentkezes_sikeres']) ? 'true' : 'false';
+		unset($_SESSION['sikeres_bejelentkezes']);
+		unset($_SESSION['kijelentkezes_sikeres']);
+	?>
+	<script>
+		var sikeresBelepes = <?php echo $popup; ?>;
+		var sikeresKijelentkezes = <?php echo $logoutPopup; ?>;
+	</script>
 		<div id="login">
 			<div id="tartalom_login">
 				<div id="login_header">BEJELENTKEZÉS<span id="close">&#10005</span></div>
@@ -70,12 +83,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					</div>
 					<ul id="fej_tart">
 						<li><a class="fej_link" href="/friss">Új kiadás</a></li>
-						<li><a class="fej_link" href="/legkelendobbek">Legkelendőbbek</a></li>
 						<li><a class="fej_link" href="/termekek">Termékek</a></li>
 					</ul>
 					<div id="fej_tool">
 						<img id="kosar" src="/img/menu/kosar.png" alt="kosar" />
-						<img id="profilicon" src="/img/menu/icon.png" alt="ikon" />
+						<div id="profil-container">
+							<img id="profilicon" src="/img/menu/icon.png" alt="ikon" />
+							<div id="dropdown">
+								<a href="/profil/beallitasok">Profilom</a>
+								<a href="/profil/rendelesek">Rendelések</a>
+								<a href="/logout.php">Kijelentkezés</a>
+							</div>
+						</div>
 					</div>
 				</header>
 			</div>
