@@ -46,7 +46,7 @@ $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 				<?php
 				for ($i=0; $i < count($result); $i++) { 
 					echo '<div class="cipo-termek" id="cipoId-' . $result[$i]['id'] . '">';
-						echo '<img class="cipo-kep" src="' . htmlspecialchars($result[$i]['elso_kep']) . '"/>';
+						echo '<img class="cipo-kep" src="/' . htmlspecialchars($result[$i]['elso_kep']) . '"/>';
 						echo '<div class="cipo-leiras">';
 						echo '<h3 class="leiras-h3">' . htmlspecialchars($result[$i]['marka']) . '</h3>';
 						echo '<span class="leiras-span">' . htmlspecialchars($result[$i]['nev']) . '</span>';

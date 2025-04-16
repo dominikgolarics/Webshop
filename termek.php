@@ -44,11 +44,11 @@ if ($cipo_id) {
     <div id="termek-tart">
     <div id="termek-kepek">
         <div id="nagy-kep">
-            <img id='nagy-nezet' class="img-fluid" src="<?php echo $kepek[0] ?>">
+            <img id='nagy-nezet' class="img-fluid" src="/<?php echo $kepek[0] ?>">
         </div>
         <div id="kis-kepek">
             <?php for ($i = 0; $i < min(4, count($kepek)); $i++): ?>
-                <img class="kep-elonezet" src="<?php echo $kepek[$i] ?>" onclick="showImage(this)">
+                <img class="kep-elonezet" src="/<?php echo $kepek[$i] ?>" onclick="showImage(this)">
             <?php endfor; ?>
         </div>
     </div>

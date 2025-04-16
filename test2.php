@@ -36,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $filterek['meret']=$meret;
     $filterek['rend']=$rend;
     $filterek['marka']=$marka;
+    
     // ÁRAK
     if (!empty($ar)) {
         $priceConditions = [];

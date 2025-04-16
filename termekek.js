@@ -24,7 +24,6 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: "test2.php",
-            // contentType : 'application/json',
             async: false,
             data: szuresiFeltetelek,
             success: function(data) {
