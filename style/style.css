@@ -108,3 +108,32 @@ body {
 #close:hover{
 	cursor: pointer;
 }
+
+/* Dropdown menü */
+#profil-container {
+    position: relative;
+    display: inline-block;
+    z-index: 1001;
+}
+
+#dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1000;
+}
+
+#dropdown a {
+	display: block;
+	padding: 5px 10px;
+	text-decoration: none;
+	color: black;
+}
+
+#dropdown a:hover {
+	background-color: #eee;
+}

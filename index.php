@@ -13,68 +13,83 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if ($user) {
 		if (password_verify($_POST['psw'], $user['jelszo'])) {
 			$_SESSION["user_id"] = $user["id"];
-			header("Location: /" . $_GET['page']);
+
+			$_SESSION["sikeres_bejelentkezes"] = true;
+			header("Location: /".$_GET['page']);
+			unset($_POST['uname']);
 			exit;
 		}
 	}
 }
-$kulonOldal = (isset($_GET['page']) && $_GET['page'] === 'regisztracio');
+	$kulonOldal = (isset($_GET['page']) && $_GET['page'] === 'regisztracio');
+	unset($_POST['uname']);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="/style/style.css" />
-	<link rel="icon" type="image/x-icon" href="/img/menu/favicon.ico" />
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-	<title>Nile</title>
-</head>
-<div id="cart-dropdown" class="cart-hidden">
-	<h4>Kosár tartalma</h4>
-	<ul class="cart-items">
-		<li>
-			<img src="/img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor.jpg" alt="Termék" />
-			<div class="item-info">
-				<p>Termék neve</p>
-				<small>Ár: 25.000 Ft</small>
-			</div>
-			<span class="remove-item">&times;</span>
-		</li>
-		<li>
-			<img src="/img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor.jpg" alt="Termék" />
-			<div class="item-info">
-				<p>Másik termék</p>
-				<small>Ár: 19.500 Ft</small>
-			</div>
-			<span class="remove-item">&times;</span>
-		</li>
-	</ul>
-	<a href="/kosar" class="btn btn-primary w-100 mt-2">Kosár megnyitása</a>
-</div>
-<body style="background-color: #fdf8e1">
-	<div id="login">
-		<div id="tartalom_login">
-			<div id="login_header">BEJELENTKEZÉS<span id="close">&#10005</span></div>
-			<div id="login_form">
-				<form method="post" novalidate>
-					<label id="uname_text" for="uname"><b>Felhasználónév</b></label>
-					<br />
-					<input id="uname" type="text" name="uname" />
-					<br />
-					<label id="psw_text" for="psw"><b>Jelszó</b></label>
-					<br />
-					<input id="psw" type="password" name="psw" />
-					<br>
-					<button id="gomb">Login</button>
-					<br />
-					<label for="register">Nincs fiókod? <a href="/regisztracio">Regisztrálj itt!</a></label>
-					<br />
-					<!-- <label id="elf_psw_text" for="elf_psw"><b>Elfelejtett jelszó</b></label>
+<html lang="hu">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/style/style.css" />
+		<link rel="icon" type="image/x-icon" href="/img/menu/favicon.ico" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<title>Nile</title>
+	</head>
+  <div id="cart-dropdown" class="cart-hidden">
+    <h4>Kosár tartalma</h4>
+    <ul class="cart-items">
+      <li>
+        <img src="/img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor.jpg" alt="Termék" />
+        <div class="item-info">
+          <p>Termék neve</p>
+          <small>Ár: 25.000 Ft</small>
+        </div>
+        <span class="remove-item">&times;</span>
+      </li>
+      <li>
+        <img src="/img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor.jpg" alt="Termék" />
+        <div class="item-info">
+          <p>Másik termék</p>
+          <small>Ár: 19.500 Ft</small>
+        </div>
+        <span class="remove-item">&times;</span>
+      </li>
+    </ul>
+    <a href="/kosar" class="btn btn-primary w-100 mt-2">Kosár megnyitása</a>
+  </div>
+	<body style="background-color: #fdf8e1">
+	<?php
+		$popup = isset($_SESSION['sikeres_bejelentkezes']) ? 'true' : 'false';
+		$logoutPopup = isset($_SESSION['kijelentkezes_sikeres']) ? 'true' : 'false';
+		unset($_SESSION['sikeres_bejelentkezes']);
+		unset($_SESSION['kijelentkezes_sikeres']);
+	?>
+	<script>
+		var sikeresBelepes = <?php echo $popup; ?>;
+		var sikeresKijelentkezes = <?php echo $logoutPopup; ?>;
+	</script>
+		<div id="login">
+			<div id="tartalom_login">
+				<div id="login_header">BEJELENTKEZÉS<span id="close">&#10005</span></div>
+				<div id="login_form">
+					<form method="post" novalidate>
+						<label id="uname_text" for="uname"><b>Felhasználónév</b></label>
+						<br/>
+						<input id="uname" type="text" name="uname"/>
+						<br/>
+						<label id="psw_text" for="psw"><b>Jelszó</b></label>
+						<br/>
+						<input id="psw" type="password" name="psw"/>
+						<br>
+						<button id="gomb">Login</button>
+						<br/>
+						<label for="register">Nincs fiókod? <a href="/regisztracio">Regisztrálj itt!</a></label>
+						<br/>
+            <!-- <label id="elf_psw_text" for="elf_psw"><b>Elfelejtett jelszó</b></label>
 						<br/>
 						<input id="elf_psw" type="text" name="elf_psw"/>
 						<button type="submit" id="gomb">Jelszó visszaállítása</button> -->
@@ -98,7 +113,14 @@ $kulonOldal = (isset($_GET['page']) && $_GET['page'] === 'regisztracio');
 						<img id="kosar" src="/img/menu/kosar.png" alt="kosar" />
 						<span id="cart-count">0</span> <!-- Set dynamically -->
 					</div>
-					<img id="profilicon" src="/img/menu/icon.png" alt="ikon" />
+          <div id="profil-container">
+					  <img id="profilicon" src="/img/menu/icon.png" alt="ikon" />
+						<div id="dropdown">
+							<a href="/profil/beallitasok">Profilom</a>
+							<a href="/profil/rendelesek">Rendelések</a>
+							<a href="/logout.php">Kijelentkezés</a>
+						</div>
+           </div>
 				</div>
 			</header>
 		</div>
@@ -159,7 +181,6 @@ $kulonOldal = (isset($_GET['page']) && $_GET['page'] === 'regisztracio');
 					</div>
 				</div>
 			</div>
-
 			<!-- Copyright -->
 			<div class="copyright">
 				<p>&copy; 2025 Nile. Minden jog fenntartva.</p>
