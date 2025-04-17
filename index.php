@@ -1,7 +1,8 @@
 <?php
 session_start();
+require "database/db_connect.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	require "database/db_connect.php";
+	
 
 	$sql = sprintf(
 		"SELECT * FROM felhasznalo WHERE felhasznalo_nev = '%s'",
@@ -15,81 +16,84 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$_SESSION["user_id"] = $user["id"];
 
 			$_SESSION["sikeres_bejelentkezes"] = true;
-			header("Location: /".$_GET['page']);
+			header("Location: /" . $_GET['page']);
 			unset($_POST['uname']);
 			exit;
 		}
 	}
 }
-	$kulonOldal = (isset($_GET['page']) && $_GET['page'] === 'regisztracio');
-	unset($_POST['uname']);
+$kulonOldal = (isset($_GET['page']) && $_GET['page'] === 'regisztracio');
+unset($_POST['uname']);
 ?>
 
 <!DOCTYPE html>
 <html lang="hu">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="/style/style.css" />
-		<link rel="icon" type="image/x-icon" href="/img/menu/favicon.ico" />
-		<link
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-			rel="stylesheet"
-		/>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-		<title>Nile</title>
-	</head>
-  <div id="cart-dropdown" class="cart-hidden">
-    <h4>Kosár tartalma</h4>
-    <ul class="cart-items">
-      <li>
-        <img src="/img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor.jpg" alt="Termék" />
-        <div class="item-info">
-          <p>Termék neve</p>
-          <small>Ár: 25.000 Ft</small>
-        </div>
-        <span class="remove-item">&times;</span>
-      </li>
-      <li>
-        <img src="/img/cipo/21A282-100_Tenis-Asics-Gel-Kayano-5-OG-Masculino-Multicolor.jpg" alt="Termék" />
-        <div class="item-info">
-          <p>Másik termék</p>
-          <small>Ár: 19.500 Ft</small>
-        </div>
-        <span class="remove-item">&times;</span>
-      </li>
-    </ul>
-    <a href="/kosar" class="btn btn-primary w-100 mt-2">Kosár megnyitása</a>
-  </div>
-	<body style="background-color: #fdf8e1">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="/style/style.css" />
+	<link rel="icon" type="image/x-icon" href="/img/menu/favicon.ico" />
+	<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+		rel="stylesheet" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<title>Nile</title>
+</head>
+
+<body style="background-color: #fdf8e1">
 	<?php
-		$popup = isset($_SESSION['sikeres_bejelentkezes']) ? 'true' : 'false';
-		$logoutPopup = isset($_SESSION['kijelentkezes_sikeres']) ? 'true' : 'false';
-		unset($_SESSION['sikeres_bejelentkezes']);
-		unset($_SESSION['kijelentkezes_sikeres']);
+	$popup = isset($_SESSION['sikeres_bejelentkezes']) ? 'true' : 'false';
+	$logoutPopup = isset($_SESSION['kijelentkezes_sikeres']) ? 'true' : 'false';
+	unset($_SESSION['sikeres_bejelentkezes']);
+	unset($_SESSION['kijelentkezes_sikeres']);
 	?>
 	<script>
 		var sikeresBelepes = <?php echo $popup; ?>;
 		var sikeresKijelentkezes = <?php echo $logoutPopup; ?>;
 	</script>
-		<div id="login">
-			<div id="tartalom_login">
-				<div id="login_header">BEJELENTKEZÉS<span id="close">&#10005</span></div>
-				<div id="login_form">
-					<form method="post" novalidate>
-						<label id="uname_text" for="uname"><b>Felhasználónév</b></label>
-						<br/>
-						<input id="uname" type="text" name="uname"/>
-						<br/>
-						<label id="psw_text" for="psw"><b>Jelszó</b></label>
-						<br/>
-						<input id="psw" type="password" name="psw"/>
-						<br>
-						<button id="gomb">Login</button>
-						<br/>
-						<label for="register">Nincs fiókod? <a href="/regisztracio">Regisztrálj itt!</a></label>
-						<br/>
-            <!-- <label id="elf_psw_text" for="elf_psw"><b>Elfelejtett jelszó</b></label>
+	<div id="cart-dropdown" class="cart-hidden">
+		<h4>Kosár tartalma</h4>
+		<ul class="cart-items">
+			<?php
+				//require_once "database/db_connect.php";
+				$sql = "SELECT *, (SELECT cipokepek.url FROM cipokepek WHERE cipokepek.cipoID = termek.id LIMIT 1) AS elso_kep FROM `kosarak` INNER JOIN kosar_tetelek ON kosarak.id = kosar_tetelek.kosar_id INNER JOIN termek ON termek.id=kosar_tetelek.termek_id";
+				$stmt = $conn->prepare($sql);
+				$stmt->execute();
+				$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+				foreach($result as $cipo){
+					echo '<li data-termek-id="'.$cipo['id'].'">';
+						echo '<img src="'.$cipo['elso_kep'].'">';
+						echo '<div class="item-info">';
+							echo '<p>'.$cipo['nev'].'</p>';
+							echo '<small>Ár: '.$cipo['ar'].' Ft</small>';
+						echo '</div>';
+						echo '<span class="remove-item">&times;</span>';
+					echo '</li>';
+				}
+			?>
+		</ul>
+		<a href="/kosar" class="btn btn-primary w-100 mt-2">Kosár megnyitása</a>
+	</div>
+	<div id="login">
+		<div id="tartalom_login">
+			<div id="login_header">BEJELENTKEZÉS<span id="close">&#10005</span></div>
+			<div id="login_form">
+				<form method="post" novalidate>
+					<label id="uname_text" for="uname"><b>Felhasználónév</b></label>
+					<br />
+					<input id="uname" type="text" name="uname" />
+					<br />
+					<label id="psw_text" for="psw"><b>Jelszó</b></label>
+					<br />
+					<input id="psw" type="password" name="psw" />
+					<br>
+					<button id="gomb">Login</button>
+					<br />
+					<label for="register">Nincs fiókod? <a href="/regisztracio">Regisztrálj itt!</a></label>
+					<br />
+					<!-- <label id="elf_psw_text" for="elf_psw"><b>Elfelejtett jelszó</b></label>
 						<br/>
 						<input id="elf_psw" type="text" name="elf_psw"/>
 						<button type="submit" id="gomb">Jelszó visszaállítása</button> -->
@@ -111,16 +115,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<div id="fej_tool" style="position: relative;">
 					<div id="cart-icon-wrapper">
 						<img id="kosar" src="/img/menu/kosar.png" alt="kosar" />
-						<span id="cart-count">0</span> <!-- Set dynamically -->
+						<span id="cart-count"><?php echo count($result) ?></span> <!-- Set dynamically -->
 					</div>
-          <div id="profil-container">
-					  <img id="profilicon" src="/img/menu/icon.png" alt="ikon" />
+					<div id="profil-container">
+						<img id="profilicon" src="/img/menu/icon.png" alt="ikon" />
 						<div id="dropdown">
 							<a href="/profil/beallitasok">Profilom</a>
 							<a href="/profil/rendelesek">Rendelések</a>
 							<a href="/logout.php">Kijelentkezés</a>
 						</div>
-           </div>
+					</div>
 				</div>
 			</header>
 		</div>
@@ -138,8 +142,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		require 'register.php';
 	} else if ($_GET['page'] == 'termek') {
 		require 'termek.php';
-	}else if ($_GET['page'] == 'kosar') {
+	} else if ($_GET['page'] == 'kosar') {
 		require 'kosar.php';
+	} else if ($_GET['page'] == 'termekek') {
+		require 'termekek.php';
 	}
 
 	?>

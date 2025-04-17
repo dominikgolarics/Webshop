@@ -1,66 +1,56 @@
 body {
-	background-color: #fdf8e1;
+    background-color: #f8f9fa;
+    padding: 20px;
 }
 
-#tartalom_login{
-    background-color: inherit;
-    display: flex;
-    width: 350px;
+.container {
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-#login_form{
-    border-radius: 25px;
-    border:solid 18px rgb(69, 139, 231);
-    padding: 8px;
-    
-}
-
-#tartalom{
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-}
-
-#nilelogo{
-    justify-self: center;
-}
-
-.inputname{
-    font-size: 25px;
-}
-.inputtext{
-    font-size: 18px;
-}
-
-#elf_psw_text{
-    margin-top: 80px;
-}
-
-#gomb
-{
-    margin-top: 10px;
-    width: 300px;
-    border-radius: 5px;
-    background-color:limegreen;
-    border: 1px solid limegreen;
-    box-shadow: 0px 1px 1px 1px black;
-}
-
-input{
-    width: 300px;
-    padding: 8px 4px;
-    margin: 4px 0;
-    box-sizing: border-box;
-    border: 3px solid #ccc;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-    outline: none;
+.card {
+    border: none;
     border-radius: 10px;
-  }
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-input:focus{
-    border: 3px solid #555;
+.card-body {
+    padding: 2rem;
+}
+
+.btn-primary {
+    background-color: rgb(69, 139, 231);
+    border-color: rgb(69, 139, 231);
+    padding: 10px;
+    font-weight: 500;
+}
+
+.btn-primary:hover {
+    background-color: #3a5a9f;
+    border-color: #3a5a9f;
+}
+
+.form-control {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+}
+
+.form-control:focus {
+    border-color: rgb(69, 139, 231);
+    box-shadow: 0 0 0 0.25rem rgba(74, 107, 175, 0.25);
+}
+
+.alert {
+    max-width: 400px;
+    margin: 0 auto 20px;
+}
+
+.text-center a {
+    color: rgb(69, 139, 231);
+    text-decoration: none;
+}
+
+.text-center a:hover {
+    text-decoration: underline;
 }
