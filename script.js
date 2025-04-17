@@ -136,6 +136,8 @@ $(document).ready(function () {
             db.text(db_szam)
         }
     })
+
+
     $('#cart-icon-wrapper').on('click', function() {
 		$('#cart-dropdown').fadeToggle();
 	});
@@ -146,6 +148,14 @@ $(document).ready(function () {
 		}
 	});
 
+    $(document).on('click', '.remove-item', function() {
+        $(this).closest('li').fadeOut(200, function() {
+            $(this).remove();
+            // Optional: Update cart count
+            const count = $('.cart-items li').length;
+            $('#cart-count').text(count);
+        });
+    });
 });
 
 function showImage(img) {
@@ -153,50 +163,79 @@ function showImage(img) {
     previewDiv.innerHTML = `<img id='nagy-nezet' class="img-fluid" src="${img.src}">`;
 }
 
-document.getElementById("mentes").addEventListener("click", function(){
-    const nev = document.getElementById('nev').value;
-    const irszam = document.getElementById('irszam').value;
-    const cim = document.getElementById('cim').value;
-    const varos = document.getElementById('varos').value;
-    const email = document.getElementById('email').value;
-    const telszam = document.getElementById('telefon').value;
+// Adatok mentése
 
+// document.getElementById("mentes").addEventListener("click", function(){
+//     const nev = document.getElementById('nev').value;
+//     const irszam = document.getElementById('irszam').value;
+//     const cim = document.getElementById('cim').value;
+//     const varos = document.getElementById('varos').value;
+//     const email = document.getElementById('email').value;
+//     const telszam = document.getElementById('telefon').value;
+//     $.ajax({
+//         type: "POST",
+//         url: "/mentes.php",
+//         data:{
+//             nev:nev,
+//             iranyitoszam:irszam,
+//             cim:cim,
+//             varos:varos,
+//             email:email,
+//             telefonszam:telszam
+//         },
+//         success: function(){
+//             $("body").append(`
+//                 <div id="popup-mentes" style="
+//                     position: fixed;
+//                     top: 70px;
+//                     left: 50%;
+//                     transform: translateX(-50%);
+//                     background-color: rgba(76, 175, 80, 0.95);
+//                     color: white;
+//                     padding: 15px 30px;
+//                     border-radius: 12px;
+//                     box-shadow: 0 0 15px rgba(0,0,0,0.3);
+//                     z-index: 10000;
+//                     font-size: 20px;
+//                     font-weight: bold;
+//                     text-align: center;
+//                     display: none;
+//                 ">
+//                     ✅ Adatok mentve!
+//                 </div>
+//             `);
+            
+//             $("#popup-mentes").fadeIn(300, function () {
+//                 setTimeout(function () {
+//                     $("#popup-mentes").fadeOut(600, function () {
+//                         $(this).remove();
+//                     });
+//                 }, 2500);
+//             });
+//         }
+//     })
+// });
+
+//Új jelszó mentése
+
+document.getElementById("ujjelszomentes").addEventListener("click", function(){
+    const regijelszo = document.getElementById('regijelszo').value;
+    const ujjelszo = document.getElementById('ujjelszo').value;
+    const ujjelszoujra = document.getElementById('ujjelszoujra').value;
     $.ajax({
         type: "POST",
-        url: "/mentes.php",
+        url: "/ujjelszomentes.php",
         data:{
-            nev:nev,
-            iranyitoszam:irszam,
-            cim:cim,
-            varos:varos,
-            email:email,
-            telefonszam:telszam
+            regijelszo:regijelszo,
+            ujjelszo:ujjelszo,
+            ujjelszoujra:ujjelszoujra,
         },
         success: function(valasz){
-            $("body").append(`
-                <div id="popup-mentes" style="
-                    position: fixed;
-                    top: 70px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    background-color: rgba(76, 175, 80, 0.95);
-                    color: white;
-                    padding: 15px 30px;
-                    border-radius: 12px;
-                    box-shadow: 0 0 15px rgba(0,0,0,0.3);
-                    z-index: 10000;
-                    font-size: 20px;
-                    font-weight: bold;
-                    text-align: center;
-                    display: none;
-                ">
-                    ✅ Adatok mentve!
-                </div>
-            `);
-            
-            $("#popup-mentes").fadeIn(300, function () {
+            console.log(valasz);
+            window.location.href="/logout.php";
+            $("#popup-ujjelszomentes").fadeIn(300, function () {
                 setTimeout(function () {
-                    $("#popup-mentes").fadeOut(600, function () {
+                    $("#popup-ujjelszomentes").fadeOut(600, function () {
                         $(this).remove();
                     });
                 }, 2500);

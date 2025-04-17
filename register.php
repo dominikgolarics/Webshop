@@ -6,7 +6,7 @@
 		//Adatok lekérése
 		$uname = trim($_POST['uname']);
 		$email = trim($_POST['email']);
-		$psw = password_hash(trim($_POST['psw']), PASSWORD_DEFAULT);
+		$psw = trim($_POST['psw']);
 		$psw_again = $_POST['psw_again'];
 		$num = $_POST['num'];
 		
@@ -47,19 +47,24 @@
 				$error = "Ez az email már használatban van!";
 			}
 		}
-		//Jelszó ellenőrzés
-		if(empty($psw)){
-			$error = "Adj meg egy jelszót!";     
-		} elseif(strlen($psw) < 6){
-			$error = "A jelszavad legalább 6 karakter hosszúnak kell lennie!";
-		} 
 
-		//Jelszó ismét ellenőrzés
-		// if(empty($psw_again)){
-		// 	$error = "Add meg ismét a jelszavad!";     
-		// } elseif($psw != $psw_again){
-		// 	$error = "A jelszavak nem egyeztek";
-		// }
+		if (strlen($psw) < 8) {
+			$error = "Legalább 8 karakter hosszunak kell lennie!";
+		}
+		
+		if ( ! preg_match("/[A-Z]/i", $psw)) {
+			$error = "Legalább egy nagy betűt tartalmaznia kell!";
+		}
+		
+		if ( ! preg_match("/[0-9]/", $psw)) {
+			$error = "Legalább egy számot tartalmaznia kell!";
+		}
+		
+		if ($psw !== $psw_again) {
+			$error = "A jelszavaknak egyezniük kell!";
+		}
+
+		$psw = password_hash($psw, PASSWORD_DEFAULT);
 
 		if(empty($error))
 		{

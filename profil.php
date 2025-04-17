@@ -10,7 +10,6 @@
             <a href="/profil/beallitasok" class="profil-altabok">Beállítások</a>
             <a href="/profil/ujjelszo" class="profil-altabok">Jelszó Változtatás</a>
             <a href="/profil/rendelesek" class="profil-altabok">Rendelések</a>
-            <a href="/profil/szallitas" class="profil-altabok">Szállítási címek</a>
         </div>
         <div id="profil-menutartalom">
             <?php
@@ -22,9 +21,6 @@
                 }
                 else if($_GET['altab'] == 'rendelesek'){
                     require 'rendelesek.php';
-                }
-                else if($_GET['altab'] == 'szallitas'){
-                    require 'szallitasok.php';
                 }
             ?>
         </div>

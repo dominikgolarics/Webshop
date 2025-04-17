@@ -66,3 +66,23 @@
 .cart-items .item-info small {
 	color: #555;
 }
+
+.cart-items li {
+    position: relative;
+    padding-right: 20px;
+}
+
+.remove-item {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1.2rem;
+    color: #c00;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.2s;
+}
+
+.remove-item:hover {
+    color: #900;
+}
