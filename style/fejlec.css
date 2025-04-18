@@ -16,7 +16,7 @@
 
 
 #fejlec {
-  align-self: center;
+  /* align-self: center; */
   height: auto;
   display: flex;
   position: sticky;

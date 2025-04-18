@@ -4,7 +4,8 @@
     padding: 0px 0 10px;
     margin-top: 20px;
     font-family: 'Arial', sans-serif;
-}
+    box-shadow: 0px 0px 15px 0px #111;
+} 
 
 .footer-container {
     max-width: 1200px;
