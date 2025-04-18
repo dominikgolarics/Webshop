@@ -166,9 +166,6 @@ $(document).ready(function () {
         });
     });
 
-<<<<<<< HEAD
-    //kosár oldal remove
-=======
     $('.btn-remove').on('click', function () {
         const item = $(this).closest('.cart-item');
         console.log(item)
@@ -198,7 +195,6 @@ $(document).ready(function () {
             }
         });
     });
->>>>>>> origin/main
 
     //Kosárba gomb
     let quantity = 1;
