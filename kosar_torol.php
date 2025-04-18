@@ -1,7 +1,6 @@
 <?php
 session_start();
 require "database/db_connect.php";
-
 $termek_id = $_POST['termek_id'] ?? null;
 $user_id = $_SESSION['user_id'] ?? null;
 

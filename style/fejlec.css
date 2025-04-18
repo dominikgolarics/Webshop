@@ -24,6 +24,7 @@
   z-index: 100;
   background: rgb(69, 139, 231);
   box-shadow: 0px 0px 15px 0px #111;
+  width: 100%;
 }
 
 /* Működik valahogyan */

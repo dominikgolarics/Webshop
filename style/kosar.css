@@ -16,7 +16,7 @@
 }
 
 #cart-dropdown {
-	position: absolute;
+	position: fixed;
 	top: 60px;
 	right: 10px;
 	width: 300px;

@@ -56,23 +56,6 @@
 						}
 					?>	
 				</div>
-				<div id="rendezes-meret">
-					<span id="meret-span" style="font-size: 24px; font-weight: bold;">Méret</span><br>
-					<div  style='display: flex; flex-wrap:wrap;'>
-					<?php
-						$sql= "SELECT * FROM meret"; //WHERE marka_id IN(1) AND meret_id IN(1) AND tipus_id IN(1)
-						$result=$conn->query($sql);
-						$i=0;
-						while ($row=$result->fetch_assoc()) {
-							echo "<div style='flex: 0 0 calc(33.33% - 10px)'>";
-							echo "	<input class='szures' id='meret-".$row['meret']."' value='".$row['meret']."' type='checkbox'>";
-							echo'	<label for="meret-checkbox1">'.$row['meret'].'</label>';
-							echo"</div>";
-							$i++;
-						}
-					?>
-					</div>
-				</div>
 				<div id="rendezes-ar">
 					<span style="font-size: 24px; font-weight: bold;">Ár</span>
 					<div>
