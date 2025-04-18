@@ -63,16 +63,19 @@ h1, h2 {
 
 #fizetes-label {
     display: block;
-    margin-bottom: 8px;
     font-weight: bold;
 }
 
-#fizetes-name, #fizetes-email, #fizetes-phone, select, textarea {
+#fizetes-name, #fizetes-email, #fizetes-phone, #fizetes-varos, #fizetes-cim, #fizetes-iranyitoszam, select, textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
+}
+
+#fizetes-card, #fizetes-cash, #fizetes-home-address{
+    display: none;
 }
 
 .fizetes-btn {
@@ -97,4 +100,8 @@ h1, h2 {
     margin-top: 20px;
     padding-top: 20px;
     border-top: 1px solid #eee;
+}
+
+.address-option p {
+    margin-bottom: 0;
 }

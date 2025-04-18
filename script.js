@@ -140,7 +140,9 @@ $(document).ready(function () {
 
     $('.remove-item').on('click', function () {
         const item = $(this).closest('li');
+        console.log(item)
         const termekId = item.data('termek-id'); // <li data-termek-id="...">
+        console.log(termekId)
         $.ajax({
             url: '/kosar_torol.php',
             type: 'POST',
@@ -156,6 +158,36 @@ $(document).ready(function () {
                         const count = $('.cart-items li').length;
                         $('#cart-count').text(count);
                     });
+                } else {
+                    alert("Hiba történt a törlés során.");
+                }
+            },
+            error: function () {
+                alert("AJAX hiba történt.");
+            }
+        });
+    });
+
+    $('.btn-remove').on('click', function () {
+        const item = $(this).closest('.cart-item');
+        console.log(item)
+        const termekId = item.data('termek-kosar-id');
+        console.log(termekId)
+        $.ajax({
+            url: '/kosar_torol.php',
+            type: 'POST',
+            data: {
+                termek_id: termekId
+            },
+            success: function (res) {
+                const json = JSON.parse(res);
+                console.log(res);
+                
+                if (json.status === "ok") {
+                    item.fadeOut(200, function () {
+                        $(this).remove();
+                    });
+                    window.location.href = "/kosar";
                 } else {
                     alert("Hiba történt a törlés során.");
                 }
@@ -308,6 +340,60 @@ $(document).ready(function () {
                 opt.classList.remove('selected');
             });
             this.classList.add('selected');
+        });
+    });
+
+    $('#fizetes').click(function (e) {
+        e.preventDefault();
+
+        const termekId = $('#termek-id').val();
+        const mennyiseg = $('#mennyiseg').val();
+        console.log("Termek id: "+termekId+" Mennyiseg: "+mennyiseg)
+        $.ajax({
+            url: '/kosarba_tesz.php',
+            method: 'POST',
+            data: {
+                termek_id: termekId,
+                mennyiseg: mennyiseg
+            },
+            success: function (res) {
+                $('#kosar-feedback').text("Sikeresen hozzáadva a kosárhoz!").css("color", "green");
+                // opcionálisan frissíthetsz egy kosár ikont is pl.
+                //console.log("Success: "+data)
+                console.log(res)
+            },
+            error: function () {
+                $('#kosar-feedback').text("Hiba történt!").css("color", "red");
+                console.log("Error: "+data)
+            }
+        });
+    });
+
+    $('#megrendeles').click(function () {
+        const nev = $('#fizetes-name').val();
+        const email = $('#fizetes-email').val();
+        const telefonszam = $('#fizetes-phone').val();
+        const cim = $('#fizetes-cim').val();
+        const varos = $('#fizetes-varos').val();
+        const iranyitoszam = $('#fizetes-iranyitoszam').val();
+        $.ajax({
+            url: '/megrendeles_mentese.php',
+            method: 'POST',
+            data: {
+                rendeles_nev: nev,
+                rendeles_email: email,
+                rendeles_telefonszam: telefonszam,
+                rendeles_cim: cim,
+                rendeles_varos: varos,
+                rendeles_iranyitoszam: iranyitoszam
+            },
+            success: function (valasz) {
+                console.log("siker");
+                console.log(valasz)
+            },
+            error: function () {
+                console.log("hiba")
+            }
         });
     });
 });
