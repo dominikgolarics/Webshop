@@ -22,8 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 	}
 }
-$kulonOldal = (isset($_GET['page']) && $_GET['page'] === 'regisztracio');
-unset($_POST['uname']);
+	$kulonOldal = (isset($_GET['page']) && ($_GET['page'] === 'regisztracio' || $_GET['page'] === 'elfelejtettjelszo')) ;
+	unset($_POST['uname']);
 ?>
 
 <!DOCTYPE html>
@@ -93,10 +93,7 @@ unset($_POST['uname']);
 					<br />
 					<label for="register">Nincs fiókod? <a href="/regisztracio">Regisztrálj itt!</a></label>
 					<br />
-					<!-- <label id="elf_psw_text" for="elf_psw"><b>Elfelejtett jelszó</b></label>
-						<br/>
-						<input id="elf_psw" type="text" name="elf_psw"/>
-						<button type="submit" id="gomb">Jelszó visszaállítása</button> -->
+					<a id="elf_psw" href="/elfelejtettjelszo">Elfelejtetted a jelszavad?</a>
 				</form>
 			</div>
 		</div>
@@ -140,6 +137,8 @@ unset($_POST['uname']);
 		require 'profil.php';
 	} else if ($_GET['page'] == 'regisztracio') {
 		require 'register.php';
+	} else if ($_GET['page'] == 'elfelejtettjelszo') {
+		require 'elfelejtettjelszo.php';
 	} else if ($_GET['page'] == 'termek') {
 		require 'termek.php';
 	} else if ($_GET['page'] == 'kosar') {

@@ -5,17 +5,17 @@
 ?>
 
 <div id="beallitasok-tartalom">
-    <label for="name">Név</label>
+    <label>Név</label>
     <input type="text" id="nev" value='<?php echo htmlspecialchars($user['nev']); ?>'>
-    <label for="name">Irányítószám</label>
+    <label>Irányítószám</label>
     <input type="text" id="irszam" value='<?php echo htmlspecialchars($user['iranyitoszam']); ?>'>
-    <label for="name">Cím</label>
+    <label>Cím</label>
     <input type="text" id="cim" value='<?php echo htmlspecialchars($user['cim']); ?>'>
-    <label for="name">Város</label>
+    <label>Város</label>
     <input type="text" id="varos" value='<?php echo htmlspecialchars($user['varos']); ?>'>
-    <label for="name">Email cím</label>
+    <label>Email cím</label>
     <input type="email" id="email" value='<?php echo htmlspecialchars($user['email']); ?>'>
-    <label for="name">Telefonszám</label>
+    <label>Telefonszám</label>
     <input type="text" id="telefon" value='<?php echo htmlspecialchars($user['telefonszam']); ?>'>
     <br>
     <button id="mentes" name="mentes">Adatok mentése</button>

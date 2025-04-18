@@ -115,10 +115,6 @@ $(document).ready(function () {
 
     });
 
-
-    
-
-    //Kosár
     $('#cart-icon-wrapper').on('click', function() {
 		$('#cart-dropdown').fadeToggle();
 	});
@@ -259,7 +255,83 @@ function showImage(img) {
     previewDiv.innerHTML = `<img id='nagy-nezet' class="img-fluid" src="${img.src}">`;
 }
 
+// Adatok mentése
+$(document).on('click', '#mentes', function(){
+    const nev = document.getElementById('nev').value;
+    const irszam = document.getElementById('irszam').value;
+    const cim = document.getElementById('cim').value;
+    const varos = document.getElementById('varos').value;
+    const email = document.getElementById('email').value;
+    const telszam = document.getElementById('telefon').value;
+    $.ajax({
+        type: "POST",
+        url: "/mentes.php",
+        data:{
+            nev:nev,
+            iranyitoszam:irszam,
+            cim:cim,
+            varos:varos,
+            email:email,
+            telefonszam:telszam
+        },
+        success: function(){
+            $("body").append(`
+                <div id="popup-mentes" style="
+                    position: fixed;
+                    top: 70px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: rgba(76, 175, 80, 0.95);
+                    color: white;
+                    padding: 15px 30px;
+                    border-radius: 12px;
+                    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+                    z-index: 10000;
+                    font-size: 20px;
+                    font-weight: bold;
+                    text-align: center;
+                    display: none;
+                ">
+                    ✅ Adatok mentve!
+                </div>
+            `);
+            
+            $("#popup-mentes").fadeIn(300, function () {
+                setTimeout(function () {
+                    $("#popup-mentes").fadeOut(600, function () {
+                        $(this).remove();
+                    });
+                }, 2500);
+            });
+        }
+    })
+});
 
+//Új jelszó mentése
+$(document).on('click', '#ujjelszomentes', function(){
+    const regijelszo = document.getElementById('regijelszo').value;
+    const ujjelszo = document.getElementById('ujjelszo').value;
+    const ujjelszoujra = document.getElementById('ujjelszoujra').value;
+    $.ajax({
+        type: "POST",
+        url: "/ujjelszomentes.php",
+        data:{
+            regijelszo:regijelszo,
+            ujjelszo:ujjelszo,
+            ujjelszoujra:ujjelszoujra,
+        },
+        success: function(){
+            window.location.href="/logout.php";
+            $("#popup-ujjelszomentes").fadeIn(300, function () {
+                setTimeout(function () {
+                    $("#popup-ujjelszomentes").fadeOut(600, function () {
+                        $(this).remove();
+                    });
+                }, 2500);
+            });
+        }
+    })
+});
 
 // 1. betölt oldal -> minden cipo-t lekér és betölt
 // 2. filter opció kiválasztása
