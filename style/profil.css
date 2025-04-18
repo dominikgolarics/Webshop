@@ -48,3 +48,10 @@ body {
 	flex-direction: column;
 	width: 300px;
 }
+
+#ujjelszo-tartalom{
+	padding: 30px;
+	display: flex;
+	flex-direction: column;
+	width: 300px;
+}
