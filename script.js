@@ -199,7 +199,7 @@ $(document).ready(function () {
             success: function (res) {
                 $('#kosar-feedback').text("Sikeresen hozzáadva a kosárhoz!").css("color", "green");
                 // opcionálisan frissíthetsz egy kosár ikont is pl.
-                console.log("Success: "+data)
+                //console.log("Success: "+data)
                 console.log(res)
             },
             error: function () {

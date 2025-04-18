@@ -74,11 +74,12 @@
                         <span class="summary-total">Összesen:</span>
                         <span class="summary-total"><?php if(!empty($$result9)){echo ($összeg+1290)." FT";}else{echo "0 FT";} ?></span>
                     </div>
-                    <button class=" btn-checkout btn-lg mb-3"><a href="/fizetes">Tovább a fizetéshez</a></button>
+                    <a href="/fizetes" style="text-decoration:none; color:white;"><button class=" btn-checkout btn-lg mb-3">Tovább a fizetéshez</button></a>
                     <div class="text-center">
                         <small class="text-muted">A rendelésedet 30 napig vissza tudod mondani.</small>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div> 
+

@@ -6,7 +6,7 @@
     $stmt->execute();
     $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 ?>
-<div class="container">
+<div class="fizetes-container">
     <!-- Rendelés összegzése -->
     <div class="order-summary">
         <h2>Rendelés összegzése</h2>
@@ -40,31 +40,31 @@
         <h2>Szállítási adatok</h2>
         
         <div class="form-group">
-            <label for="name">Teljes név</label>
-            <input type="text" id="name" required>
+            <label id="fizetes-label"for="name">Teljes név</label>
+            <input type="text" id="fizetes-name" required>
         </div>
         
         <div class="form-group">
-            <label for="email">E-mail cím</label>
-            <input type="email" id="email" required>
+            <label id="fizetes-label"for="email">E-mail cím</label>
+            <input type="email" id="fizetes-email" required>
         </div>
         
         <div class="form-group">
-            <label for="phone">Telefonszám</label>
-            <input type="text" id="phone" required>
+            <label id="fizetes-label"for="phone">Telefonszám</label>
+            <input type="text" id="fizetes-phone" required>
         </div>
         
         <h2>Szállítási cím</h2>
         
         <div class="address-option selected">
-            <input type="radio" name="address" id="home-address" checked>
-            <label for="home-address">Lakcím</label>
+            <input type="radio" name="address" id="fizetes-home-address" checked>
+            <label id="fizetes-label"for="home-address">Lakcím</label>
             <p>1234 Budapest, Példa utca 12.</p>
         </div>
         
         <div class="address-option">
-            <input type="radio" name="address" id="other-address">
-            <label for="other-address">Más cím</label>
+            <input type="radio" name="address" id="fizetes-other-address">
+            <label id="fizetes-label"for="other-address">Más cím</label>
             <div id="other-address-fields" style="display: none; margin-top: 10px;">
                 <textarea rows="4" placeholder="Írja be a teljes címet"></textarea>
             </div>
@@ -73,18 +73,18 @@
         <h2>Fizetési mód</h2>
         
         <div class="payment-option selected">
-            <input type="radio" name="payment" id="card" checked>
-            <label for="card">Bankkártya</label>
+            <input type="radio" name="payment" id="fizetes-card" checked>
+            <label id="fizetes-label"for="card">Bankkártya</label>
         </div>
         
         <div class="payment-option">
-            <input type="radio" name="payment" id="transfer">
-            <label for="transfer">Átutalás</label>
+            <input type="radio" name="payment" id="fizetes-transfer">
+            <label id="fizetes-label"for="transfer">Átutalás</label>
         </div>
         
         <div class="payment-option">
-            <input type="radio" name="payment" id="cash">
-            <label for="cash">Utánvét</label>
+            <input type="radio" name="payment" id="fizetes-cash">
+            <label id="fizetes-label"for="cash">Utánvét</label>
         </div>
         
         <button type="submit" class="fizetes-btn">Megrendelés elküldése</button>
