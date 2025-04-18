@@ -1,6 +1,6 @@
 <?php
 require "database/db_connect.php";
-$email = "dominikgolarics@gmail.com";
+$email = $_POST['email'];
 
 $token = bin2hex(random_bytes(16));
 

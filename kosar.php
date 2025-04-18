@@ -1,7 +1,7 @@
 <?php
     require "database/db_connect.php";
 
-    $sql = "SELECT termek.id, termek.nev, marka.ceg as marka, termek.ar, kosar_tetelek.mennyiseg as darab, ( SELECT cipokepek.url FROM cipokepek WHERE cipokepek.cipoID = termek.id LIMIT 1 ) AS elso_kep FROM `kosarak` INNER JOIN kosar_tetelek ON kosarak.id = kosar_tetelek.kosar_id INNER JOIN termek ON termek.id = kosar_tetelek.termek_id INNER JOIN marka ON termek.marka_id = marka.id";
+    $sql = "SELECT termek.id AS termekId, termek.nev, marka.ceg AS marka, termek.ar, kosar_tetelek.mennyiseg AS darab, kosarak.id as kosarID, ( SELECT cipokepek.url FROM cipokepek WHERE cipokepek.cipoID = termek.id LIMIT 1 ) AS elso_kep FROM kosarak INNER JOIN kosar_tetelek ON kosarak.id = kosar_tetelek.kosar_id INNER JOIN termek ON termek.id = kosar_tetelek.termek_id INNER JOIN marka ON termek.marka_id = marka.id";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -19,7 +19,7 @@
             <?php
             if(!empty($result)){
                 foreach($result as $cipo){
-                    echo '<div class="cart-item">';
+                    echo '<div class="cart-item" data-termek-kosar-id="'.$cipo["termekId"].'">';
                         echo '<div class="row align-items-center">';
                             echo '<div class="col-3 col-md-2">';
                                 echo '<img src="'.$cipo['elso_kep'].'" alt="Termék neve" class="img-fluid product-img">';

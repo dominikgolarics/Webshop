@@ -24,7 +24,7 @@
             echo '<img src="'.$cipo['elso_kep'].'" alt="Termék neve" class="product-image">';
                 echo '<div>';
                     echo '<h3>'.$cipo['nev'].'</h3>';
-                    echo '<p>Méret: '.$cipo['meret'].'</p>';
+                    echo '<p>Méret: '.$cipo['meret'].'</p>';    
                     echo '<p>'.$cipo['darab'].' db × '.$cipo['ar'].' Ft</p>';
                 echo '</div>';
             echo '</div>';
@@ -67,37 +67,33 @@
         
         <h2>Szállítási cím</h2>
         
-        <div class="address-option selected">
-            <input type="radio" name="address" id="fizetes-home-address" checked>
-            <label id="fizetes-label"for="home-address">Lakcím</label>
-            <p><?php echo $felh['iranyitoszam']." ".$felh['varos'].", ".$felh['cim']."." ?></p>
-        </div>
-
-        <div class="address-option">
-            <input type="radio" name="address" id="fizetes-other-address">
-            <label id="fizetes-label"for="other-address">Más cím</label>
-            <div id="other-address-fields" style="display: none; margin-top: 10px;">
-                <textarea rows="4" placeholder="Írja be a teljes címet"></textarea>
+            <div class="form-group">
+                <label id="fizetes-label">Cím</label>
+                <input type="text" id="fizetes-cim" <?php if(!empty($felh['cim'])) { echo 'value="' . htmlspecialchars($felh['cim']) . '" disabled'; } ?> required>
             </div>
-        </div>
+        
+            <div class="form-group">
+                <label id="fizetes-label">Város</label>
+                <input type="text" id="fizetes-varos" <?php if(!empty($felh['varos'])) { echo 'value="' . htmlspecialchars($felh['varos']) . '" disabled'; } ?> required>
+            </div>
+            
+            <div class="form-group">
+                <label id="fizetes-label">Irányítószám</label>
+                <input type="text" id="fizetes-iranyitoszam" <?php if(!empty($felh['iranyitoszam'])) { echo 'value="' . htmlspecialchars($felh['iranyitoszam']) . '" disabled'; } ?> required>
+            </div>
         
         <h2>Fizetési mód</h2>
         
         <div class="payment-option selected">
             <input type="radio" name="payment" id="fizetes-card" checked>
-            <label id="fizetes-label"for="card">Bankkártya</label>
-        </div>
-        
-        <div class="payment-option">
-            <input type="radio" name="payment" id="fizetes-transfer">
-            <label id="fizetes-label"for="transfer">Átutalás</label>
+            <label id="fizetes-label">Személyesen bankkártyával</label>
         </div>
         
         <div class="payment-option">
             <input type="radio" name="payment" id="fizetes-cash">
-            <label id="fizetes-label"for="cash">Utánvét</label>
+            <label id="fizetes-label">Személyesen készpénzel</label>
         </div>
-        
-        <button type="submit" class="fizetes-btn">Megrendelés elküldése</button>
+         
+        <button class="fizetes-btn" id="megrendeles">Megrendelés elküldése</button>
     </div>
 </div>
