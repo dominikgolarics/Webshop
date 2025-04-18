@@ -147,6 +147,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			require 'kosar.php';
 		} else if ($_GET['page'] == 'termekek') {
 			require 'termekek.php';
+		}else if ($_GET['page'] == 'fizetes') {
+			require 'fizetes.php';
 		}
 
 		?>

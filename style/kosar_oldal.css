@@ -47,36 +47,6 @@
     font-size: 0.9rem;
 }
 
-/* Quantity Controls */
-.quantity-control {
-    display: flex;
-    align-items: center;
-}
-
-.quantity-btn {
-    width: 30px;
-    height: 30px;
-    border: 1px solid #ddd;
-    background: #f8f9fa;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-}
-
-.quantity-btn:hover {
-    background: #e9ecef;
-}
-
-.quantity-input {
-    width: 50px;
-    height: 30px;
-    text-align: center;
-    margin: 0 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
 
 /* Ár */
 .price {

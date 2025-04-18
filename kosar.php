@@ -5,7 +5,7 @@
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-    ?>
+?>
 <div class="container cart-container">
     <div class="row">
         <div class="col-12">
@@ -60,23 +60,23 @@
                     <span><?php 
                         $összeg = 0;
                         for ($i=0; $i < count($result); $i++) { 
-                            $összeg+=$result[$i]['ar'];
+                            $összeg+=($result[$i]['ar']*$result[$i]['darab']);
                         }
                         echo $összeg;
                     ?></span>
                 </div>
-                <div class="summary-row">
-                    <span>Szállítás:</span>
-                    <span>1 290 Ft</span>
-                </div>
-                <hr>
-                <div class="summary-row mb-3">
-                    <span class="summary-total">Összesen:</span>
-                    <span class="summary-total"><?php echo $összeg+1290; ?></span>
-                </div>
-                <button class="btn btn-checkout btn-lg mb-3">Tovább a fizetéshez</button>
-                <div class="text-center">
-                    <small class="text-muted">A rendelésedet 30 napig vissza tudod mondani.</small>
+                    <div class="summary-row">
+                        <span>Szállítás:</span>
+                        <span><?php if(!empty($$result9)){echo "1290 FT";}else{echo "0 FT";} ?></span>
+                    </div>
+                    <hr>
+                    <div class="summary-row mb-3">
+                        <span class="summary-total">Összesen:</span>
+                        <span class="summary-total"><?php if(!empty($$result9)){echo ($összeg+1290)." FT";}else{echo "0 FT";} ?></span>
+                    </div>
+                    <button class=" btn-checkout btn-lg mb-3"><a href="/fizetes">Tovább a fizetéshez</a></button>
+                    <div class="text-center">
+                        <small class="text-muted">A rendelésedet 30 napig vissza tudod mondani.</small>
                 </div>
             </div>
         </div>

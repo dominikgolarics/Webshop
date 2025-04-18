@@ -79,9 +79,6 @@ if ($cipo_id) {
             </div>
         </div>
     </div>
-    <?php
-        print_r($_SESSION)
-    ?>
 </div>
 
 </body>

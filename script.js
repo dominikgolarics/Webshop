@@ -287,6 +287,29 @@ $(document).ready(function () {
         })
     });
 
+
+    //Fizetés
+    // Cím választó script
+    document.querySelectorAll('.address-option').forEach(option => {
+        option.addEventListener('click', function() {
+            document.querySelectorAll('.address-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            this.classList.add('selected');
+            document.getElementById('other-address-fields').style.display = 
+                this.id === 'other-address' ? 'block' : 'none';
+        });
+    });
+    
+    // Fizetési mód választó script
+    document.querySelectorAll('.payment-option').forEach(option => {
+        option.addEventListener('click', function() {
+            document.querySelectorAll('.payment-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            this.classList.add('selected');
+        });
+    });
 });
 
 function showImage(img) {

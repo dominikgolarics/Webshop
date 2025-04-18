@@ -1,0 +1,100 @@
+
+h1, h2 {
+    color: #2c3e50;
+}
+
+.container {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.order-summary, .checkout-form {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.order-summary {
+    flex: 1;
+}
+
+.checkout-form {
+    flex: 2;
+}
+
+.product-item {
+    display: flex;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.product-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.address-option, .payment-option {
+    display: block;
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.address-option:hover, .payment-option:hover {
+    border-color: #3498db;
+}
+
+.address-option.selected, .payment-option.selected {
+    border-color: #3498db;
+    background-color: #f0f8ff;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="email"], select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.fizetes-btn {
+    background-color: rgb(69, 139, 231);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.fizetes-btn:hover {
+    background-color: #2980b9;
+}
+
+.total {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
