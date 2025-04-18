@@ -2,6 +2,7 @@
     background-color: rgb(69, 139, 231);
     color: #ecf0f1;
     padding: 0px 0 10px;
+    margin-top: 20px;
     font-family: 'Arial', sans-serif;
 }
 
@@ -84,6 +85,8 @@
     color: #d2d9dd;
     font-size: 14px;
 }
+
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

@@ -72,7 +72,7 @@
 			$stmt = $conn->prepare($sql);
 			$stmt->bind_param("ssss", $uname, $email, $psw, $num);
 			if($stmt->execute()){
-				header("location: login.php");
+				header("location: /");
 			}
 			else{
 				echo "Hiba: ".$stmt->error;
@@ -97,77 +97,88 @@
 		<link rel="stylesheet" href="style/register.css" />
 		<title>Nile - Regisztráció</title>
 	</head>
-	<body>
-		<div id="tartalom">
-			<div id="nilelogo">
-			<a href="/"><img style="width: 128px; height: 128px;" src="img/menu/logo-good-trans.png"></a>
+	
+</html>
+
+
+<body>
+		<div class="container">
+			<div class="text-center mb-4">
+				<a href="/"><img style="width: 128px; height: 128px;" src="img/menu/logo-good-trans.png" alt="Nile Logo"></a>
+				<h2 class="mt-2">Regisztráció</h2>
 			</div>
-			<div id="tartalom_login">
-				<form action="register.php" method="post">
-					<div id="login_form">
-						<label id="uname_text" for="uname" class="inputname"><b>Felhasználónév</b></label>
-						<br />
-						<input
-							class="inputtext"
-							id="uname"
-							type="text"
-							placeholder=""
-							name="uname"
-							
-						/>
-						<br />
-						<label id="email_text" for="email" class="inputname"><b>Email</b></label>
-						<br />
-						<input
-							class="inputtext"
-							id="email"
-							type="email"
-							placeholder=""
-							name="email"
-							
-						/>
-						<br>
-						<label id="psw_text" for="psw" class="inputname"><b>Jelszó</b></label>
-						<br />
-						<input
-							class="inputtext"
-							id="psw"
-							type="password"
-							placeholder=""
-							name="psw"
-							
-						/>
-						<br>
-						<label id="psw_text_again" for="psw" class="inputname"><b>Jelszó ismét</b></label>
-						<br />
-						<input
-							class="inputtext"
-							id="psw_again"
-							type="password"
-							placeholder=""
-							name="psw_again"
-							
-						/>
-						<label id="number_text" for="num" class="inputname"><b>Telefonszám</b></label>
-						<br />
-						<input
-							class="inputtext"
-							id="number"
-							type="text"
-							placeholder=""
-							name="num"
-							
-						/>
-						<br>
-						<br>
-						<button type="submit" id="gomb">Register</button>
-						<br />
-						<label for="register">Van fiókod?<a href="login.php">Lépj be itt</a></label>
-					</div>
-				</form>
+			
+			<?php if(!empty($error)): ?>
+				<div class="alert alert-danger"><?php echo $error; ?></div>
+			<?php endif; ?>
+			
+			<div class="card mx-auto" style="max-width: 400px;">
+				<div class="card-body">
+					<form action="register.php" method="post">
+						<div class="mb-3">
+							<label for="uname" class="form-label">Felhasználónév</label>
+							<input
+								class="form-control"
+								id="uname"
+								type="text"
+								placeholder="Felhasználónév"
+								name="uname"
+								required
+							/>
+						</div>
+						
+						<div class="mb-3">
+							<label for="email" class="form-label">Email</label>
+							<input
+								class="form-control"
+								id="email"
+								type="email"
+								placeholder="email@example.com"
+								name="email"
+								required
+							/>
+						</div>
+						
+						<div class="mb-3">
+							<label for="psw" class="form-label">Jelszó</label>
+							<input
+								class="form-control"
+								id="psw"
+								type="password"
+								placeholder="Legalább 6 karakter"
+								name="psw"
+								required
+							/>
+						</div>
+						
+						<div class="mb-3">
+							<label for="psw_again" class="form-label">Jelszó ismét</label>
+							<input
+								class="form-control"
+								id="psw_again"
+								type="password"
+								placeholder="Jelszó megerősítése"
+								name="psw_again"
+								required
+							/>
+						</div>
+						
+						<div class="mb-3">
+							<label for="number" class="form-label">Telefonszám</label>
+							<input
+								class="form-control"
+								id="number"
+								type="text"
+								placeholder="+36..."
+								name="num"
+							/>
+						</div>
+						
+						<button type="submit" class="btn btn-primary w-100">Regisztráció</button>
+						
+					</form>
+				</div>
 			</div>
 		</div>
-		<?php echo $error?>
 		<script src="script.js"></script>
 	</body>
-</html>

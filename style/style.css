@@ -8,7 +8,7 @@
 @import url("lablec.css");
 @import url("friss.css");
 @import url("kosar.css");
-
+@import url("kosar_oldal.css");
 
 body {
 	background-color: #fdf8e1;
@@ -99,6 +99,14 @@ body {
 #login_form{
 	display: flex;
 	justify-content: center;
+}
+
+#uname_text{
+	padding-top: 6px;
+}
+
+#psw_text,#uname_text{
+	font-size: 26px;
 }
 
 #close{

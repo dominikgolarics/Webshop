@@ -143,6 +143,11 @@
     transform: translateY(0);
 }
 
+#kosar-gomb:disabled{
+    background-color: #666;
+    transform: none;
+}
+
 /* Product Details */
 .termek-details {
     margin-top: 30px;

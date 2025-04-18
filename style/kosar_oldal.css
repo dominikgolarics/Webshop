@@ -1,0 +1,179 @@
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.cart-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.cart-header {
+    border-bottom: 2px solid #4a6baf;
+    padding-bottom: 10px;
+    padding-top: 15px;
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+/* kosár tételek */
+.cart-item {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    padding: 15px;
+    transition: all 0.3s ease;
+}
+
+.cart-item:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.product-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+.product-title {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.product-author {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+/* Quantity Controls */
+.quantity-control {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-btn {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    background: #f8f9fa;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.quantity-btn:hover {
+    background: #e9ecef;
+}
+
+.quantity-input {
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Ár */
+.price {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.unit-price {
+    color: #7f8c8d;
+    font-size: 0.8rem;
+}
+
+/* Gomb */
+.btn-remove {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+}
+
+.btn-checkout {
+    background-color: #4a6baf;
+    border: none;
+    padding: 12px;
+    font-weight: 500;
+    width: 100%;
+    transition: all 0.3s;
+}
+
+.btn-checkout:hover {
+    background-color: #3a5a9f;
+    transform: translateY(-2px);
+}
+
+/* Rendelés teljes */
+.summary-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    padding: 20px;
+    position: sticky;
+    top: 20px;
+}
+
+.summary-title {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.summary-total {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #2c3e50;
+}
+
+/* Üres */
+.empty-cart {
+    text-align: center;
+    padding: 50px 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.empty-cart-icon {
+    font-size: 50px;
+    color: #bdc3c7;
+    margin-bottom: 20px;
+}
+
+.empty-cart-title {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.empty-cart-text {
+    color: #7f8c8d;
+    margin-bottom: 20px;
+}
+
+
+@media (max-width: 768px) {
+    .product-img {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .summary-card {
+        position: static;
+        margin-top: 30px;
+    }
+}

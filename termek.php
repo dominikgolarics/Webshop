@@ -63,12 +63,10 @@ if ($cipo_id) {
             <button class="noveked">+</button>
         </div>
         
-        <button id="kosar-gomb" <?php if ($vane=="Nem") {
-            echo "disabled";
-            }else{
-                echo " ";
-            }
-        ?>>Kosárba</button>
+        <input type="hidden" id="termek-id" value="<?php echo $product['id']; ?>">
+        <input type="hidden" id="mennyiseg" value="1">
+        <button id="kosar-gomb" <?php echo $vane == "Nem" ? "disabled" : ""; ?>>Kosárba</button>
+        <div id="kosar-feedback"></div>
         
         <div class="termek-details">
             <div class="detail-item">
@@ -81,6 +79,9 @@ if ($cipo_id) {
             </div>
         </div>
     </div>
+    <?php
+        print_r($_SESSION)
+    ?>
 </div>
 
 </body>
