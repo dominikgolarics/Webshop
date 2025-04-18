@@ -7,7 +7,6 @@
     $stmt->execute();
     $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     ?>
-    <link rel="stylesheet" href="/style/kosar_oldal.css">
     <div class="container cart-container">
         <div class="row">
             <div class="col-12">
@@ -112,12 +111,12 @@
                     </div>
                     <div class="summary-row">
                         <span>Szállítás:</span>
-                        <span><?php if(!empty($result)){ echo "1290 FT";}else{ echo "0 FT";} ?></span>
+                        <span>1 290 Ft</span>
                     </div>
                     <hr>
                     <div class="summary-row mb-3">
                         <span class="summary-total">Összesen:</span>
-                        <span class="summary-total"><?php if(!empty($result)){ echo ($összeg+1290)." FT";}else{ echo "0 FT";} ?></span>
+                        <span class="summary-total"><?php echo $összeg+1290; ?></span>
                     </div>
                     <button class="btn btn-checkout btn-lg mb-3">Tovább a fizetéshez</button>
                     <div class="text-center">
