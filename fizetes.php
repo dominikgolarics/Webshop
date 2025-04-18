@@ -5,6 +5,13 @@
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $id=$_SESSION['user_id'];
+    $sql_2="SELECT id,nev,felhasznalo_nev,email,telefonszam,cim,iranyitoszam,varos FROM felhasznalo WHERE id=$id";
+    $stmt = $conn->prepare($sql_2);
+    $stmt->execute();
+    $felh = $stmt->get_result()->fetch_assoc();
+    //var_dump($felh);
 ?>
 <div class="fizetes-container">
     <!-- Rendelés összegzése -->
@@ -17,7 +24,7 @@
             echo '<img src="'.$cipo['elso_kep'].'" alt="Termék neve" class="product-image">';
                 echo '<div>';
                     echo '<h3>'.$cipo['nev'].'</h3>';
-                    echo '<p>'.$cipo['meret'].'</p>';
+                    echo '<p>Méret: '.$cipo['meret'].'</p>';
                     echo '<p>'.$cipo['darab'].' db × '.$cipo['ar'].' Ft</p>';
                 echo '</div>';
             echo '</div>';
@@ -25,13 +32,17 @@
         ?>
         
         <div class="total">
-            <p>Összesen: <span style="float: right;"><?php 
+            <p>Összesen: 
+                <span style="float: right;">
+                    <?php 
                         $összeg = 0;
                         for ($i=0; $i < count($result); $i++) { 
                             $összeg+=($result[$i]['ar']*$result[$i]['darab']);
                         }
-                        echo $összeg; ?>
-                        </span></p>
+                        $összeg+1290;
+                        echo $összeg." FT"; ?>
+                </span>
+            </p>
         </div>
     </div>
     
@@ -41,17 +52,17 @@
         
         <div class="form-group">
             <label id="fizetes-label"for="name">Teljes név</label>
-            <input type="text" id="fizetes-name" required>
+            <input type="text" id="fizetes-name" <?php if(!empty($felh['nev'])) { echo 'value="' . htmlspecialchars($felh['nev']) . '" disabled'; } ?> required>
         </div>
         
         <div class="form-group">
             <label id="fizetes-label"for="email">E-mail cím</label>
-            <input type="email" id="fizetes-email" required>
+            <input type="email" id="fizetes-email" <?php if(!empty($felh['email'])) { echo 'value="' . htmlspecialchars($felh['email']) . '" disabled'; } ?> required>
         </div>
         
         <div class="form-group">
             <label id="fizetes-label"for="phone">Telefonszám</label>
-            <input type="text" id="fizetes-phone" required>
+            <input type="text" id="fizetes-phone" <?php if(!empty($felh['telefonszam'])) { echo 'value="' . htmlspecialchars($felh['telefonszam']) . '" disabled'; } ?> required>
         </div>
         
         <h2>Szállítási cím</h2>
@@ -59,9 +70,9 @@
         <div class="address-option selected">
             <input type="radio" name="address" id="fizetes-home-address" checked>
             <label id="fizetes-label"for="home-address">Lakcím</label>
-            <p>1234 Budapest, Példa utca 12.</p>
+            <p><?php echo $felh['iranyitoszam']." ".$felh['varos'].", ".$felh['cim']."." ?></p>
         </div>
-        
+
         <div class="address-option">
             <input type="radio" name="address" id="fizetes-other-address">
             <label id="fizetes-label"for="other-address">Más cím</label>

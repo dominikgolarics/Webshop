@@ -6,8 +6,7 @@ h1, h2 {
 .fizetes-container {
     display: flex;
     gap: 30px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 20px;
 }
 
 .order-summary, .checkout-form {

@@ -8,7 +8,7 @@
 
     if(isset($_POST['nev'])){
         $nev = trim($_POST['nev']);
-        $frissitesek[] = "nev = ".($nev=== '' ? "NULL" : "'". mysqli_real_escape_string($conn, $nev))."'";
+        $frissitesek[] = "nev = ".($nev=== '' ? "NULL" : "'". mysqli_real_escape_string($conn, $nev)."'");
     }
     if(isset($_POST['iranyitoszam'])){
         $iranyitoszam = trim($_POST['iranyitoszam']);
