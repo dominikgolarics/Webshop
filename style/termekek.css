@@ -5,23 +5,23 @@
 #filter{
     /* border: 1px solid green; TESZTELÉSRE*/
     height:fit-content;
-    width: 220px;
-    flex: 30%;
-    float: left;
+    max-width: 300px;
+    flex: 1;
     padding: 20px;
+    margin-left: 10%;
 }
 
 #termekek-lista{
-    flex: 70%;
-    float: right;
+    flex: 3;
     /* border: 1px solid black; TESZTELÉSRE */
 }
 
 #cipo-termekek{
-    display: flexbox;
+    display: flex;
+	justify-content: center;
     /* border: 2px solid red; TESZTELÉSRE*/
     padding: 1rem 1rem 4rem;
-    flex-wrap: wrap;
+    width: 100%;
 }
 
 #minden-cipo{

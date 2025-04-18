@@ -145,7 +145,7 @@
 								class="form-control"
 								id="psw"
 								type="password"
-								placeholder="Legalább 6 karakter"
+								placeholder="Legalább 8 karakter"
 								name="psw"
 								required
 							/>

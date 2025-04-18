@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 				foreach($result as $cipo){
 					echo '<li data-termek-id="'.$cipo['id'].'">';
-						echo '<img src="'.$cipo['elso_kep'].'">';
+						echo '<img src="/'.$cipo['elso_kep'].'">';
 						echo '<div class="item-info">';
 							echo '<p>'.$cipo['nev'].'</p>';
 							echo '<small>Ár: '.$cipo['ar'].' Ft</small>';
@@ -127,28 +127,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			</header>
 		</div>
 	<?php endif; ?>
-	<?php
-	if ($_GET['page'] == 'fooldal') {
-		require 'home.php';
-	} else if ($_GET['page'] == 'legkelendobbek') {
-		require 'legkel.php';
-	} else if ($_GET['page'] == 'friss') {
-		require 'friss.php';
-	} else if ($_GET['page'] == 'profil') {
-		require 'profil.php';
-	} else if ($_GET['page'] == 'regisztracio') {
-		require 'register.php';
-	} else if ($_GET['page'] == 'elfelejtettjelszo') {
-		require 'elfelejtettjelszo.php';
-	} else if ($_GET['page'] == 'termek') {
-		require 'termek.php';
-	} else if ($_GET['page'] == 'kosar') {
-		require 'kosar.php';
-	} else if ($_GET['page'] == 'termekek') {
-		require 'termekek.php';
-	}
+	<div id="main-wrapper">
+		<?php
+		if ($_GET['page'] == 'fooldal') {
+			require 'home.php';
+		} else if ($_GET['page'] == 'legkelendobbek') {
+			require 'legkel.php';
+		} else if ($_GET['page'] == 'friss') {
+			require 'friss.php';
+		} else if ($_GET['page'] == 'profil') {
+			require 'profil.php';
+		} else if ($_GET['page'] == 'regisztracio') {
+			require 'register.php';
+		} else if ($_GET['page'] == 'elfelejtettjelszo') {
+			require 'elfelejtettjelszo.php';
+		} else if ($_GET['page'] == 'termek') {
+			require 'termek.php';
+		} else if ($_GET['page'] == 'kosar') {
+			require 'kosar.php';
+		} else if ($_GET['page'] == 'termekek') {
+			require 'termekek.php';
+		}
 
-	?>
+		?>
+	</div>
 	<?php if (!$kulonOldal): ?>
 		<footer class="site-footer">
 			<div class="footer-container">
@@ -173,7 +175,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<ul class="contact-info">
 						<li><i class="fas fa-map-marker-alt"></i> Budapest, Timót u. 3, 1097</li>
 						<li><i class="fas fa-phone"></i> +36 1 234 5678</li>
-						<li><i class="fas fa-envelope"></i> info@nile.com</li>
+						<li><i class="fas fa-envelope"></i> nilewebshop@gmail.com</li>
 					</ul>
 				</div>
 
