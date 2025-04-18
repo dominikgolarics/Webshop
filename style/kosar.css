@@ -86,3 +86,15 @@
 .remove-item:hover {
 	color: #900;
 }
+
+.cart-item {
+    transition: all 0.3s ease;
+}
+
+.btn-remove {
+    transition: all 0.2s ease;
+}
+
+.btn-remove:hover {
+    transform: scale(1.05);
+}

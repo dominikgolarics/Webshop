@@ -166,6 +166,8 @@ $(document).ready(function () {
         });
     });
 
+    //kosár oldal remove
+
     //Kosárba gomb
     let quantity = 1;
 
