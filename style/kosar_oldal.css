@@ -1,7 +1,4 @@
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 
 .cart-container {
     max-width: 1200px;
@@ -99,7 +96,7 @@ body {
 }
 
 .btn-checkout {
-    background-color: #4a6baf;
+    background-color: rgb(69, 139, 231);
     border: none;
     padding: 12px;
     font-weight: 500;
