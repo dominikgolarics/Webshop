@@ -60,10 +60,6 @@ foreach($result as $item) {
 $osszeg+=1290;
 $orderData['total']=$osszeg;
 
-// $orderData['customer']['name']=;
-// $orderData['customer']['name']=;
-// $orderData['customer']['name']=;
-// $orderData['customer']['name']=;
 
 $companyInfo = [
     'name' => 'Nile',
@@ -71,17 +67,22 @@ $companyInfo = [
     'phone' => '+36 1 234 5678',
     'email' => 'info@nile.com'
 ];
-//print_r($result);
-//echo "<br>";
-//print_r($orderData);
+
 
 
 // Generate the PDF
 $pdfGenerator = new ReceiptGenerator($orderData, $companyInfo);
 $pdfContent = $pdfGenerator->generate();
 
-// Save to file or send to browser
-header('Content-Type: application/pdf');
-header('Content-Disposition: inline; filename="receipt_'.$orderData['order_id'].'.pdf"');
-echo $pdfContent;
+// Define the filename and path
+$filename = 'receipt_'.$orderData['order_id'].'.pdf';
+$filepath = 'szamlak/'.$filename;
+
+// Save to file
+file_put_contents($filepath, $pdfContent);
+
+// Send to browser
+// header('Content-Type: application/pdf');
+// header('Content-Disposition: inline; filename="'.$filename.'"');
+// echo $pdfContent;
 ?>

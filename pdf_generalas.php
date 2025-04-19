@@ -74,10 +74,6 @@ class ReceiptGenerator extends FPDF {
             $this->Cell(30,7,number_format($this->orderData['shipping'],2).' Ft',1,1,'R');
         }
         
-        if($this->orderData['discount'] > 0) {
-            $this->Cell(150,7,$this->utftohun('Kedvezmény:'),0,0,'R');
-            $this->Cell(30,7,'-'.number_format($this->orderData['discount'],2).' Ft',1,1,'R');
-        }
         
         $this->Cell(150,7,$this->utftohun('Végösszeg:'),0,0,'R');
         $this->Cell(30,7,number_format($this->orderData['total'],2).' Ft',1,1,'R');

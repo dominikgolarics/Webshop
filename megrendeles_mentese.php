@@ -31,3 +31,4 @@ foreach($result as $item){
 $_SESSION['utolso_rendeles_id'] = $rendeles_id;
 
 echo $rendeles_id;
+

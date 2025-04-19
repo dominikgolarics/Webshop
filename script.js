@@ -25,6 +25,18 @@ $(document).ready(function () {
             $("#login").fadeIn();
             document.body.style.overflowY = 'hidden';
         });
+
+        $("#kosar-login").on('click', function() {
+            console.log("xd")
+            $("#login").fadeIn();
+            document.body.style.overflowY = 'hidden';
+        });
+
+        $("#kosar-fizet-gomb").on('click', function() {
+            console.log("xd")
+            $("#login").fadeIn();
+            document.body.style.overflowY = 'hidden';
+        });
     }
 
     if (sikeresBelepes) {
@@ -216,27 +228,31 @@ $(document).ready(function () {
     $('#kosar-gomb').click(function (e) {
         e.preventDefault();
 
-        const termekId = $('#termek-id').val();
-        const mennyiseg = $('#mennyiseg').val();
-        console.log("Termek id: "+termekId+" Mennyiseg: "+mennyiseg)
-        $.ajax({
-            url: '/kosarba_tesz.php',
-            method: 'POST',
-            data: {
-                termek_id: termekId,
-                mennyiseg: mennyiseg
-            },
-            success: function (res) {
-                $('#kosar-feedback').text("Sikeresen hozzáadva a kosárhoz!").css("color", "green");
-                // opcionálisan frissíthetsz egy kosár ikont is pl.
-                //console.log("Success: "+data)
-                console.log(res)
-            },
-            error: function () {
-                $('#kosar-feedback').text("Hiba történt!").css("color", "red");
-                console.log("Error: "+data)
-            }
-        });
+        if(userId){
+            const termekId = $('#termek-id').val();
+            const mennyiseg = $('#mennyiseg').val();
+            console.log("Termek id: "+termekId+" Mennyiseg: "+mennyiseg)
+            $.ajax({
+                url: '/kosarba_tesz.php',
+                method: 'POST',
+                data: {
+                    termek_id: termekId,
+                    mennyiseg: mennyiseg
+                },
+                success: function (res) {
+                    $('#kosar-feedback').text("Sikeresen hozzáadva a kosárhoz!").css("color", "green");
+                    // opcionálisan frissíthetsz egy kosár ikont is pl.
+                    //console.log("Success: "+data)
+                    console.log(res)
+                },
+                error: function () {
+                    $('#kosar-feedback').text("Hiba történt!").css("color", "red");
+                    console.log("Error: "+data)
+                }
+            });
+        }else{
+            alert("Kérlek jelentkezz be!")
+        }
     });
  
     // Adatok mentése
