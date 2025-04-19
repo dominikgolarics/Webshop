@@ -21,32 +21,42 @@
     background-color: #fefefe;
     border: 2px solid rgb(69, 139, 231);
     border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 30px;
+    padding: 15px;
+    margin-bottom: 20px;
     box-shadow: 0 0 12px rgba(0,0,0,0.05);
 }
 
 .rendeles-fejlec {
     display: flex;
     justify-content: space-between;
-    font-weight: bold;
-    font-size: 16px;
-    margin-bottom: 15px;
+    align-items: center;
+    font-size: 16px;            /* kisebb szöveg */
+    font-weight: normal;        /* ne legyen túl vastag */
+    margin-bottom: 8px;         /* kevesebb térköz */
     color: #333;
+    gap: 8px;
+}
+
+.rendeles-fejlec span:first-child {
+    font-weight: 600;           /* csak a #kód legyen kicsit hangsúlyosabb */
+    color: rgb(69, 139, 231);
+    font-size: 16px;
 }
 
 .rendeles-datum {
-    font-weight: normal;
+    font-size: 16px;
     font-style: italic;
     color: #666;
+    white-space: nowrap;
 }
 
 .rendelt-termek {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
-    border-top: 1px dashed #ddd;
-    padding-top: 10px;
+    margin-bottom: 8px; /* korábbi 15px helyett */
+    border-top: 1px dashed rgb(30, 90, 180);
+    padding-top: 8px;   /* szolidabb */
+    gap: 12px;
 }
 
 .rendelt-termek:first-of-type {
@@ -55,13 +65,14 @@
 }
 
 .rendeles-kep {
-    width: 80px;
-    height: 80px;
+    width: 60px;     /* korábbi 80px helyett */
+    height: 60px;
     object-fit: cover;
-    border-radius: 10px;
-    margin-right: 15px;
-    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-right: 10px;
+    border: 1px solid #aaa; /* halványabb keret */
 }
+
 
 .rendeles-info {
     display: flex;
@@ -70,11 +81,21 @@
 
 .termek-nev {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 15px;
     color: #222;
+    margin-bottom: 2px;
 }
 
 .termek-ar {
-    color: #888;
-    margin-top: 4px;
+    color: #555;
+    font-size: 14px;
+}
+
+.rendeles-osszeg {
+    text-align: right;
+    font-size: 15px;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px dashed rgb(30, 90, 180);
+    color: #222;
 }

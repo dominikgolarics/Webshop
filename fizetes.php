@@ -88,13 +88,13 @@
         <h2>Fizetési mód</h2>
         
         <div class="payment-option selected">
-            <input type="radio" name="payment" id="fizetes-card" checked>
+            <input type="radio" name="payment" id="fizetes-card">
             <label id="fizetes-label">Személyesen bankkártyával</label>
         </div>
         
         <div class="payment-option">
             <input type="radio" name="payment" id="fizetes-cash">
-            <label id="fizetes-label">Személyesen készpénzel</label>
+            <label id="fizetes-label">Személyesen készpénzzel</label>
         </div>
          
         <button class="fizetes-btn" id="megrendeles">Megrendelés elküldése</button>

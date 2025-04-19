@@ -1,27 +1,6 @@
 <?php
-session_start();
-require "database/db_connect.php";
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	
-
-// 	$sql = sprintf(
-// 		"SELECT * FROM felhasznalo WHERE felhasznalo_nev = '%s'",
-// 		$conn->real_escape_string($_POST['uname'])
-// 	);
-
-// 	$result = $conn->query($sql);
-// 	$user = $result->fetch_assoc();
-// 	if ($user) {
-// 		if (password_verify($_POST['psw'], $user['jelszo'])) {
-// 			$_SESSION["user_id"] = $user["id"];
-
-// 			$_SESSION["sikeres_bejelentkezes"] = true;
-// 			header("Location: /" . $_GET['page']);
-// 			unset($_POST['uname']);
-// 			exit;
-// 		}
-// 	}
-// }
+	session_start();
+	require "database/db_connect.php";
 	$kulonOldal = (isset($_GET['page']) && ($_GET['page'] === 'regisztracio' || $_GET['page'] === 'elfelejtettjelszo')) ;
 	unset($_POST['uname']);
 ?>
@@ -45,6 +24,21 @@ require "database/db_connect.php";
 </head>
 
 <body style="background-color: #fdf8e1">
+	<div id="torles-uzenet">A fiókodat sikeresen töröltük.</div>
+<?php
+	if (isset($_SESSION['torles_sikeres']) && $_SESSION['torles_sikeres']) {
+		echo '<script>
+			document.addEventListener("DOMContentLoaded", function() {
+				const uzi = document.getElementById("torles-uzenet");
+				if (uzi) {
+					uzi.style.display = "block";
+					setTimeout(() => { uzi.style.display = "none"; }, 3000);
+				}
+			});
+		</script>';
+		unset($_SESSION['torles_sikeres']);
+	}
+?>
 <?php if (isset($_SESSION['reg_success'])): ?>
 	<div id="popup-reg">
 		✅ Sikeres regisztráció!
@@ -53,10 +47,10 @@ require "database/db_connect.php";
 <?php endif; ?>
 
 	<?php
-	$popup = isset($_SESSION['sikeres_bejelentkezes']) ? 'true' : 'false';
-	$logoutPopup = isset($_SESSION['kijelentkezes_sikeres']) ? 'true' : 'false';
-	unset($_SESSION['sikeres_bejelentkezes']);
-	unset($_SESSION['kijelentkezes_sikeres']);
+		$popup = isset($_SESSION['sikeres_bejelentkezes']) ? 'true' : 'false';
+		$logoutPopup = isset($_SESSION['kijelentkezes_sikeres']) ? 'true' : 'false';
+		unset($_SESSION['sikeres_bejelentkezes']);
+		unset($_SESSION['kijelentkezes_sikeres']);
 	?>
 
 	<script>
@@ -173,6 +167,8 @@ require "database/db_connect.php";
 			require 'termekek.php';
 		}else if ($_GET['page'] == 'fizetes') {
 			require 'fizetes.php';
+		}else if ($_GET['page'] == 'megrendeles') {
+			require 'megrendeles_osszegzese.php';
 		}
 
 		?>
@@ -192,6 +188,7 @@ require "database/db_connect.php";
 					<ul>
 						<li><a href="/">Kezdőlap</a></li>
 						<li><a href="/termekek">Termékek</a></li>
+						<li><a href="/profil/beallitasok">Profilom</a></li>
 					</ul>
 				</div>
 
@@ -200,7 +197,7 @@ require "database/db_connect.php";
 					<h3>Elérhetőségek</h3>
 					<ul class="contact-info">
 						<li><i class="fas fa-map-marker-alt"></i> Budapest, Timót u. 3, 1097</li>
-						<li><i class="fas fa-phone"></i> +36 1 234 5678</li>
+						<li><i class="fas fa-phone"></i> +36 70 306 9484</li>
 						<li><i class="fas fa-envelope"></i> nilewebshop@gmail.com</li>
 					</ul>
 				</div>

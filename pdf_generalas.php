@@ -29,7 +29,7 @@ class ReceiptGenerator extends FPDF {
         
         // Order information
         $this->SetFont('Arial','B',12);
-        $this->Cell(0,10,$this->utftohun('Nyugta #'.$this->orderData['order_id']),0,1,'L');
+        $this->Cell(0,10,$this->utftohun('Számla #'.$this->orderData['order_id']),0,1,'L');
         $this->SetFont('Arial','',10);
         $this->Cell(0,5,$this->utftohun('Dátum: '.$this->orderData['order_date']),0,1,'L');
         $this->Ln(5);

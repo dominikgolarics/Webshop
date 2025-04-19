@@ -96,3 +96,48 @@ body {
 #ujjelszo-tartalom button#ujjelszomentes:hover {
     background-color: #45a049;
 }
+
+#torles-popup {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* sötét háttér */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999; /* brutál magas, minden fölé megy */
+  }
+  
+  #torles-ablak {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+  }
+  
+  #torles-ablak p {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  #torles-ablak button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  #igenGomb {
+    background-color: #d9534f;
+    color: white;
+  }
+  
+  #megsemGomb {
+    background-color: #ccc;
+    color: black;
+  }
+  

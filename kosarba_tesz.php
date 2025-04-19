@@ -13,7 +13,7 @@ if (!$user_id) {
 }
 
 // Kosár keresése vagy létrehozása
-$stmt = $conn->prepare("SELECT id FROM kosarak WHERE felhasznalo_id = ? AND fizetve = 0 LIMIT 1");
+$stmt = $conn->prepare("SELECT id FROM kosarak WHERE felhasznalo_id = ? LIMIT 1");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();

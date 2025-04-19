@@ -285,13 +285,13 @@ $(document).ready(function () {
                     mennyiseg: mennyiseg
                 },
                 success: function (res) {
-                    $("#kosar-feedback").fadeIn(300, function () {
+                    $("#kosar-feedback").fadeIn(200, function () {
                         setTimeout(function () {
-                            $("#kosar-feedback").fadeOut(600, function () {
+                            $("#kosar-feedback").fadeOut(500, function () {
                                 // ✅ Csak ezután frissítsen
                                 window.location.reload();
                             });
-                        }, 1500);
+                        }, 500);
                     });
                 },
                 error: function () {
@@ -447,6 +447,7 @@ $(document).ready(function () {
         const cim = $('#fizetes-cim').val();
         const varos = $('#fizetes-varos').val();
         const iranyitoszam = $('#fizetes-iranyitoszam').val();
+        const fizetes_tipus = $(".payment-option.selected input").attr('id');
         $.ajax({
             url: '/megrendeles_mentese.php',
             method: 'POST',
@@ -456,12 +457,12 @@ $(document).ready(function () {
                 rendeles_telefonszam: telefonszam,
                 rendeles_cim: cim,
                 rendeles_varos: varos,
-                rendeles_iranyitoszam: iranyitoszam
+                rendeles_iranyitoszam: iranyitoszam,
+                fizetes_tipus: fizetes_tipus
             },
             success: function (valasz) {
-                console.log("siker");
-                console.log(valasz)
-                window.location.href = "pdf.php";
+                console.log(valasz);
+                window.location.href = "/megrendeles";
             },
             error: function () {
                 console.log("hiba")
@@ -479,7 +480,18 @@ function showImage(img) {
     previewDiv.innerHTML = `<img id='nagy-nezet' class="img-fluid" src="${img.src}">`;
 }
 
+$("#torlesGomb").click(function(e) {
+    e.preventDefault();
+    $("#torles-popup").fadeIn();
+});
 
+$("#megsemGomb").click(function() {
+    $("#torles-popup").fadeOut();
+});
+
+$("#igenGomb").click(function() {
+    window.location.href = "/profiltorlese.php";
+});
 
 // 1. betölt oldal -> minden cipo-t lekér és betölt
 // 2. filter opció kiválasztása
