@@ -6,7 +6,7 @@ if(isset($_SESSION['user_id'])){
 
 ?>
 
-<div>
+<div class="jelszocsomag">
     <form method="post" action="jelszovaltoztatas-kuldes.php">
         <label for="email">Email</label>
         <input type="email" name="email" id="email">

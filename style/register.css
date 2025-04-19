@@ -54,3 +54,23 @@ body {
 .text-center a:hover {
     text-decoration: underline;
 }
+
+.info-icon {
+	display: inline-block;
+	margin-left: 6px;
+	cursor: help;
+	color: rgb(69, 139, 231);
+	font-weight: bold;
+	font-size: 16px;
+}
+
+#error-container {
+	height: 60px; /* mindig ennyi hely lesz fenntartva */
+	margin-bottom: 20px;
+}
+
+.alert.alert-danger {
+	margin: 0 auto;
+	width: 100%;
+	max-width: 600px;
+}

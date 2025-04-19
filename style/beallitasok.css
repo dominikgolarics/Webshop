@@ -1,0 +1,50 @@
+#beallitasok-tartalom {
+    max-width: 300px;
+    margin: 30px auto;  
+    padding: 30px;
+    font-family: Arial, sans-serif;
+}
+
+#beallitasok-tartalom label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+#beallitasok-tartalom input[type="text"],
+#beallitasok-tartalom input[type="email"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: #fff;
+    box-sizing: border-box;
+    transition: border 0.2s;
+}
+
+#beallitasok-tartalom input:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+#beallitasok-tartalom button#mentes {
+    margin-top: 25px;
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+#beallitasok-tartalom button#mentes:hover {
+    background-color: #45a049;
+}
