@@ -10,6 +10,8 @@
 @import url("kosar.css");
 @import url("kosar_oldal.css");
 @import url("fizetes.css");
+@import url("rendelesek.css");
+@import url("beallitasok.css");
 
 
 
@@ -73,7 +75,7 @@ html, body {
 
 /* Mozgó logók vége */
 
-
+/* Login */
 #login{
 	width: 100%;
 	height: 100%;
@@ -84,54 +86,158 @@ html, body {
 	top: 0;
 }
 
-#tartalom_login{
-	margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+#tartalom_login {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	width: 35%;
-	height: 50%;
 	background-color: #fdf8e1;
-	border-top-left-radius: 15px;
-	border-top-right-radius: 15px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
+	border-radius: 15px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	padding-bottom: 20px
 }
 
-#login_header{
-	background-color: black;
+#login_header {
+	background-color: rgb(69, 139, 231);
 	color: white;
-	border-top-left-radius: 15px;
-	border-top-right-radius: 15px;
+	border-radius: 15px 15px 0 0;
 	height: 50px;
-	text-align: center;
-	font-size: 25px;
-	line-height: 50px;
-	font-weight: bold;
-	letter-spacing: 5px;
-}
-
-#login_form{
 	display: flex;
 	justify-content: center;
+	align-items: center;
+	position: relative;
+	font-size: 22px;
+	font-weight: bold;
+	letter-spacing: 6px;
 }
 
-#uname_text{
-	padding-top: 6px;
+#login_header #close {
+	position: absolute;
+	right: 20px;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 22px;
+	color: white;
+	transition: transform 0.2s ease;
 }
 
-#psw_text,#uname_text{
-	font-size: 26px;
-}
-
-#close{
-	float: right;
-}
-
-#close:hover{
+#login_header #close:hover {
 	cursor: pointer;
+	transform: translateY(-50%) scale(1.2);
+	color: #ffdddd;
+}
+
+#login_form {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+}
+
+#login_form form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#login_form input[type="text"],
+#login_form input[type="password"] {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	font-size: 17px;
+}
+
+#login_form #gomb {
+	background-color: rgb(69, 139, 231);
+	color: white;
+	border: none;
+	padding: 12px 24px;
+	border-radius: 6px;
+	font-size: 17px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+#login_form input[type="submit"]:hover {
+	background-color: rgb(49, 109, 201);
+}
+
+#uname_text,
+#psw_text {
+	font-size: 22px;
+}
+
+.inputok {
+	width: 90%;
+	display: flex;
+	flex-direction: column;
+	align-items: center; /* középre igazítja a címkét, inputot, ikont is */
+	margin-bottom: 15px;
+	position: relative;
+}
+
+.inputok input {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 16px;
+}
+
+.inputok input.hibas {
+	border: 2px solid red;
+}
+
+.hiba-jelzes {
+	color: red;
+	font-size: 18px;
+	position: absolute;
+	top: 60%;
+	right: 15px;
+	transform: translateY(-40%);
+	display: none;
+	pointer-events: none;
+}
+
+#hiba_uzenet {
+	color: red;
+	font-weight: bold;
+	text-align: center;
+	font-size: 15px;
+	visibility: hidden; 
+	height: 20px;       
+	margin-top: 10px;
+	transition: visibility 0.3s ease, opacity 0.3s ease;
+	opacity: 0;
+}
+#hiba_uzenet.megjelenik {
+	visibility: visible;
+	opacity: 1;
+}
+
+#popup-reg {
+	position: fixed;
+	top: 70px;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: rgba(76, 175, 80, 0.95);
+	color: white;
+	padding: 15px 30px;
+	border-radius: 12px;
+	box-shadow: 0 0 15px rgba(0,0,0,0.3);
+	z-index: 10000;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	display: none;
 }
 
 /* Dropdown menü */
@@ -163,24 +269,58 @@ html, body {
 	background-color: #eee;
 }
 
-/* html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+
+.jelszocsomag {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 30px;
+    background-color: #f0f6ff;
+    border: 2px solid rgb(69, 139, 231);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-family: Arial, sans-serif;
 }
 
-body {
-	margin-top: 200px;
+.jelszocsomag form {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-} */
+}
 
-/* .site-footer {
-    margin-top: auto;
+.jelszocsomag label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.jelszocsomag input[type="email"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.jelszocsomag input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.jelszocsomag button {
+    padding: 12px;
     background-color: rgb(69, 139, 231);
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-	margin-top: 20px;
-} */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.jelszocsomag button:hover {
+    background-color: rgb(50, 120, 215);
+    transform: scale(1.02);
+}

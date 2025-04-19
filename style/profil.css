@@ -9,6 +9,9 @@ body {
 	margin: 50px 5% 50px 5%;
 	box-shadow: 5px 5px 15px black;
 	border-radius: 15px;
+	max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
 }
 
 #profil-profilmenu{
@@ -17,6 +20,8 @@ body {
 	width: 300px;
 	margin: left;
 	flex: 1;
+	word-break: keep-all;
+    white-space: nowrap;
 }
 
 .profil-altabok{
@@ -34,24 +39,60 @@ body {
 }
 
 #profil-menutartalom{
-	width: 600px;
-	height: 60vh;
+	height: 80vh;
 	border-left: 1px solid gray;
 	margin: 0;
 	padding-left: 30px;
-	flex: 3;
+	flex: 2;
+	overflow-y: auto;
+	padding-right: 10px; /* hogy ne vágja le a scrollbar a tartalmat */
 }
 
-#beallitasok-tartalom{
-	padding: 30px;
-	display: flex;
-	flex-direction: column;
-	width: 300px;
+#ujjelszo-tartalom {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    font-family: Arial, sans-serif;
 }
 
-#ujjelszo-tartalom{
-	padding: 30px;
-	display: flex;
-	flex-direction: column;
-	width: 300px;
+#ujjelszo-tartalom label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+#ujjelszo-tartalom input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: #fff;
+    box-sizing: border-box;
+    transition: border 0.2s;
+}
+
+#ujjelszo-tartalom input:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+#ujjelszo-tartalom button#ujjelszomentes {
+    margin-top: 25px;
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+#ujjelszo-tartalom button#ujjelszomentes:hover {
+    background-color: #45a049;
 }

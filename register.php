@@ -1,87 +1,4 @@
-<?php
-	require "database/db_connect.php";
-	$error = "";
 
-	if($_SERVER["REQUEST_METHOD"] == "POST"){
-		//Adatok lekérése
-		$uname = trim($_POST['uname']);
-		$email = trim($_POST['email']);
-		$psw = trim($_POST['psw']);
-		$psw_again = $_POST['psw_again'];
-		$num = $_POST['num'];
-		
-		//Email ellenőrzés
-		if(empty($uname)){
-			$error = "Adj meg egy felhasználó nevet!";
-		}
-		elseif(!preg_match('/^[a-zA-Z0-9_]+$/', $uname)){
-			$error = "Csak betűket, számokat és alulvonást tartalmazhat.";
-		}
-		else{
-			$sql = "SELECT felhasznalo_nev FROM felhasznalo WHERE felhasznalo_nev = ?";
-
-			$stmt = $conn->prepare($sql);
-			$stmt->bind_param("s", $uname);
-			$stmt->execute();
-			$stmt->store_result();
-			if($stmt->num_rows>0){
-				$error = "Ez a felhasználónév már használatban van!";
-			}
-		}
-
-		//Felhasználó név ellenőrzés
-		if(empty($email)){
-			$error = "Adj meg egy emailt!";
-		}
-		elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-			$error = "Hibás email!";
-		}
-		else{
-			$sql = "SELECT email FROM felhasznalo WHERE email = ?";
-
-			$stmt = $conn->prepare($sql);
-			$stmt->bind_param("s", $email);
-			$stmt->execute();
-			$stmt->store_result();
-			if($stmt->num_rows>0){
-				$error = "Ez az email már használatban van!";
-			}
-		}
-
-		if (strlen($psw) < 8) {
-			$error = "Legalább 8 karakter hosszunak kell lennie!";
-		}
-		
-		if ( ! preg_match("/[A-Z]/i", $psw)) {
-			$error = "Legalább egy nagy betűt tartalmaznia kell!";
-		}
-		
-		if ( ! preg_match("/[0-9]/", $psw)) {
-			$error = "Legalább egy számot tartalmaznia kell!";
-		}
-		
-		if ($psw !== $psw_again) {
-			$error = "A jelszavaknak egyezniük kell!";
-		}
-
-		$psw = password_hash($psw, PASSWORD_DEFAULT);
-
-		if(empty($error))
-		{
-			$sql = "INSERT INTO felhasznalo(felhasznalo_nev, email, jelszo, telefonszam) VALUES (?, ?, ?, ?)";
-			$stmt = $conn->prepare($sql);
-			$stmt->bind_param("ssss", $uname, $email, $psw, $num);
-			if($stmt->execute()){
-				header("location: /");
-			}
-			else{
-				echo "Hiba: ".$stmt->error;
-			}
-		}
-		
-		$conn->close();
-	}
-?>
 
 <!DOCTYPE html>
 <html lang="hu">
@@ -102,6 +19,12 @@
 
 
 <body>
+		<div id="error-container">
+			<?php if (isset($_SESSION['reg_error'])): ?>
+				<div class="alert alert-danger text-center"><?= htmlspecialchars($_SESSION['reg_error']) ?></div>
+				<?php unset($_SESSION['reg_error']); ?>
+			<?php endif; ?>
+		</div>
 		<div class="container">
 			<div class="text-center mb-4">
 				<a href="/"><img style="width: 128px; height: 128px;" src="img/menu/logo-good-trans.png" alt="Nile Logo"></a>
@@ -114,7 +37,7 @@
 			
 			<div class="card mx-auto" style="max-width: 400px;">
 				<div class="card-body">
-					<form action="register.php" method="post">
+					<form action="register-feldolgozasa.php" method="post">
 						<div class="mb-3">
 							<label for="uname" class="form-label">Felhasználónév</label>
 							<input
@@ -123,7 +46,7 @@
 								type="text"
 								placeholder="Felhasználónév"
 								name="uname"
-								required
+								value="<?= htmlspecialchars($_SESSION['reg_data']['uname'] ?? '') ?>"
 							/>
 						</div>
 						
@@ -132,22 +55,39 @@
 							<input
 								class="form-control"
 								id="email"
-								type="email"
+								type="text"
 								placeholder="email@example.com"
 								name="email"
-								required
+								value="<?= htmlspecialchars($_SESSION['reg_data']['email'] ?? '') ?>"
 							/>
 						</div>
 						
 						<div class="mb-3">
-							<label for="psw" class="form-label">Jelszó</label>
+							<label for="psw" class="form-label">
+							Jelszó
+							<span 
+								class="info-icon" 
+								data-bs-toggle="tooltip" 
+								data-bs-html="true"
+  								data-bs-placement="right"
+								title=
+								"<div style='text-align: left; font-size: 14px; line-height: 1.5;'>
+								<strong>Jelszókövetelmények:</strong>
+								<ul style='padding-left: 20px; margin: 8px 0 0 0;'>
+									<li>Legalább 8 karakter</li>
+									<li>Legalább egy nagybetű</li>
+									<li>Legalább egy szám</li>
+								</ul>
+								</div>">
+								❓
+							</span>
+							</label>
 							<input
 								class="form-control"
 								id="psw"
 								type="password"
 								placeholder="Legalább 8 karakter"
 								name="psw"
-								required
 							/>
 						</div>
 						
@@ -159,7 +99,6 @@
 								type="password"
 								placeholder="Jelszó megerősítése"
 								name="psw_again"
-								required
 							/>
 						</div>
 						
@@ -171,6 +110,7 @@
 								type="text"
 								placeholder="+36..."
 								name="num"
+								value="<?= htmlspecialchars($_SESSION['reg_data']['num'] ?? '') ?>"
 							/>
 						</div>
 						
@@ -180,5 +120,13 @@
 				</div>
 			</div>
 		</div>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+		<script>
+		const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+		const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl =>
+			new bootstrap.Tooltip(tooltipTriggerEl)
+		);
+		</script>
 		<script src="script.js"></script>
 	</body>

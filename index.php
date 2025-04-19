@@ -1,27 +1,27 @@
 <?php
 session_start();
 require "database/db_connect.php";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
 
-	$sql = sprintf(
-		"SELECT * FROM felhasznalo WHERE felhasznalo_nev = '%s'",
-		$conn->real_escape_string($_POST['uname'])
-	);
+// 	$sql = sprintf(
+// 		"SELECT * FROM felhasznalo WHERE felhasznalo_nev = '%s'",
+// 		$conn->real_escape_string($_POST['uname'])
+// 	);
 
-	$result = $conn->query($sql);
-	$user = $result->fetch_assoc();
-	if ($user) {
-		if (password_verify($_POST['psw'], $user['jelszo'])) {
-			$_SESSION["user_id"] = $user["id"];
+// 	$result = $conn->query($sql);
+// 	$user = $result->fetch_assoc();
+// 	if ($user) {
+// 		if (password_verify($_POST['psw'], $user['jelszo'])) {
+// 			$_SESSION["user_id"] = $user["id"];
 
-			$_SESSION["sikeres_bejelentkezes"] = true;
-			header("Location: /" . $_GET['page']);
-			unset($_POST['uname']);
-			exit;
-		}
-	}
-}
+// 			$_SESSION["sikeres_bejelentkezes"] = true;
+// 			header("Location: /" . $_GET['page']);
+// 			unset($_POST['uname']);
+// 			exit;
+// 		}
+// 	}
+// }
 	$kulonOldal = (isset($_GET['page']) && ($_GET['page'] === 'regisztracio' || $_GET['page'] === 'elfelejtettjelszo')) ;
 	unset($_POST['uname']);
 ?>
@@ -45,12 +45,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body style="background-color: #fdf8e1">
+<?php if (isset($_SESSION['reg_success'])): ?>
+	<div id="popup-reg">
+		✅ Sikeres regisztráció!
+	</div>
+	<?php unset($_SESSION['reg_success']); ?>
+<?php endif; ?>
+
 	<?php
 	$popup = isset($_SESSION['sikeres_bejelentkezes']) ? 'true' : 'false';
 	$logoutPopup = isset($_SESSION['kijelentkezes_sikeres']) ? 'true' : 'false';
 	unset($_SESSION['sikeres_bejelentkezes']);
 	unset($_SESSION['kijelentkezes_sikeres']);
 	?>
+
 	<script>
 		var sikeresBelepes = <?php echo $popup; ?>;
 		var sikeresKijelentkezes = <?php echo $logoutPopup; ?>;
@@ -84,20 +92,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<div id="login_header">BEJELENTKEZÉS<span id="close">&#10005</span></div>
 			<div id="login_form">
 				<form method="post" novalidate>
-					<label id="uname_text" for="uname"><b>Felhasználónév</b></label>
-					<br />
-					<input id="uname" type="text" name="uname" />
-					<br />
-					<label id="psw_text" for="psw"><b>Jelszó</b></label>
-					<br />
-					<input id="psw" type="password" name="psw" />
-					<br>
+					 <div class="inputok">
+						<label id="uname_text" for="uname"><b>Felhasználónév</b></label>
+						<br>
+						<input id="uname" type="text" name="uname" />
+						<br>
+						<span class="hiba-jelzes" id="uname_hiba">❗</span>
+					 </div>
+					<div class="inputok">
+						<label id="psw_text" for="psw"><b>Jelszó</b></label>
+						<br>
+						<input id="psw" type="password" name="psw" />
+						<br>
+						<span class="hiba-jelzes" id="psw_hiba">❗</span>
+					</div>
 					<button id="gomb">Login</button>
-					<br />
-					<label for="register">Nincs fiókod? <a href="/regisztracio">Regisztrálj itt!</a></label>
-					<br />
+					<br>
+					<label for="register" id="register">Nincs fiókod? <a href="/regisztracio">Regisztrálj itt!</a></label>
+					<br>
 					<a id="elf_psw" href="/elfelejtettjelszo">Elfelejtetted a jelszavad?</a>
 				</form>
+				<p id="hiba_uzenet">
+					❌ Hibás felhasználónév vagy jelszó!
+				</p>
 			</div>
 		</div>
 	</div>

@@ -27,6 +27,51 @@ $(document).ready(function () {
         });
     }
 
+    $("#gomb").click(function (e) {
+        e.preventDefault();
+    
+        let hibas = false;
+    
+        $("#uname, #psw").removeClass("hibas");
+        $("#uname_hiba, #psw_hiba").hide();
+    
+        const felhasznalo = $("#uname").val().trim();
+        const jelszo = $("#psw").val().trim();
+    
+        if (felhasznalo === "") {
+            $("#uname").addClass("hibas");
+            $("#uname_hiba").show();
+            hibas = true;
+        }
+    
+        if (jelszo === "") {
+            $("#psw").addClass("hibas");
+            $("#psw_hiba").show();
+            hibas = true;
+        }
+    
+        if (!hibas) {
+            $.ajax({
+                url: "ajax_login.php",
+                method: "POST",
+                data: {
+                    felhasznalo: felhasznalo,
+                    jelszo: jelszo
+                },
+                success: function (valasz) {
+                    if (valasz === "ok") {
+                        $("#hiba_uzenet").removeClass("megjelenik");
+                        $("#login_form form").submit();
+                    } else {
+                        $("#uname, #psw").addClass("hibas");
+                        $("#uname_hiba, #psw_hiba").show();
+                        $("#hiba_uzenet").addClass("megjelenik");
+                    }
+                }
+            });
+        }
+    });
+
     if (sikeresBelepes) {
         $("body").append(`
             <div id="popup-bejelentkezes" style="
@@ -227,10 +272,14 @@ $(document).ready(function () {
                 mennyiseg: mennyiseg
             },
             success: function (res) {
-                $('#kosar-feedback').text("Sikeresen hozzáadva a kosárhoz!").css("color", "green");
-                // opcionálisan frissíthetsz egy kosár ikont is pl.
-                //console.log("Success: "+data)
-                console.log(res)
+                $("#kosar-feedback").fadeIn(300, function () {
+                    setTimeout(function () {
+                        $("#kosar-feedback").fadeOut(600, function () {
+                            // ✅ Csak ezután frissítsen
+                            window.location.reload();
+                        });
+                    }, 1500);
+                });
             },
             error: function () {
                 $('#kosar-feedback').text("Hiba történt!").css("color", "red");
@@ -289,6 +338,14 @@ $(document).ready(function () {
                 });
             }
         })
+    });
+
+    $("#popup-reg").fadeIn(300, function () {
+        setTimeout(function () {
+            $("#popup-reg").fadeOut(600, function () {
+                $(this).remove();
+            });
+        }, 2500);
     });
 
     //Új jelszó mentése
@@ -388,12 +445,17 @@ $(document).ready(function () {
             success: function (valasz) {
                 console.log("siker");
                 console.log(valasz)
+                window.location.href = "pdf.php";
             },
             error: function () {
                 console.log("hiba")
             }
         });
     });
+
+    setTimeout(function () {
+        $('#reg-success').fadeOut(500);
+    }, 3000);
 });
 
 function showImage(img) {
