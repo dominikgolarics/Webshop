@@ -32,3 +32,4 @@ $_SESSION['utolso_rendeles_id'] = $rendeles_id;
 
 echo $rendeles_id;
 
+$mail->addAttachment("szamalk/$filename", $filename);

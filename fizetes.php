@@ -43,8 +43,7 @@
                         for ($i=0; $i < count($result); $i++) { 
                             $összeg+=($result[$i]['ar']*$result[$i]['darab']);
                         }
-                        $összeg+1290;
-                        echo $összeg." FT"; ?>
+                        echo ($összeg+1290)." FT"; ?>
                 </span>
             </p>
         </div>

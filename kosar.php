@@ -45,7 +45,7 @@
                                 echo '<i class="fas fa-shopping-cart empty-cart-icon"></i>';
                                 echo '<h3 class="empty-cart-title">A kosarad üres</h3>';
                                 echo '<p class="empty-cart-text">Nincsenek termékek a kosaradban.</p>';
-                                echo '<a href="/" class="btn btn-primary">Vásárlás folytatása</a>';
+                                echo '<a href="/termekek" class="btn btn-primary">Vásárlás folytatása</a>';
                             echo '</div>';
                         echo '</div>';
                     echo '</div>';
@@ -106,8 +106,14 @@
                     </div>
                     <?php
                         if(isset($_SESSION['user_id'])){
-                            echo '<a href="/fizetes" style="text-decoration:none; color:white;"><button class=" btn-checkout btn-lg mb-3">Tovább a fizetéshez</button></a>';
-                        }else{
+                            
+                            if(empty($result)){
+                                echo '<a href="/termekek" style="text-decoration:none; color:white;"><button class=" btn-checkout btn-lg mb-3">Tovább a termékekhez!</button></a>';
+                            }else{
+                                echo '<a href="/fizetes" style="text-decoration:none; color:white;"><button class=" btn-checkout btn-lg mb-3">Tovább a fizetéshez</button></a>';
+                            }   
+                        }
+                        else{
                             echo '<button id="kosar-fizet-gomb" class=" btn-checkout btn-lg mb-3">Jelentkezz be!</button>';
                         }
                     ?>

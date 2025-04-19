@@ -131,7 +131,7 @@ require "database/db_connect.php";
 					<h2><a id="logo_link" href="/">Nile</a></h2>
 				</div>
 				<ul id="fej_tart">
-					<li><a class="fej_link" href="/friss">Új kiadás</a></li>
+					<li><a class="fej_link" href="/friss">Új Kiadás</a></li>
 					<li><a class="fej_link" href="/termekek">Termékek</a></li>
 				</ul>
 				<div id="fej_tool" style="position: relative;">

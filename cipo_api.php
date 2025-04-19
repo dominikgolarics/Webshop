@@ -83,7 +83,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // LEKÉRDEZÉS
     $result = $conn->query($sql);
-    file_put_contents("test2.txt",$sql);
     if ($result) {
         $products = $result->fetch_all(MYSQLI_ASSOC);
         $response = [

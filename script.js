@@ -64,7 +64,7 @@ $(document).ready(function () {
     
         if (!hibas) {
             $.ajax({
-                url: "ajax_login.php",
+                url: "/ajax_login.php",
                 method: "POST",
                 data: {
                     felhasznalo: felhasznalo,
