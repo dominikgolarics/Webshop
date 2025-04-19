@@ -2,15 +2,6 @@
     display: flex;
 }
 
-#filter{
-    /* border: 1px solid green; TESZTELÉSRE*/
-    height:fit-content;
-    max-width: 300px;
-    flex: 1;
-    padding: 20px;
-    margin-left: 10%;
-}
-
 #termekek-lista{
     flex: 3;
     /* border: 1px solid black; TESZTELÉSRE */
@@ -39,4 +30,69 @@
     padding-left: 4px;
 }
 
+
+#filter {
+    /* border: 1px solid green; TESZTELÉSRE*/
+    height:fit-content;
+    max-width: 300px;
+    flex: 1;
+    margin-left: 10%;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-left: 10%;
+}
+
+#sorrend-span, #marka-span, #rendezes-ar span {
+    color: #2c3e50;
+    display: block;
+    padding-bottom: 8px;
+}
+
+#alacsony-div, #magas-div, #rendezes-markak div, #rendezes-ar div {
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    background-color: white;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+#alacsony-div:hover, #magas-div:hover, #rendezes-markak div:hover, #rendezes-ar div:hover {
+    background-color: #f0f0f0;
+    transform: translateX(3px);
+}
+
+.szures {
+    margin-right: 10px;
+}
+
+.meret-label,.marka-label {
+    color: #34495e;
+    cursor: pointer;
+}
+
+#filter-gomb {
+    background-color: rgb(69, 139, 231);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+}
+
+#filter-gomb:hover {
+    background-color: #2980b9;
+}
+
+/* Style the checkboxes and radio buttons */
+input[type="checkbox"], input[type="radio"] {
+    accent-color: rgb(69, 139, 231);
+    transform: scale(1.1);
+    cursor: pointer;
+}
 

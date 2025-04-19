@@ -2,9 +2,9 @@
 // 2. filter opció kiválasztása
 // 3. cipok filter által lekérdez és betölt
 $(document).ready(function () {
-    const filter_gomb = document.getElementById("kuldTest")
+    const filter_gomb = document.getElementById("filter-gomb")
     filter_gomb.addEventListener("click",function(){
-        let test={
+        let adatok={
             'ar':[],
             'meret':[],
             'rend':[],
@@ -13,17 +13,16 @@ $(document).ready(function () {
         $(".szures").each(function() {
             if (this.checked) {
                 let hova = this.id.split("-")[0]
-                test[hova].push(this.value)
+                adatok[hova].push(this.value)
             }
         });
-        FilterTombTest(test)
-        //console.log("TEST tomb kiírása:",test)
+        FilterTombTest(adatok)
     }) 
         
     function FilterTombTest(szuresiFeltetelek) {
         $.ajax({
             type: "POST",
-            url: "test2.php",
+            url: "cipo_api.php",
             async: false,
             data: szuresiFeltetelek,
             success: function(data) {
@@ -33,9 +32,6 @@ $(document).ready(function () {
                 term_lista.innerHTML="";
                 div_cipo_cont.innerHTML="";
                 for (let i = 0; i < data.adat.length; i++) {
-                    //console.log("container elkezdve")
-                    
-                    //console.log("termek elkezdve")
                     let img = document.createElement("img")
                     let h3 = document.createElement("h3")
                     let span = document.createElement("span")
@@ -66,12 +62,7 @@ $(document).ready(function () {
                     div_cipo_termek.id="cipoId-"+data.adat[i].id
                     
                     div_cipo_cont.id="cipo-container"
-                    div_cipo_cont.appendChild(div_cipo_termek)
-                        
-                    //console.log("termek létrehozva és containerhez adva")
-                    
-                    //console.log("container listához adva")
-                    
+                    div_cipo_cont.appendChild(div_cipo_termek)                  
                 }
                 //term_lista.append(div_cipo_cont)
                 term_lista.append(div_cipo_cont)

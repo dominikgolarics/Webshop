@@ -1,6 +1,10 @@
 <?php
     require "database/db_connect.php";
 
+    if(!isset($_SESSION['user_id'])){
+        header("Location: /");
+    }
+
     $sql = "SELECT termek.id, termek.nev, marka.ceg AS marka, meret.meret AS meret, termek.ar, kosar_tetelek.mennyiseg AS darab, ( SELECT cipokepek.url FROM cipokepek WHERE cipokepek.cipoID = termek.id LIMIT 1 ) AS elso_kep FROM `kosarak` INNER JOIN kosar_tetelek ON kosarak.id = kosar_tetelek.kosar_id INNER JOIN termek ON termek.id = kosar_tetelek.termek_id INNER JOIN marka ON termek.marka_id = marka.id INNER JOIN meret on termek.marka_id = meret.id";
     $stmt = $conn->prepare($sql);
     $stmt->execute();

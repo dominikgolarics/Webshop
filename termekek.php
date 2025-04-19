@@ -20,16 +20,6 @@
 	<div id="minden-cipo">
 		<div id="cipo-termekek">
 			<div id="filter">
-
-				<!-- <div id="rendezes-darab">
-						<label for="">Darab termék</label>
-						<select onchange="termekekDarab()" name="mennyiseg" id="mennyiseg">
-							<option value="16">16</option>
-							<option value="24">24</option>
-							<option value="40">40</option>
-						</select>
-					</div> -->
-
 				<div id="rendezes-sorrend">
 					<span id="sorrend-span" style="font-size: 24px; font-weight: bold;">Rendezés</span>
 					<div id="alacsony-div">
@@ -49,8 +39,8 @@
 						$i=0;
 						while ($row=$result->fetch_assoc()) {
 							echo "<div>";
-							echo "	<input class='szures' id='marka-".$row['ceg']."' value='".$row['ceg']."' type='checkbox'>";
-							echo'	<label for="marka-checkbox1">'.$row['ceg'].'</label>';
+							echo "	<input class='szures' name='marka-".$row['ceg']."' id='marka-".$row['ceg']."' value='".$row['ceg']."' type='checkbox'>";
+							echo'	<label for="marka-'.$row['ceg'].'">'.$row['ceg'].'</label>';
 							echo"</div>";
 							$i++;
 						}
@@ -80,13 +70,12 @@
 					</div>
 					<div>
 						<input class='szures' id="ar-checkbox6" value=">140000" type="checkbox">
-						<label for="ar-checkbox6">140 000Ft felett</label>
+						<label for="ar-checkbox6">140 000 Ft felett</label>
 					</div>
 				</div>
-				<button id="kuldTest">Keres</button>
+				<button id="filter-gomb">Keres</button>
 			</div>
 			<div id="termekek-lista">
-				<!-- //xd -->
 			</div>
 		</div>
 	</div>

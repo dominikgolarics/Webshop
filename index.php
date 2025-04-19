@@ -68,20 +68,25 @@ require "database/db_connect.php";
 		<ul class="cart-items">
 			<?php
 				//require_once "database/db_connect.php";
-				$sql = "SELECT *, (SELECT cipokepek.url FROM cipokepek WHERE cipokepek.cipoID = termek.id LIMIT 1) AS elso_kep FROM `kosarak` INNER JOIN kosar_tetelek ON kosarak.id = kosar_tetelek.kosar_id INNER JOIN termek ON termek.id=kosar_tetelek.termek_id";
-				$stmt = $conn->prepare($sql);
-				$stmt->execute();
-				$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+				if(isset($_SESSION['user_id'])){
+					$uid=$_SESSION['user_id'];
+					$sql = "SELECT *, ( SELECT cipokepek.url FROM cipokepek WHERE cipokepek.cipoID = termek.id LIMIT 1 ) AS elso_kep FROM `kosarak` INNER JOIN kosar_tetelek ON kosarak.id = kosar_tetelek.kosar_id INNER JOIN termek ON termek.id = kosar_tetelek.termek_id WHERE kosarak.felhasznalo_id=$uid";
+					$stmt = $conn->prepare($sql);
+					$stmt->execute();
+					$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
-				foreach($result as $cipo){
-					echo '<li data-termek-id="'.$cipo['id'].'">';
-						echo '<img src="/'.$cipo['elso_kep'].'">';
-						echo '<div class="item-info">';
-							echo '<p>'.$cipo['nev'].'</p>';
-							echo '<small>Ár: '.$cipo['ar'].' Ft</small>';
-						echo '</div>';
-						echo '<span class="remove-item">&times;</span>';
-					echo '</li>';
+					foreach($result as $cipo){
+						echo '<li data-termek-id="'.$cipo['id'].'">';
+							echo '<img src="/'.$cipo['elso_kep'].'">';
+							echo '<div class="item-info">';
+								echo '<p>'.$cipo['nev'].'</p>';
+								echo '<small>Ár: '.$cipo['ar'].' Ft</small>';
+							echo '</div>';
+							echo '<span class="remove-item">&times;</span>';
+						echo '</li>';
+					}
+				}else{
+					echo "";
 				}
 			?>
 		</ul>
@@ -132,7 +137,7 @@ require "database/db_connect.php";
 				<div id="fej_tool" style="position: relative;">
 					<div id="cart-icon-wrapper">
 						<img id="kosar" src="/img/menu/kosar.png" alt="kosar" />
-						<span id="cart-count"><?php echo count($result) ?></span> <!-- Set dynamically -->
+						<span id="cart-count"><?php if(!empty($_SESSION['user_id'])){ echo count($result);} else{ echo "0";} ?></span> <!-- Set dynamically -->
 					</div>
 					<div id="profil-container">
 						<img id="profilicon" src="/img/menu/icon.png" alt="ikon" />
