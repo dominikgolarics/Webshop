@@ -45,7 +45,7 @@
                                 echo '<i class="fas fa-shopping-cart empty-cart-icon"></i>';
                                 echo '<h3 class="empty-cart-title">A kosarad üres</h3>';
                                 echo '<p class="empty-cart-text">Nincsenek termékek a kosaradban.</p>';
-                                echo '<a href="/" class="btn btn-primary">Vásárlás folytatása</a>';
+                                echo '<a href="/termekek" class="btn btn-primary">Vásárlás folytatása</a>';
                             echo '</div>';
                         echo '</div>';
                     echo '</div>';

@@ -12,6 +12,7 @@
 @import url("fizetes.css");
 @import url("rendelesek.css");
 @import url("beallitasok.css");
+@import url("megrendeles.css");
 
 
 
@@ -323,4 +324,20 @@ html, body {
 .jelszocsomag button:hover {
     background-color: rgb(50, 120, 215);
     transform: scale(1.02);
+}
+
+#torles-uzenet {
+	position: fixed;
+	top: 10%px;
+	left: 50%;
+	transform: translateX(-50%);
+	background: #d9534f;
+	color: white;
+	padding: 15px 30px;
+	border-radius: 8px;
+	font-weight: bold;
+	z-index: 999999;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+	font-size: 18px;
+	display: none;
 }

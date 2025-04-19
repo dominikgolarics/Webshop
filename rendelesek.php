@@ -25,17 +25,26 @@
     <?php else: ?>
         <?php 
         $aktualis_id = 0;
-        foreach ($rendelesek as $r): 
+        $osszeg = 0;
+        foreach ($rendelesek as $index => $r): 
             if ($aktualis_id !== $r['rendeles_id']) {
-                if ($aktualis_id !== 0) echo "</div>"; // előző lezárás
+                if ($aktualis_id !== 0) {
+                    // előző rendelés végösszegének kiírása
+                    echo "<div class='rendeles-osszeg'><strong>Végösszeg:</strong> " . number_format($osszeg, 0, ',', ' ') . " Ft</div>";
+                    echo "</div>"; // előző rendelés lezárása
+                }
                 echo "<div class='rendeles-kartya'>";
                 echo "<div class='rendeles-fejlec'>";
                 $datum = date_parse($r['datum']);
-                echo "<span>📄 Rendelés #".substr($datum['year'],2).sprintf('%02d', $datum['month']).sprintf('%02d', $datum['month']).sprintf('%02d', $datum['hour']).sprintf('%02d', $datum['minute']).sprintf('%02d', $datum['second'])."</span>";
+                echo "<span>📄 Rendelés #NILE-".substr($datum['year'],2).sprintf('%02d', $datum['month']).sprintf('%02d', $datum['month']).sprintf('%02d', $datum['hour']).sprintf('%02d', $datum['minute']).sprintf('%02d', $datum['second'])."</span>";
                 echo "<span class='rendeles-datum'>🗓 ".$datum['year']."-".sprintf('%02d', $datum['month']).'-'.sprintf('%02d', $datum['day'])."</span>";
                 echo "</div>";
                 $aktualis_id = $r['rendeles_id'];
+                $osszeg = 0; // új rendelésnél nullázás
             }
+        
+            $termek_osszar = $r['mennyiseg'] * $r['ar'];
+            $osszeg += $termek_osszar + 1290;
         ?>
             <div class='rendelt-termek'>
                 <img src='/<?= $r['elso_kep'] ?>' alt='termék' class='rendeles-kep'>
@@ -44,8 +53,14 @@
                     <div class='termek-ar'><?= $r['mennyiseg'] ?> db × <?= number_format($r['ar'], 0, '', ' ') ?> Ft</div>
                 </div>
             </div>
-        <?php endforeach; ?>
-        </div> <!-- utolsó rendelés lezárása -->
+        <?php 
+        endforeach;
+        // utolsó rendelés zárása + összegzése
+        if ($aktualis_id !== 0) {
+            echo "<div class='rendeles-osszeg'><strong>Végösszeg:</strong> " . number_format($osszeg, 0, ',', ' ') . " Ft</div>";
+            echo "</div>";
+        }
+        ?>        
     <?php endif; ?>
 </div>
 

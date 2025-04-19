@@ -31,7 +31,7 @@ $kod=substr($datum['year'],2).sprintf('%02d', $datum['month']).sprintf('%02d', $
 
 $orderData = [
     'order_id' => 'NILE-'.$kod,
-    'order_date' => date('Y-m-d H:i:s'),
+    'order_date' => date('Y-m-d H:i:s', strtotime($result[0]['datum'])),
     'customer' => [
         'name' => $result[0]['fnev'],
         'email' => $result[0]['email'],
