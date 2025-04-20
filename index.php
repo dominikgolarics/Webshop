@@ -69,12 +69,12 @@
 					$osszeg = 0;
 
 					foreach($result as $cipo){
-						echo '<li data-termek-id="'.$cipo['id'].'">';
+						echo '<li data-termek-id="'.$cipo['id'].'" data-cipo-ar="'.$cipo['ar'].'" data-cipo-darab="'.$cipo['mennyiseg'].'">';
 							echo '<img src="/'.$cipo['elso_kep'].'">';
 							echo '<div class="item-info">';
 								echo '<p>'.$cipo['nev'].'</p>';
-								echo '<small>Ár: '.$cipo['ar'].' Ft/db</small><br>';
-								echo '<small>Mennyiség: '.$cipo['mennyiseg'].' db</small>';
+								echo '<small>Ár: <span>'.$cipo['ar'].'</span> Ft/db</small><br>';
+								echo '<small>Mennyiség: <span>'.$cipo['mennyiseg'].'</span> db</small>';
 							echo '</div>';
 							echo '<span class="remove-item">&times;</span>';
 						echo '</li>';
@@ -83,7 +83,7 @@
 					}
 
 					echo '<li class="kosar-osszeg" style="text-align:right; font-weight:bold; padding-top:10px;">';
-					echo 'Összesen: '.$osszeg.' Ft';
+					echo 'Összesen: <span id="cipo-small-osszeg">'.$osszeg.'</span> Ft';
 					echo '</li>';
 				}else{
 					echo "";

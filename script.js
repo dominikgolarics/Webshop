@@ -196,10 +196,14 @@ $(document).ready(function () {
         }
     });
 
-    //pici kosár termék tölrő
+    //pici kosár termék törlő
     $('.remove-item').on('click', function () {
         const item = $(this).closest('li');
         const termekId = item.data('termek-id'); 
+        const ar = item.data('cipo-ar');
+        const db = item.data('cipo-darab');
+        console.log(termekId);
+        const osszeg = parseInt($('#cipo-small-osszeg').text());
         $.ajax({
             url: '/kosar_torol.php',
             type: 'POST',
@@ -211,8 +215,9 @@ $(document).ready(function () {
                 if (json.status === "ok") {
                     item.fadeOut(200, function () {
                         $(this).remove();
-                        const count = $('.cart-items li').length;
+                        const count = $('.cart-items li').length-1;
                         $('#cart-count').text(count);
+                        $('#cipo-small-osszeg').text(osszeg-(ar*db));
                     });
                 } else {
                     alert("Hiba történt a törlés során.");
@@ -466,7 +471,9 @@ $(document).ready(function () {
         });
     });
 
-    $('#megrendeles').click(function () {
+    $('#megrendeles').click(function (e) {
+        e.preventDefault();
+
         const nev = $('#fizetes-name').val();
         const email = $('#fizetes-email').val();
         const telefonszam = $('#fizetes-phone').val();
@@ -474,6 +481,12 @@ $(document).ready(function () {
         const varos = $('#fizetes-varos').val();
         const iranyitoszam = $('#fizetes-iranyitoszam').val();
         const fizetes_tipus = $(".payment-option.selected input").attr('id');
+
+        if (!nev || !email || !telefonszam || !cim || !varos || !iranyitoszam) {
+            alert("Kérlek, töltsd ki az összes mezőt!");
+            return;
+        }
+
         $.ajax({
             url: '/megrendeles_mentese.php',
             method: 'POST',
@@ -518,6 +531,10 @@ $("#megsemGomb").click(function() {
 $("#igenGomb").click(function() {
     window.location.href = "/profiltorlese.php";
 });
+
+function Nincsraktaron(){
+    alert('Nincsen raktáron!');
+}
 
 // 1. betölt oldal -> minden cipo-t lekér és betölt
 // 2. filter opció kiválasztása

@@ -62,7 +62,12 @@ if ($cipo_id) {
         
         <input type="hidden" id="termek-id" value="<?php echo $product['id']; ?>">
         <input type="hidden" id="mennyiseg" value="1">
-        <button id="kosar-gomb" <?php echo $vane == "Nem" ? "disabled" : ""; ?>><a href="." style="text-decoration: none; color: white;">Kosárba</a></button>
+        
+        <?php if($vane == "Nem"): ?>
+            <button id="kosar-gomb" disabled>Nincs raktáron</button>
+        <?php else: ?>
+            <button id="kosar-gomb">Kosárba</button>
+        <?php endif; ?>
         <div id="kosar-feedback">Sikeresen hozzáadva a kosárhoz!</div>
         
         <div class="termek-details">

@@ -51,37 +51,37 @@
     <!-- Fizetési űrlap -->
     <div class="checkout-form">
         <h2>Szállítási adatok</h2>
-        
+
         <div class="form-group">
             <label id="fizetes-label"for="name">Teljes név</label>
-            <input type="text" id="fizetes-name" <?php if(!empty($felh['nev'])) { echo 'value="' . htmlspecialchars($felh['nev']) . '" disabled'; } ?> required>
+            <input type="text" id="fizetes-name" <?php if(!empty($felh['nev'])) { echo 'value="' . htmlspecialchars($felh['nev']) . '" disabled'; } ?> >
         </div>
         
         <div class="form-group">
             <label id="fizetes-label"for="email">E-mail cím</label>
-            <input type="email" id="fizetes-email" <?php if(!empty($felh['email'])) { echo 'value="' . htmlspecialchars($felh['email']) . '" disabled'; } ?> required>
+            <input type="email" id="fizetes-email" <?php if(!empty($felh['email'])) { echo 'value="' . htmlspecialchars($felh['email']) . '" disabled'; } ?> >
         </div>
         
         <div class="form-group">
             <label id="fizetes-label"for="phone">Telefonszám</label>
-            <input type="text" id="fizetes-phone" <?php if(!empty($felh['telefonszam'])) { echo 'value="' . htmlspecialchars($felh['telefonszam']) . '" disabled'; } ?> required>
+            <input type="text" id="fizetes-phone" <?php if(!empty($felh['telefonszam'])) { echo 'value="' . htmlspecialchars($felh['telefonszam']) . '" disabled'; } ?> >
         </div>
         
         <h2>Szállítási cím</h2>
         
             <div class="form-group">
                 <label id="fizetes-label">Cím</label>
-                <input type="text" id="fizetes-cim" <?php if(!empty($felh['cim'])) { echo 'value="' . htmlspecialchars($felh['cim']) . '" disabled'; } ?> required>
+                <input type="text" id="fizetes-cim" <?php if(!empty($felh['cim'])) { echo 'value="' . htmlspecialchars($felh['cim']) . '" disabled'; } ?> >
             </div>
         
             <div class="form-group">
                 <label id="fizetes-label">Város</label>
-                <input type="text" id="fizetes-varos" <?php if(!empty($felh['varos'])) { echo 'value="' . htmlspecialchars($felh['varos']) . '" disabled'; } ?> required>
+                <input type="text" id="fizetes-varos" <?php if(!empty($felh['varos'])) { echo 'value="' . htmlspecialchars($felh['varos']) . '" disabled'; } ?> >
             </div>
             
             <div class="form-group">
                 <label id="fizetes-label">Irányítószám</label>
-                <input type="text" id="fizetes-iranyitoszam" <?php if(!empty($felh['iranyitoszam'])) { echo 'value="' . htmlspecialchars($felh['iranyitoszam']) . '" disabled'; } ?> required>
+                <input type="text" id="fizetes-iranyitoszam" <?php if(!empty($felh['iranyitoszam'])) { echo 'value="' . htmlspecialchars($felh['iranyitoszam']) . '" disabled'; } ?> >
             </div>
         
         <h2>Fizetési mód</h2>
@@ -95,7 +95,6 @@
             <input type="radio" name="payment" id="fizetes-cash">
             <label id="fizetes-label">Személyesen készpénzzel</label>
         </div>
-         
         <button class="fizetes-btn" id="megrendeles">Megrendelés elküldése</button>
     </div>
 </div>
