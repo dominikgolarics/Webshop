@@ -7,6 +7,4 @@
     <input type="password" id="ujjelszoujra">
     <br>
     <button id="ujjelszomentes" name="ujjelszomentes">Jelszó megváltoztatása</button>
-
-    <script src="/script.js"></script>
 </div>
