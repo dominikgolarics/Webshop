@@ -34,6 +34,7 @@
                                 echo '<div class="col-12 col-md-2 text-md-end mt-2 mt-md-0">';
                                     echo '<div class="price">'.$cipo['ar']*$cipo['darab'].' FT</div>';
                                     echo '<div class="unit-price">'.$cipo['ar'].' FT/db</div>';
+                                    echo '<div class="unit-price">'.$cipo['darab'].' db</div>';
                                 echo '</div>';
                             echo '</div>';
                         echo '</div>';

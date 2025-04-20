@@ -69,16 +69,25 @@
 					$stmt->execute();
 					$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
+					$osszeg = 0;
+
 					foreach($result as $cipo){
 						echo '<li data-termek-id="'.$cipo['id'].'">';
 							echo '<img src="/'.$cipo['elso_kep'].'">';
 							echo '<div class="item-info">';
 								echo '<p>'.$cipo['nev'].'</p>';
-								echo '<small>Ár: '.$cipo['ar'].' Ft</small>';
+								echo '<small>Ár: '.$cipo['ar'].' Ft/db</small><br>';
+								echo '<small>Mennyiség: '.$cipo['mennyiseg'].' db</small>';
 							echo '</div>';
 							echo '<span class="remove-item">&times;</span>';
 						echo '</li>';
+
+						$osszeg += $cipo['ar'] * $cipo['mennyiseg'];
 					}
+
+					echo '<li class="kosar-osszeg" style="text-align:right; font-weight:bold; padding-top:10px;">';
+					echo 'Összesen: '.$osszeg.' Ft';
+					echo '</li>';
 				}else{
 					echo "";
 				}

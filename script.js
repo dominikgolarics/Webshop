@@ -206,7 +206,6 @@ $(document).ready(function () {
             },
             success: function (res) {
                 const json = JSON.parse(res);
-                console.log(res);
                 if (json.status === "ok") {
                     item.fadeOut(200, function () {
                         $(this).remove();
@@ -236,8 +235,6 @@ $(document).ready(function () {
             },
             success: function (res) {
                 const json = JSON.parse(res);
-                console.log(res);
-                
                 if (json.status === "ok") {
                     item.fadeOut(200, function () {
                         $(this).remove();
