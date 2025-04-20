@@ -3,8 +3,6 @@ require "database/db_connect.php";
 $cipo_id = $_GET['id'] ?? null;
 
 if ($cipo_id) {
-    $conn = new mysqli("localhost", "root", "", "webshop");
-
     $sql = "SELECT 
             termek.id, 
             termek.nev, 
@@ -40,7 +38,6 @@ if ($cipo_id) {
 
 ?>
 <body style="background-color: #fdf8e1">    
-    <!-- NINCS MÉRET OPCIÓ csak egyszerű rendelés -->
     <div id="termek-tart">
     <div id="termek-kepek">
         <div id="nagy-kep">

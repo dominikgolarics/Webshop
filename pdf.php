@@ -20,16 +20,16 @@ FROM `rendeles`
 INNER JOIN rendeles_tetel ON rendeles_tetel.rendeles_id = rendeles.id
 INNER JOIN termek ON termek.id = rendeles_tetel.termek_id
 INNER JOIN felhasznalo on rendeles.felhasznalo_id = felhasznalo.id
-WHERE rendeles_tetel.rendeles_id = ?"); // Parameter placeholder
+WHERE rendeles_tetel.rendeles_id = ?"); 
 
-$stmt->bind_param("i", $rend_id); // Bind the parameter
+$stmt->bind_param("i", $rend_id);
 $stmt->execute();
 $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
 $datum=date_parse($result[0]['datum']);
 $kod=substr($datum['year'],2).sprintf('%02d', $datum['month']).sprintf('%02d', $datum['day']).sprintf('%02d', $datum['hour']).sprintf('%02d', $datum['minute']).sprintf('%02d', $datum['second']);
 
-$orderData = [
+$rendeles_adatok = [
     'order_id' => 'NILE-'.$kod,
     'order_date' => date('Y-m-d H:i:s', strtotime($result[0]['datum'])),
     'customer' => [
@@ -46,42 +46,36 @@ $orderData = [
 
 $osszeg=0;
 foreach($result as $item) {
-    $orderData['items'][] = [
+    $rendeles_adatok['items'][] = [
         'name' => $item['tnev'],
         'price' => $item['ar'],
         'quantity' => $item['mennyiseg']
     ];
     
-    // Calculate running totals
-    $orderData['subtotal'] += $item['ar'] * $item['mennyiseg'];
+    $rendeles_adatok['subtotal'] += $item['ar'] * $item['mennyiseg'];
     $osszeg+=$item['ar'] * $item['mennyiseg'];
 }
 
 $osszeg+=1290;
-$orderData['total']=$osszeg;
+$rendeles_adatok['total']=$osszeg;
 
 
-$companyInfo = [
+$ceg_info = [
     'name' => 'Nile',
     'address' => 'Budapest, Timót u. 3, 1097',
     'phone' => '+36 1 234 5678',
     'email' => 'info@nile.com'
 ];
 
-
-
-// Generate the PDF
-$pdfGenerator = new ReceiptGenerator($orderData, $companyInfo);
+$pdfGenerator = new ReceiptGenerator($rendeles_adatok, $ceg_info);
 $pdfContent = $pdfGenerator->generate();
 
-// Define the filename and path
-$filename = 'receipt_'.$orderData['order_id'].'.pdf';
+$filename = 'receipt_'.$rendeles_adatok['order_id'].'.pdf';
 $filepath = 'szamlak/'.$filename;
 
-// Save to file
+// fájl mentése
 file_put_contents($filepath, $pdfContent);
 
-// Send to browser
 // header('Content-Type: application/pdf');
 // header('Content-Disposition: inline; filename="'.$filename.'"');
 // echo $pdfContent;

@@ -15,7 +15,6 @@
     $stmt = $conn->prepare($sql_2);
     $stmt->execute();
     $felh = $stmt->get_result()->fetch_assoc();
-    //var_dump($felh);
 ?>
 <div class="fizetes-container">
     <!-- Rendelés összegzése -->

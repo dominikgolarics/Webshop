@@ -57,7 +57,7 @@ foreach ($result as $index => $sor) {
     echo $sor['mennyiseg'] . ' db - ' . number_format($sor['ar'], 0, ',', ' ') . ' Ft/db';
     echo '</div>';
     echo '</li>';
-
+    $osszar+=$sor['ar']*$sor['mennyiseg'];
     // Ha nem az utolsó termék ÉS legalább 2 van, tegyük közéjük vonalat
     if ($termekSzam > 1 && $index < $termekSzam - 1) {
         echo '<hr class="termek-valaszto">';

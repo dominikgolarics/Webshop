@@ -20,7 +20,7 @@ $eredmeny = $stmt->get_result();
 
 if ($sor = $eredmeny->fetch_assoc()) {
     if (password_verify($jelszo, $sor['jelszo'])) {
-        $_SESSION['user_id'] = $sor['id'];
+        $_SESSION['user_id'] = $sor['id']; //felh id eltárolása
         $_SESSION["sikeres_bejelentkezes"] = true;
         unset($_POST['uname']);
         echo "ok";

@@ -165,13 +165,14 @@ $(document).ready(function () {
         });
     });
 
-
+    //termek átiránytás
     $(document).on("click",".cipo-termek" ,function() {
         let productId = this.id.split('-')[1];
         window.location.href = 'termek/'+ productId;
 
     });
 
+    //pici kosár
     let cartDropdownVisible = false;
     $('#cart-icon-wrapper').on('click', function (e) {
         e.stopPropagation();
@@ -195,9 +196,10 @@ $(document).ready(function () {
         }
     });
 
+    //pici kosár termék tölrő
     $('.remove-item').on('click', function () {
         const item = $(this).closest('li');
-        const termekId = item.data('termek-id'); // <li data-termek-id="...">
+        const termekId = item.data('termek-id'); 
         $.ajax({
             url: '/kosar_torol.php',
             type: 'POST',
@@ -222,6 +224,7 @@ $(document).ready(function () {
         });
     });
 
+    //kosár termék törlő
     $('.btn-remove').on('click', function () {
         const item = $(this).closest('.cart-item');
         console.log(item)
@@ -250,7 +253,7 @@ $(document).ready(function () {
         });
     });
 
-    //Kosárba gomb
+    //darab
     let quantity = 1;
 
     $('.noveked').click(function () {
@@ -267,6 +270,7 @@ $(document).ready(function () {
         }
     });
 
+    //Cipő kosárba tétele
     $('#kosar-gomb').click(function (e) {
         e.preventDefault();
 
@@ -285,10 +289,9 @@ $(document).ready(function () {
                     $("#kosar-feedback").fadeIn(200, function () {
                         setTimeout(function () {
                             $("#kosar-feedback").fadeOut(500, function () {
-                                // ✅ Csak ezután frissítsen
                                 window.location.reload();
                             });
-                        }, 500);
+                        }, 250);
                     });
                 },
                 error: function () {
@@ -411,6 +414,7 @@ $(document).ready(function () {
         });
     });
 
+    //Fizetés gomb
     $('#fizetes').click(function (e) {
         e.preventDefault();
 
@@ -426,7 +430,6 @@ $(document).ready(function () {
             },
             success: function (res) {
                 $('#kosar-feedback').text("Sikeresen hozzáadva a kosárhoz!").css("color", "green");
-                // opcionálisan frissíthetsz egy kosár ikont is pl.
                 //console.log("Success: "+data)
                 console.log(res)
             },

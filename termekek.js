@@ -16,17 +16,17 @@ $(document).ready(function () {
                 adatok[hova].push(this.value)
             }
         });
-        FilterTombTest(adatok)
+        Filter(adatok)
     }) 
         
-    function FilterTombTest(szuresiFeltetelek) {
+    function Filter(szuresiFeltetelek) {
         $.ajax({
             type: "POST",
             url: "cipo_api.php",
             async: false,
             data: szuresiFeltetelek,
             success: function(data) {
-                console.log(data)
+                //console.log(data)
                 let term_lista = document.getElementById("termekek-lista");
                 let div_cipo_cont=document.createElement("div");
                 term_lista.innerHTML="";
@@ -75,7 +75,7 @@ $(document).ready(function () {
         });
     }
     //Alap mindent meghív
-    FilterTombTest("")
+    Filter("")
 
     
 });

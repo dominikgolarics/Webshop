@@ -1,6 +1,6 @@
 <?php
 require "database/db_connect.php";
-$iden = date("Y")."%";
+$iden = date("Y")."%"; //idei év + "%" sql lekéréshez
 $sql="SELECT 
 	termek.id, 
 	termek.nev, 

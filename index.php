@@ -59,7 +59,6 @@
 		<h4>Kosár tartalma</h4>
 		<ul class="cart-items">
 			<?php
-				//require_once "database/db_connect.php";
 				if(isset($_SESSION['user_id'])){
 					$uid=$_SESSION['user_id'];
 					$sql = "SELECT *, ( SELECT cipokepek.url FROM cipokepek WHERE cipokepek.cipoID = termek.id LIMIT 1 ) AS elso_kep FROM `kosarak` INNER JOIN kosar_tetelek ON kosarak.id = kosar_tetelek.kosar_id INNER JOIN termek ON termek.id = kosar_tetelek.termek_id WHERE kosarak.felhasznalo_id=$uid";

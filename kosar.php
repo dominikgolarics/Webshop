@@ -14,7 +14,6 @@
     </div>
 
     <div class="row">
-        <!-- Cart Items Column -->
         <div class="col-lg-8">
             <?php
             if(isset($_SESSION['user_id'])){
@@ -66,7 +65,6 @@
             ?>
         </div>
 
-        <!-- Order Summary Column -->
         <div class="col-lg-4">
             <div class="summary-card">
                 <h5 class="summary-title">Rendelés összegzése</h5>

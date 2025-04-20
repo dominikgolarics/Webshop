@@ -15,8 +15,8 @@ $mail->CharSet = 'UTF-8';
 $mail->Host       = 'smtp.gmail.com';
 $mail->SMTPSecure = 'tls';
 $mail->Port       = 587;
-$mail->Username   = 'nilewebshop@gmail.com'; // saját Gmail-címed
-$mail->Password   = 'gtva olom xdjh iaiw'; // alkalmazásjelszó (nem a rendes jelszó!)
+$mail->Username   = 'nilewebshop@gmail.com'; 
+$mail->Password   = 'gtva olom xdjh iaiw'; 
 
 $mail->isHtml(true);
 
