@@ -75,14 +75,14 @@ body {
 }
 
 #ujjelszo-tartalom input:focus {
-    border-color: #4CAF50;
+    border-color: rgb(69, 139, 231);
     outline: none;
 }
 
 #ujjelszo-tartalom button#ujjelszomentes {
     margin-top: 25px;
     padding: 12px 20px;
-    background-color: #4CAF50;
+    background-color: rgb(69, 139, 231);
     color: white;
     font-weight: bold;
     border: none;
@@ -94,7 +94,7 @@ body {
 }
 
 #ujjelszo-tartalom button#ujjelszomentes:hover {
-    background-color: #45a049;
+    background-color: rgb(48, 104, 177);
 }
 
 #torles-popup {

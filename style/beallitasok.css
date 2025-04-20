@@ -26,14 +26,14 @@
 }
 
 #beallitasok-tartalom input:focus {
-    border-color: #4CAF50;
+    border-color: rgb(69, 139, 231);
     outline: none;
 }
 
 #beallitasok-tartalom button#mentes {
     margin-top: 25px;
     padding: 12px 20px;
-    background-color: #4CAF50;
+    background-color: rgb(69, 139, 231);
     color: white;
     font-weight: bold;
     border: none;
@@ -46,5 +46,5 @@
 }
 
 #beallitasok-tartalom button#mentes:hover {
-    background-color: #45a049;
+    background-color: rgb(48, 104, 177);
 }
