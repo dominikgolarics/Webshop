@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "database/db_connect.php";
 $token = $_GET["token"] ?? null;
 
@@ -28,6 +29,7 @@ if (!$token) {
 <html>
 <head>
     <title>Jelszó megváltoztatása</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/style/style.css" />
     <meta charset="UTF-8">
     <?php if (isset($hiba)): ?>
@@ -35,7 +37,12 @@ if (!$token) {
     <?php endif; ?>
 </head>
 <body>
-
+<div id="error-container">
+            <?php if (isset($_SESSION['jel_error'])): ?>
+                <div class="alert alert-danger text-center"><?= htmlspecialchars($_SESSION['jel_error']) ?></div>
+                <?php unset($_SESSION['jel_error']); ?>
+            <?php endif; ?>
+        </div>
     <div class="jelszocsomag">
         <h1>Jelszó megváltoztatása</h1>
 
@@ -45,6 +52,7 @@ if (!$token) {
                 Átirányítás a főoldalra 5 másodperc múlva...
             </div>
         <?php else: ?>
+        
             <form method="post" action="jelszovaltoztatas-feldolgozasa.php">
                 <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
                 <label for="password">Új jelszó</label>
@@ -53,7 +61,7 @@ if (!$token) {
                 <label for="password_confirmation">Új jelszó ismét</label>
                 <input type="password" id="password_confirmation" name="password_confirmation">
 
-                <button>Elküldés</button>
+                <button>Küldés</button>
             </form>
         <?php endif; ?>
     </div>

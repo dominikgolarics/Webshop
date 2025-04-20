@@ -366,28 +366,54 @@ $(document).ready(function () {
 
     //Új jelszó mentése
     $(document).on('click', '#ujjelszomentes', function(){
-        const regijelszo = document.getElementById('regijelszo').value;
-        const ujjelszo = document.getElementById('ujjelszo').value;
-        const ujjelszoujra = document.getElementById('ujjelszoujra').value;
+        const regijelszo = $('#regijelszo').val();
+        const ujjelszo = $('#ujjelszo').val();
+        const ujjelszoujra = $('#ujjelszoujra').val();
+    
         $.ajax({
             type: "POST",
             url: "/ujjelszomentes.php",
-            data:{
-                regijelszo:regijelszo,
-                ujjelszo:ujjelszo,
-                ujjelszoujra:ujjelszoujra,
+            data: {
+                regijelszo: regijelszo,
+                ujjelszo: ujjelszo,
+                ujjelszoujra: ujjelszoujra,
             },
-            success: function(){
-                window.location.href="/logout.php";
-                $("#popup-ujjelszomentes").fadeIn(300, function () {
+            dataType: "json",
+            success: function(valasz) {
+                console.log(valasz);
+                const szin = valasz.success ? 'rgba(76, 175, 80, 0.9)' : 'rgba(244, 67, 54, 0.9)';
+                $("body").append(`
+                    <div id="popup-jelszovalasz" style="
+                        position: fixed;
+                        top: 70px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background-color:${szin};
+                        color: white;
+                        padding: 15px 30px;
+                        border-radius: 12px;
+                        box-shadow: 0 0 15px rgba(0,0,0,0.3);
+                        z-index: 10000;
+                        font-size: 20px;
+                        font-weight: bold;
+                        text-align: center;
+                        display: none;
+                    ">
+                    ${valasz.message}
+                    </div>
+                `);
+                $("#popup-jelszovalasz").fadeIn(300, function () {
                     setTimeout(function () {
-                        $("#popup-ujjelszomentes").fadeOut(600, function () {
+                        $("#popup-jelszovalasz").fadeOut(600, function () {
                             $(this).remove();
+                            if (valasz.success) {
+                                window.location.href = "/logout.php";
+                            }
                         });
-                    }, 2500);
+                    }, 2000);
                 });
             }
-        })
+        });
     });
 
 

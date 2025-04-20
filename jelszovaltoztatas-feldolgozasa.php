@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "database/db_connect.php";
 $token = $_POST["token"];
 
@@ -8,37 +9,40 @@ $sql = "SELECT * FROM felhasznalo
         WHERE token = ?";
 
 $stmt = $conn->prepare($sql);
-
 $stmt->bind_param("s", $token_hash);
-
 $stmt->execute();
-
 $result = $stmt->get_result();
-
 $user = $result->fetch_assoc();
 
+$errors = [];
 if ($user === null) {
-    die("token not found");
+    $errors[] = "Nem található a token";
 }
 
 if (strtotime($user["token_lejarat"]) <= time()) {
-    die("token has expired");
+    $errors[] = "A token lejárt.";
 }
 
 if (strlen($_POST["password"]) < 8) {
-    die("Password must be at least 8 characters");
+    $errors[] = "A jelszónak legalább 8 karakter hosszúnak kell lennie!";
 }
 
-if ( ! preg_match("/[a-z]/i", $_POST["password"])) {
-    die("Password must contain at least one letter");
+if ( ! preg_match("/[A-Z]/", $_POST["password"])) {
+    $errors[] = "A jelszónak legalább egy nagybetűt tartalmaznia kell!";
 }
 
 if ( ! preg_match("/[0-9]/", $_POST["password"])) {
-    die("Password must contain at least one number");
+    $errors[] = "A jelszónak legalább egy számot tartalmaznia kell!";
 }
 
 if ($_POST["password"] !== $_POST["password_confirmation"]) {
-    die("Passwords must match");
+    $errors[] = "A jelszavaknak egyezniük kell!";
+}
+
+if (!empty($errors)) {
+    $_SESSION['jel_error'] = $errors[0]; // csak az első hiba jelenik meg
+    header("Location: /jelszovaltoztatas.php?token=$token");
+    exit;
 }
 
 $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
